@@ -59,6 +59,18 @@
             });
         };
         
+        function createTxtBox(){
+           var rect = createRect({left: 100,top: 100,fill:'transparent',stroke: '#ccc',width: 150,height: 25});
+            var text = new fabric.Text("text", {left: 140, top: 105,fontSize:18});
+            var group = new fabric.Group([rect,text], {
+                left: 150,
+                top: 100
+            });
+
+            canvas.add(group);
+            setCustomDecor();
+        };
+        
         function createContentTxt(){
             var rect = createRect({left: 200,top: 250,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
             var rect1 = createRect({left: 200,top: 265,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
@@ -142,6 +154,7 @@
             createDummyTxt:createDummyTxt,
             createContentTxt:createContentTxt,
             createAvatar:createAvatar,
+            createTxtBox:createTxtBox,
             isEdited:isEdited,
             deleteObj:deleteObj
         };

@@ -20,6 +20,7 @@
 
 .fh-tab-content {
     max-height: 250px;
+    min-height: 150px;
     border: 1px solid #d6d6d6;
     border-top: none;
     overflow-y: auto;
@@ -36,4 +37,51 @@
     border-bottom: 1px solid cadetblue;
     padding: 5px;
     outline: none;
+}
+
+.fh-draw-btn{
+    background: url('../../img/draw/ok-button.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-txt{
+    background: url('../../img/draw/txt.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.fh-draw-conTxt{
+    background: url('../../img/draw/content.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-img{
+    background: url('../../img/draw/photos.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-avt{
+    background: url('../../img/draw/avatar.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-pop-up{
+    background: url('../../img/draw/pop-up.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-txtBox{
+    background: url('../../img/draw/txt-box.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-tab-panel {
+    margin-bottom: 5px;
 }

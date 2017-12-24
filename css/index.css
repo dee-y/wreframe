@@ -57,10 +57,10 @@ body > *{
 
 .fh-listBtn{
     outline: none;
-    min-width: 50px;
-    margin: 1px;
+    min-width: 40px;
+    margin: 5px 10px;
     border: none;
-    min-height: 50px;
+    min-height: 40px;
     background: transparent;
 }
 

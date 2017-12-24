@@ -36,6 +36,9 @@
                 case 'avatar':
                     fabricService.createAvatar();
                     break;
+                case 'txtBox':
+                    fabricService.createTxtBox();
+                    break;
                 default:
 
             }
