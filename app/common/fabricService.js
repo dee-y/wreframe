@@ -9,7 +9,7 @@
     function fabricService(){
         
         var canvas=null;
-        var objLen={btn:0};
+        var objLen=[];
         var isEdited=false;
         
         function intializeCanvas() {
@@ -44,7 +44,8 @@
                 left: 150,
                 top: 100
             });
-
+            
+            objLen.push({value:"Image"});
             canvas.add(group);
             setCustomDecor();
         };
@@ -54,6 +55,7 @@
                 oImg.setLeft(0);
                 oImg.setTop(0);
                 canvas.add(oImg);
+                objLen.push({value:"Avatar"});
                 canvas.renderAll();
                 setCustomDecor();
             });
@@ -69,6 +71,7 @@
 
             canvas.add(group);
             setCustomDecor();
+            objLen.push({value:"Text Box"});
         };
         
         function createContentTxt(){
@@ -84,38 +87,22 @@
 
             canvas.add(group);
             setCustomDecor();
+            objLen.push({value:"Text (Multiline)"});
         };
         
         function createPopup(){
             var rect = createRect({left: 200,top: 250,fill: 'white',width: 200,height: 130});
             var rect1 = createRect({left: 200,top: 250,fill: '#ccc',width: 200,height: 30});
-           
-            var group = new fabric.Group([rect,rect1], {
-                left: 150,
-                top: 100,
-                stroke: 'black',
-                strokeWidth:1,
-            });
-
-            canvas.add(group);
-            setCustomDecor();
+            createGroup([rect,rect1]);
+            objLen.push({value:"Pop-up"});
         };
         
         function createBtn() {
             var rect = createRect({left: 100,top: 100,fill: 'white',width: 100,height: 30});
             var btnText='Button';
             var text = new fabric.Text(btnText, {left: 130, top: 108,fontSize:13});
-
-            var group = new fabric.Group([rect, text], {
-                left: 150,
-                top: 100,
-                stroke: 'black',
-                strokeWidth:1,
-            });
-
-            canvas.add(group);
-            setCustomDecor();
-            objLen.btn++;
+            createGroup([rect,text]);
+            objLen.push({value:"Button"});
         };
         
         
@@ -124,9 +111,12 @@
             var text = new fabric.Text(txtString, {left: 130, top: 108,fontSize:13});
             canvas.add(text);
             setCustomDecor();
+            objLen.push({value:"Text (Single Line / label)"});
         };
         
         function deleteObj(){
+           var index=canvas.getObjects().indexOf(canvas.getActiveObject())
+           console.log(index);
           canvas.remove(canvas.getActiveObject());
         };
         
@@ -143,6 +133,18 @@
           return items;
         };
         
+        function createGroup(elements){
+            var group = new fabric.Group(elements, {
+                left: 150,
+                top: 100,
+                stroke: 'black',
+                strokeWidth:1,
+            });
+            
+            canvas.add(group);
+            setCustomDecor();
+        };
+        
         return {
             ccObj:function(json){
                 createCustomObject(json);
@@ -156,7 +158,8 @@
             createAvatar:createAvatar,
             createTxtBox:createTxtBox,
             isEdited:isEdited,
-            deleteObj:deleteObj
+            deleteObj:deleteObj,
+            objLen:objLen
         };
         
     };

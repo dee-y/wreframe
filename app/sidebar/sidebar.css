@@ -19,7 +19,7 @@
 }
 
 .fh-tab-content {
-    max-height: 250px;
+    max-height: 200px;
     min-height: 150px;
     border: 1px solid #d6d6d6;
     border-top: none;
@@ -84,4 +84,18 @@
 
 .fh-tab-panel {
     margin-bottom: 5px;
+}
+
+
+.fh-child-border {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-left: 1px dashed #909090;
+    border-bottom: 1px dashed #909090;
+}
+
+.fh-obj-child {
+    margin-left: 30px;
+    user-select: none;
 }

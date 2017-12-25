@@ -1,0 +1,15 @@
+<div class="fh-tab-panel">
+    <div class="fh-tab-pane">
+        <div class="fh-tab">Tools</div>
+    </div>
+    <div class="fh-load-option">
+        <select>
+            <option ng-repeat="opt in sc.toolsOpt"  value="{{opt.value}}">{{opt.name}}</option>
+        </select>
+    </div>
+    <div class="fh-tab-content">
+
+        <button ng-repeat="item in sc.sidebarValues" 
+                ng-click="sc.createEle(item)" type="button" class="fh-listBtn" ng-class="item.class"></button>
+    </div>
+</div>

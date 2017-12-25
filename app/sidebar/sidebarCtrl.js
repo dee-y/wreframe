@@ -7,11 +7,13 @@
 
     'use strict';
 
-    function sidebarCtrl(sidebarValues, fabricService, menuModes) {
+    function sidebarCtrl(sidebarValues,toolsOpt, fabricService, menuModes) {
         var vm = this;
 
         vm.sidebarValues = sidebarValues;
         vm.menuModes = menuModes;
+        vm.toolsOpt = toolsOpt;
+        vm.obj=fabricService.objLen;
 
         vm.createEle = function (json) {
             fabricService.isEdited = true;
@@ -47,7 +49,7 @@
     }
     ;
 
-    angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'fabricService', 'menuModes', sidebarCtrl]);
+    angular.module('freehand').controller('sidebarCtrl', ['sidebarValues','toolsOpt', 'fabricService', 'menuModes', sidebarCtrl]);
 
 
 })();

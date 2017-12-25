@@ -1,28 +1,3 @@
-<div class="fh-tab-panel">
-    <div class="fh-tab-pane">
-        <div class="fh-tab">Tools</div>
-    </div>
-    <div class="fh-load-option">
-        <select>
-            <option value="forms">Default</option>
-            <option value="person">Person</option>
-            <option value="shapes">Shapes</option>
-            <option value="map">Maps</option>
-        </select>
-    </div>
-    <div class="fh-tab-content">
-
-        <button ng-repeat="item in sc.sidebarValues" 
-                ng-click="sc.createEle(item)" type="button" class="fh-listBtn" ng-class="item.class"></button>
-    </div>
-</div>
-
-
-<div class="fh-tab-panel">
-    <div class="fh-tab-pane">
-        <div class="fh-tab">Outline: Untitled</div>
-    </div>
-    <div class="fh-tab-content">
-        <div class="fh-obj-master">Window</div>
-    </div>
-</div>
+<div ng-include="'app/sidebar/chunks/tools.html'"></div>
+<div ng-include="'app/sidebar/chunks/outline.html'"></div>
+<div ng-include="'app/sidebar/chunks/properties.html'"></div>
