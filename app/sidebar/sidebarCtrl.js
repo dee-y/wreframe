@@ -14,6 +14,25 @@
         vm.menuModes = menuModes;
         vm.toolsOpt = toolsOpt;
         vm.obj=fabricService.objLen;
+        
+        //0 ->  tools , 1-> Outline, 2 -> properties
+        vm.panels={default:0};
+            
+        vm.togglePanel = function(opt){
+            switch(opt){
+                case 'tools'  :
+                    vm.panels.default = 0;
+                    break;
+                case 'outline':
+                    vm.panels.default =1;
+                    break;
+                case 'properties':
+                    vm.panels.default= 2;
+                    break;
+                default:
+                        //do nothing
+            };
+        };
 
         vm.createEle = function (json) {
             fabricService.isEdited = true;

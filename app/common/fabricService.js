@@ -16,7 +16,7 @@
             setTimeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                var height = drawArea.clientHeight - 80;
+                var height = drawArea.clientHeight - 75;
 
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.on("object:selected", function (options) {

@@ -15,19 +15,7 @@ Main HTML file for app
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row fh-divider-horizontal fh-menu" ng-controller="toolbarCtrl as tc">
-                <div class="col-md-5 fh-actionbar">
-                    <button ng-repeat="menu in tc.fileMenu" class="fh-btn" title="{{menu.name}}">
-                        <span class="fh-file-image" ng-class="menu.class"></span>
-                        <span class="fh-file-name">{{menu.name}}</span>
-                    </button>
-                </div>
-                <div class="col-md-1 col-md-offset-5 fh-toolbar">
-                    <button ng-repeat="menu in tc.editMenu" class="fh-btn" title="{{menu.name}}" ng-click="tc.editAction(menu)">
-                        <span class="fh-file-image" ng-class="menu.class"></span>
-                    </button>
-                </div>
-            </div>
+            <div  ng-include="'app/toolbar/toolbar.html'"></div>
             <div class="row">
                 <div class="col-md-2 fh-divider-vertical fh-sidebar" ng-controller="sidebarCtrl as sc">
                     <div  ng-include="'app/sidebar/sidebar.html'"></div>

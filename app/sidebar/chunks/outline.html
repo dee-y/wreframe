@@ -1,12 +1,12 @@
-<div class="fh-tab-panel">
+<div class="fh-tab-panel" ng-click="sc.togglePanel('outline')">
     <div class="fh-tab-pane">
         <div class="fh-tab">Outline: Untitled</div>
     </div>
-    <div class="fh-tab-content">
+    <div class="fh-tab-content" ng-show="sc.panels.default === 1">
         <div class="fh-obj-master">Window</div>
         <div class="fh-obj-child" ng-repeat="obj in sc.obj">
             <span class="fh-child-border"></span>
-            <span>{{obj.value}}</span>
+            <span class="fh-child-txt">{{obj.value}}</span>
         </div>
     </div>
 </div>

@@ -19,7 +19,7 @@
 }
 
 .fh-tab-content {
-    max-height: 200px;
+    max-height: 350px;
     min-height: 150px;
     border: 1px solid #d6d6d6;
     border-top: none;
@@ -82,6 +82,24 @@
     background-size: cover;
 }
 
+.fh-draw-chk{
+    background: url('../../img/draw/check-box.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-rdo{
+    background: url('../../img/draw/radio-button.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fh-draw-prg{
+    background: url('../../img/draw/progress-bar.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .fh-tab-panel {
     margin-bottom: 5px;
 }
@@ -98,4 +116,13 @@
 .fh-obj-child {
     margin-left: 30px;
     user-select: none;
+    margin-top: -8px;
+}
+
+.fh-obj-master {
+    margin-bottom: 10px;
+}
+
+span.fh-child-txt {
+    vertical-align: -webkit-baseline-middle;
 }
