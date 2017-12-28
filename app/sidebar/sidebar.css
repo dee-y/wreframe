@@ -100,6 +100,12 @@
     background-size: cover;
 }
 
+.fh-draw-tab{
+    background: url('../../img/draw/tabs.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .fh-tab-panel {
     margin-bottom: 5px;
 }

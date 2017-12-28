@@ -60,6 +60,9 @@
                 case 'txtBox':
                     fabricService.createTxtBox();
                     break;
+                case 'chkBox':
+                    fabricService.createCheckBox();
+                break;
                 default:
 
             }

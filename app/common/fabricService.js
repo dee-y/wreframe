@@ -61,6 +61,27 @@
             });
         };
         
+        function createCheckBox(){
+            var setCheckBoxes=[];
+            var top=100;
+            var txt='Option ';
+            for (var i = 1, max = 4; i < max; i++) {
+                var rect=createRect({left: 100,top: top,fill: 'transparent', stroke:'#000',strokeWidth:2,width: 15,height: 15});
+                var text = new fabric.Text(txt+i, {left: 130, top: top,fontSize:15});
+                setCheckBoxes.push(rect);
+                setCheckBoxes.push(text);
+                top+=25;
+            }
+            var group = new fabric.Group(setCheckBoxes, {
+                left: 150,
+                top: 100
+            });
+            
+            objLen.push({value:"Check Box"});
+            canvas.add(group);
+            setCustomDecor();
+        };
+        
         function createTxtBox(){
            var rect = createRect({left: 100,top: 100,fill:'transparent',stroke: '#ccc',width: 150,height: 25});
             var text = new fabric.Text("text", {left: 140, top: 105,fontSize:18});
@@ -75,12 +96,14 @@
         };
         
         function createContentTxt(){
-            var rect = createRect({left: 200,top: 250,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-            var rect1 = createRect({left: 200,top: 265,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-            var rect2 = createRect({left: 200,top: 280,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-            var rect3 = createRect({left: 200,top: 295,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-            var rect4 = createRect({left: 200,top: 310,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-            var group = new fabric.Group([rect,rect1,rect2,rect3,rect4], {
+            var top=250;
+            var ele=[];
+            for (var i = 0, max = 4; i < max; i++) {
+                var rect=createRect({left: 200,top: top,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
+                top+=15;
+                ele.push(rect);
+            }
+            var group = new fabric.Group(ele, {
                 left: 150,
                 top: 100
             });
@@ -154,6 +177,7 @@
             createPopup:createPopup,
             createIMH:createIMH,
             createDummyTxt:createDummyTxt,
+            createCheckBox:createCheckBox,
             createContentTxt:createContentTxt,
             createAvatar:createAvatar,
             createTxtBox:createTxtBox,

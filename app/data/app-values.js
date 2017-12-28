@@ -17,7 +17,8 @@
                 {"name": "progressbar", "value": "Progress Bar", "class": "fh-draw-prg"},
                 {"name": "imgplaceholder", "value": "Image Place Holder", "class": "fh-draw-img"},
                 {"name": "popup", "value": "Pop-up", "class": "fh-draw-pop-up"},
-                {"name": "avatar", "value": "Avatar", "class": "fh-draw-avt"}
+                {"name": "avatar", "value": "Avatar", "class": "fh-draw-avt"},
+                {"name": "tab", "value": "Tabbed Window", "class": "fh-draw-tab"}
 
             ];
     angular.module('freehand').value('sidebarValues', sidebarJson);
