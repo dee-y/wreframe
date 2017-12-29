@@ -12,6 +12,7 @@
                 {"name": "txtBox", "value": "Text Box", "class": "fh-draw-txtBox"},
                 {"name": "chkBox", "value": "Check Box", "class": "fh-draw-chk"},
                 {"name": "radioBtn", "value": "Radio Button", "class": "fh-draw-rdo"},
+                {"name": "dropDown", "value": "Drop Down", "class": "fh-draw-dropdwn"},
                 {"name": "cntText", "value": "Content Text", "class": "fh-draw-conTxt"},
                 {"name": "dummyTxt", "value": "Lorem Ipsum", "class": "fh-draw-txt"},
                 {"name": "progressbar", "value": "Progress Bar", "class": "fh-draw-prg"},
@@ -59,6 +60,7 @@
                 {id: 2,name: "Person",value:"person","default":1},
                 {id: 3,name: "Maps",value:"maps","default":1},
                 {id: 4,name: "Windows",value:"window","default":1},
+                {id: 5,name: "Flow Chart",value:"flowchart","default":1}
             ];
             
             angular.module("freehand").value("toolsOpt",toolsOpt);

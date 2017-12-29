@@ -64,6 +64,12 @@
     background-size: cover;
 }
 
+.fh-draw-dropdwn{
+    background: url('../../img/draw/drop-down-list.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .fh-draw-avt{
     background: url('../../img/draw/avatar.svg');
     background-repeat: no-repeat;

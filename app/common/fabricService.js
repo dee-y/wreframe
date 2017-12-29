@@ -82,6 +82,28 @@
             setCustomDecor();
         };
         
+        
+        function createRadioBtn(){
+            var setRadioBtn=[];
+            var top=100;
+            var txt='Option ';
+            for (var i = 1, max = 4; i < max; i++) {
+                var cir=createCircle({left: 100,top: top,fill: 'transparent', stroke:'#000',strokeWidth:2,radius: 6});
+                var text = new fabric.Text(txt+i, {left: 130, top: top,fontSize:15});
+                setRadioBtn.push(cir);
+                setRadioBtn.push(text);
+                top+=25;
+            }
+            var group = new fabric.Group(setRadioBtn, {
+                left: 150,
+                top: 100
+            });
+            
+            objLen.push({value:"Radio Button"});
+            canvas.add(group);
+            setCustomDecor();
+        };
+        
         function createTxtBox(){
            var rect = createRect({left: 100,top: 100,fill:'transparent',stroke: '#ccc',width: 150,height: 25});
             var text = new fabric.Text("text", {left: 140, top: 105,fontSize:18});
@@ -130,7 +152,7 @@
         
         
         function createDummyTxt(){
-            var txtString='Lorem ipsum dolor sit amet, consectetur adipiscing elit';
+            var txtString='Lorem ipsum';
             var text = new fabric.Text(txtString, {left: 130, top: 108,fontSize:13});
             canvas.add(text);
             setCustomDecor();
@@ -148,6 +170,11 @@
         function createRect(json){
           var rect = new fabric.Rect(json);  
           return rect;
+        };
+        
+        function createCircle(json){
+          var cir = new fabric.Circle(json);
+          return cir;
         };
         
         function getObject(){
@@ -178,6 +205,7 @@
             createIMH:createIMH,
             createDummyTxt:createDummyTxt,
             createCheckBox:createCheckBox,
+            createRadioBtn:createRadioBtn,
             createContentTxt:createContentTxt,
             createAvatar:createAvatar,
             createTxtBox:createTxtBox,

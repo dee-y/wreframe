@@ -2,10 +2,10 @@
     <div class="col-md-5 fh-actionbar">
         <button ng-repeat="menu in tc.fileMenu" class="fh-btn" title="{{menu.name}}">
             <span class="fh-file-image" ng-class="menu.class"></span>
-            <span class="fh-file-name">{{menu.name}}</span>
+<!--            <span class="fh-file-name">{{menu.name}}</span>-->
         </button>
     </div>
-    <div class="col-md-1 col-md-offset-5 fh-toolbar">
+    <div class="col-md-2 col-md-offset-4 fh-toolbar">
         <button ng-repeat="menu in tc.editMenu" class="fh-btn" title="{{menu.name}}" ng-click="tc.editAction(menu)">
             <span class="fh-file-image" ng-class="menu.class"></span>
         </button>

@@ -53,12 +53,13 @@ body > *{
     background: #ccc;
     outline: none;
     font-family: verdana;
-    line-height: 26px;}
+    line-height: 26px;
+}
 
 .fh-listBtn{
     outline: none;
     min-width: 35px;
-    margin: 5px 15px;
+    margin: 5px 18px;
     border: none;
     min-height: 35px;
     background: transparent;
