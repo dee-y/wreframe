@@ -9,9 +9,9 @@
     display: inline-block;
     padding: 5px;
     min-width: 100%;
-    background: #86d5d8;
+    background: #E5E9EE;
     font-size: 13px;
-    border-bottom: 1px solid cadetblue;
+    border-bottom: 1px solid #ccc;
 }
 
 .fh-tab .active{
@@ -23,6 +23,7 @@
     min-height: 150px;
     border: 1px solid #d6d6d6;
     border-top: none;
+    border-right: none;
     overflow-y: auto;
     padding: 5px;
 }
@@ -32,11 +33,14 @@
 }
 
 .fh-load-option > select{
-    background: #86d5d8;
+    background: #DCE0E6;
     width: 100%;
-    border-bottom: 1px solid cadetblue;
+    border: 1px solid #ccc;
     padding: 5px;
+    border-left: none;
     outline: none;
+    border-right: none;
+    border-top: none;
 }
 
 .fh-draw-btn{
@@ -111,11 +115,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-.fh-tab-panel {
-    margin-bottom: 5px;
-}
-
 
 .fh-child-border {
     width: 25px;

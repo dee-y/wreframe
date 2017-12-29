@@ -25,7 +25,6 @@
             }, 1000);
         } ;
         
-        
         function setCustomDecor() {
             var lastItemIndex = getObject().length - 1;
             canvas.item(lastItemIndex).setControlVisible('mtr', false);
@@ -44,27 +43,21 @@
                 left: 150,
                 top: 100
             });
-            
-            objLen.push({value:"Image"});
-            canvas.add(group);
-            setCustomDecor();
+            addItem(group,"Image");
         };
         
         function createAvatar() {
             fabric.Image.fromURL('img/draw/avatar.svg', function (oImg) {
                 oImg.setLeft(0);
                 oImg.setTop(0);
-                canvas.add(oImg);
-                objLen.push({value:"Avatar"});
-                canvas.renderAll();
-                setCustomDecor();
+                addItem(oImg,"Avatar");
             });
         };
         
         function createCheckBox(){
             var setCheckBoxes=[];
             var top=100;
-            var txt='Option ';
+            var txt='Choice ';
             for (var i = 1, max = 4; i < max; i++) {
                 var rect=createRect({left: 100,top: top,fill: 'transparent', stroke:'#000',strokeWidth:2,width: 15,height: 15});
                 var text = new fabric.Text(txt+i, {left: 130, top: top,fontSize:15});
@@ -76,10 +69,7 @@
                 left: 150,
                 top: 100
             });
-            
-            objLen.push({value:"Check Box"});
-            canvas.add(group);
-            setCustomDecor();
+            addItem(group,"Check Box");
         };
         
         
@@ -98,10 +88,7 @@
                 left: 150,
                 top: 100
             });
-            
-            objLen.push({value:"Radio Button"});
-            canvas.add(group);
-            setCustomDecor();
+            addItem(group,"Radio Button");
         };
         
         function createTxtBox(){
@@ -111,10 +98,7 @@
                 left: 150,
                 top: 100
             });
-
-            canvas.add(group);
-            setCustomDecor();
-            objLen.push({value:"Text Box"});
+            addItem(group,"Text Box");
         };
         
         function createContentTxt(){
@@ -129,39 +113,37 @@
                 left: 150,
                 top: 100
             });
-
-            canvas.add(group);
-            setCustomDecor();
-            objLen.push({value:"Text (Multiline)"});
+            addItem(group,"Text (Multiline)");
         };
         
         function createPopup(){
             var rect = createRect({left: 200,top: 250,fill: 'white',width: 200,height: 130});
             var rect1 = createRect({left: 200,top: 250,fill: '#ccc',width: 200,height: 30});
-            createGroup([rect,rect1]);
-            objLen.push({value:"Pop-up"});
+            createGroup([rect,rect1],"Pop-up");
         };
         
         function createBtn() {
             var rect = createRect({left: 100,top: 100,fill: 'white',width: 100,height: 30});
             var btnText='Button';
             var text = new fabric.Text(btnText, {left: 130, top: 108,fontSize:13});
-            createGroup([rect,text]);
-            objLen.push({value:"Button"});
+            createGroup([rect,text],"Button");
         };
         
         
         function createDummyTxt(){
             var txtString='Lorem ipsum';
             var text = new fabric.Text(txtString, {left: 130, top: 108,fontSize:13});
-            canvas.add(text);
+            addItem(text,"Text (Single Line / label)");
+        };
+        
+        function addItem(item,type){
+            objLen.push({value:type});
+            canvas.add(item);
             setCustomDecor();
-            objLen.push({value:"Text (Single Line / label)"});
         };
         
         function deleteObj(){
            var index=canvas.getObjects().indexOf(canvas.getActiveObject())
-           console.log(index);
           canvas.remove(canvas.getActiveObject());
         };
         
@@ -183,7 +165,7 @@
           return items;
         };
         
-        function createGroup(elements){
+        function createGroup(elements,type){
             var group = new fabric.Group(elements, {
                 left: 150,
                 top: 100,
@@ -193,6 +175,7 @@
             
             canvas.add(group);
             setCustomDecor();
+            objLen.push({value:type});
         };
         
         return {
@@ -215,7 +198,5 @@
         };
         
     };
-    
     angular.module('freehand').service('fabricService',[fabricService]);
-    
 })();

@@ -21,16 +21,7 @@ Main HTML file for app
                     <div  ng-include="'app/sidebar/sidebar.html'"></div>
                 </div>
                 <div class="col-md-10" style="padding:0px">
-                    <div class="fh-drawArea" ng-controller="drawCtrl as dc" ng-init="dc.intialize()">
-                        <div class="fh-outerbar">
-                            <div class="fh-canvas-title">
-                                Untitled View<span ng-if="dc.fabricService.isEdited">*</span>
-                            </div>
-                        </div>
-                        <div>
-                            <canvas class="fh-canvas" id="fhCanvas"></canvas>
-                        </div>
-                    </div>
+                    <div  ng-include="'app/drawArea/draw.html'"></div>
                 </div>
             </div>
         </div>

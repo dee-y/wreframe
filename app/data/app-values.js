@@ -59,8 +59,9 @@
                 {id: 1,name: "Forms",value:"frm","default":1},
                 {id: 2,name: "Person",value:"person","default":1},
                 {id: 3,name: "Maps",value:"maps","default":1},
-                {id: 4,name: "Windows",value:"window","default":1},
-                {id: 5,name: "Flow Chart",value:"flowchart","default":1}
+                {id: 4,name: "Charts",value:"charts","default":1},
+                {id: 5,name: "Windows",value:"window","default":1},
+                {id: 6,name: "Flow Chart",value:"flowchart","default":1}
             ];
             
             angular.module("freehand").value("toolsOpt",toolsOpt);
