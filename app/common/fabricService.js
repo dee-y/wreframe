@@ -6,7 +6,7 @@
 (function(){
     'use strict';
     
-    function fabricService(){
+    function fabricService($http){
         
         var canvas=null;
         var objLen=[];
@@ -16,8 +16,7 @@
             setTimeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                var height = drawArea.clientHeight - 75;
-
+                var height = drawArea.clientHeight - 20;
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.on("object:selected", function (options) {
                     options.target.bringToFront();
@@ -25,157 +24,39 @@
             }, 1000);
         } ;
         
-        function setCustomDecor() {
-            var lastItemIndex = getObject().length - 1;
-            canvas.item(lastItemIndex).setControlVisible('mtr', false);
-            canvas.item(lastItemIndex).set({
-                borderColor: 'grey',
-                cornerColor: 'black',
-                cornerSize: 6,
-                transparentCorners: false
-            });
-        };
+        function setCustomDecor(obj) {
+                obj.setControlVisible('mtr', false);
+                obj.set({
+                    borderColor: 'grey',
+                    cornerColor: 'black',
+                    cornerSize: 6,
+                    transparentCorners: false
+                });
+        }
+        ;
         
-        function createIMH(){
-            var rect = createRect({left: 200,top: 250,fill: '#ccc',width: 150,height: 150});
-            var text = new fabric.Text("IMAGE", {left: 240, top: 310,fontSize:18});
-            var group = new fabric.Group([rect,text], {
-                left: 150,
-                top: 100
-            });
-            addItem(group,"Image");
-        };
-        
-        function createAvatar() {
-            fabric.Image.fromURL('img/draw/avatar.svg', function (oImg) {
-                oImg.setLeft(0);
-                oImg.setTop(0);
-                addItem(oImg,"Avatar");
-            });
-        };
-        
-        function createCheckBox(){
-            var setCheckBoxes=[];
-            var top=100;
-            var txt='Choice ';
-            for (var i = 1, max = 4; i < max; i++) {
-                var rect=createRect({left: 100,top: top,fill: 'transparent', stroke:'#000',strokeWidth:2,width: 15,height: 15});
-                var text = new fabric.Text(txt+i, {left: 130, top: top,fontSize:15});
-                setCheckBoxes.push(rect);
-                setCheckBoxes.push(text);
-                top+=25;
-            }
-            var group = new fabric.Group(setCheckBoxes, {
-                left: 150,
-                top: 100
-            });
-            addItem(group,"Check Box");
-        };
-        
-        
-        function createRadioBtn(){
-            var setRadioBtn=[];
-            var top=100;
-            var txt='Option ';
-            for (var i = 1, max = 4; i < max; i++) {
-                var cir=createCircle({left: 100,top: top,fill: 'transparent', stroke:'#000',strokeWidth:2,radius: 6});
-                var text = new fabric.Text(txt+i, {left: 130, top: top,fontSize:15});
-                setRadioBtn.push(cir);
-                setRadioBtn.push(text);
-                top+=25;
-            }
-            var group = new fabric.Group(setRadioBtn, {
-                left: 150,
-                top: 100
-            });
-            addItem(group,"Radio Button");
-        };
-        
-        function createTxtBox(){
-           var rect = createRect({left: 100,top: 100,fill:'transparent',stroke: '#ccc',width: 150,height: 25});
-            var text = new fabric.Text("text", {left: 140, top: 105,fontSize:18});
-            var group = new fabric.Group([rect,text], {
-                left: 150,
-                top: 100
-            });
-            addItem(group,"Text Box");
-        };
-        
-        function createContentTxt(){
-            var top=250;
-            var ele=[];
-            for (var i = 0, max = 4; i < max; i++) {
-                var rect=createRect({left: 200,top: top,strokeWidth:0,fill: '#ccc',width: 200,height: 10});
-                top+=15;
-                ele.push(rect);
-            }
-            var group = new fabric.Group(ele, {
-                left: 150,
-                top: 100
-            });
-            addItem(group,"Text (Multiline)");
-        };
-        
-        function createPopup(){
-            var rect = createRect({left: 200,top: 250,fill: 'white',width: 200,height: 130});
-            var rect1 = createRect({left: 200,top: 250,fill: '#ccc',width: 200,height: 30});
-            createGroup([rect,rect1],"Pop-up");
-        };
-        
-        function createBtn() {
-            var rect = createRect({left: 100,top: 100,fill: 'white',width: 100,height: 30});
-            var btnText='Button';
-            var text = new fabric.Text(btnText, {left: 130, top: 108,fontSize:13});
-            createGroup([rect,text],"Button");
-        };
-        
-        
-        function createDummyTxt(){
-            var txtString='Lorem ipsum';
-            var text = new fabric.Text(txtString, {left: 130, top: 108,fontSize:13});
-            addItem(text,"Text (Single Line / label)");
-        };
-        
-        function addItem(item,type){
-            objLen.push({value:type});
-            canvas.add(item);
-            setCustomDecor();
-        };
-        
+        function createObj(obj) {
+            var canvasJson=canvas.toJSON();
+            var objName=obj.name;
+            $http.get('app/data/objects/' + objName + '.json',{cache:true}).then(
+                    function (res) {
+                        var data=res.data;
+                        canvasJson.objects.push(data);
+                        objLen.push({value:obj.value});
+                        canvas.loadFromJSON(canvasJson,canvas.renderAll.bind(canvas),function(o,object){
+                            setCustomDecor(object);
+                        });
+                    },
+                    function (err) {
+                        throw err;
+                    }
+            );
+        }
+        ;
+                
         function deleteObj(){
            var index=canvas.getObjects().indexOf(canvas.getActiveObject())
           canvas.remove(canvas.getActiveObject());
-        };
-        
-        /* Utility Functions */
-        
-        function createRect(json){
-          var rect = new fabric.Rect(json);  
-          return rect;
-        };
-        
-        function createCircle(json){
-          var cir = new fabric.Circle(json);
-          return cir;
-        };
-        
-        function getObject(){
-          var items={};
-          items=canvas.toObject().objects;
-          return items;
-        };
-        
-        function createGroup(elements,type){
-            var group = new fabric.Group(elements, {
-                left: 150,
-                top: 100,
-                stroke: 'black',
-                strokeWidth:1,
-            });
-            
-            canvas.add(group);
-            setCustomDecor();
-            objLen.push({value:type});
         };
         
         return {
@@ -183,20 +64,12 @@
                 createCustomObject(json);
             },
             intializeCanvas:intializeCanvas,
-            createBtn:createBtn,
-            createPopup:createPopup,
-            createIMH:createIMH,
-            createDummyTxt:createDummyTxt,
-            createCheckBox:createCheckBox,
-            createRadioBtn:createRadioBtn,
-            createContentTxt:createContentTxt,
-            createAvatar:createAvatar,
-            createTxtBox:createTxtBox,
+            createObj:createObj,
             isEdited:isEdited,
             deleteObj:deleteObj,
             objLen:objLen
         };
         
     };
-    angular.module('freehand').service('fabricService',[fabricService]);
+    angular.module('freehand').service('fabricService',['$http',fabricService]);
 })();

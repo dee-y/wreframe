@@ -13,10 +13,10 @@
                 {"name": "chkBox", "value": "Check Box", "class": "fh-draw-chk"},
                 {"name": "radioBtn", "value": "Radio Button", "class": "fh-draw-rdo"},
                 {"name": "dropDown", "value": "Drop Down", "class": "fh-draw-dropdwn"},
-                {"name": "cntText", "value": "Content Text", "class": "fh-draw-conTxt"},
+                {"name": "cntTxt", "value": "Content Place Holder", "class": "fh-draw-conTxt"},
                 {"name": "dummyTxt", "value": "Lorem Ipsum", "class": "fh-draw-txt"},
                 {"name": "progressbar", "value": "Progress Bar", "class": "fh-draw-prg"},
-                {"name": "imgplaceholder", "value": "Image Place Holder", "class": "fh-draw-img"},
+                {"name": "img", "value": "Image Place Holder", "class": "fh-draw-img"},
                 {"name": "popup", "value": "Pop-up", "class": "fh-draw-pop-up"},
                 {"name": "avatar", "value": "Avatar", "class": "fh-draw-avt"},
                 {"name": "tab", "value": "Tabbed Window", "class": "fh-draw-tab"}

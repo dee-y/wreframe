@@ -2,7 +2,6 @@
  *Sidebar Controller
  */
 
-
 (function () {
 
     'use strict';
@@ -17,6 +16,11 @@
 
         //0 ->  tools , 1-> Outline, 2 -> properties
         vm.panels = {default: 0};
+            
+        vm.createEle = function (json) {
+            fabricService.isEdited = true;
+            fabricService.createObj(json);
+        };
 
         vm.togglePanel = function (opt) {
             switch (opt) {
@@ -35,48 +39,6 @@
             ;
         };
 
-        vm.createEle = function (json) {
-            fabricService.isEdited = true;
-            switch (json.name) {
-                case 'popup':
-                    fabricService.createPopup();
-                    break;
-                case 'button':
-                    fabricService.createBtn();
-                    break;
-                case 'cntText':
-                    fabricService.createContentTxt();
-                    break;
-                case 'dummyTxt':
-                    fabricService.createDummyTxt();
-                    break;
-                case 'progressbar':
-                    break;
-                case 'imgplaceholder':
-                    fabricService.createIMH();
-                    break;
-                case 'avatar':
-                    fabricService.createAvatar();
-                    break;
-                case 'txtBox':
-                    fabricService.createTxtBox();
-                    break;
-                case 'chkBox':
-                    fabricService.createCheckBox();
-                    break;
-                case 'radioBtn':
-                    fabricService.createRadioBtn();
-                    break;
-                default:
-
-            }
-        };
-
-    }
-    ;
-
+    };
     angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', sidebarCtrl]);
-
-
 })();
-
