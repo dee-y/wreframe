@@ -16,7 +16,7 @@
 
         //0 ->  tools , 1-> Outline, 2 -> properties
         vm.panels = {default: 0};
-            
+
         vm.createEle = function (json) {
             fabricService.isEdited = true;
             fabricService.createObj(json);
@@ -39,6 +39,7 @@
             ;
         };
 
-    };
+    }
+    ;
     angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', sidebarCtrl]);
 })();
