@@ -1,3 +1,9 @@
-<div ng-include="'app/sidebar/chunks/tools.html'"></div>
-<div ng-include="'app/sidebar/chunks/outline.html'"></div>
-<div ng-include="'app/sidebar/chunks/properties.html'"></div>
+<div class="fh-tab-panel" ng-repeat="mode in sc.menuModes" ng-click="sc.togglePanel(mode)">
+    <div class="fh-tab-pane">
+        <div class="fh-tab">{{mode.name}}</div>
+    </div>
+    <div ng-if="mode.default === 0" ng-include="'app/sidebar/chunks/'+mode.html">
+        
+    </div>
+    
+</div>

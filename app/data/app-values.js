@@ -28,8 +28,9 @@
     //0 = true , 1= false
     var menuModes =
             [
-                {id: 0, default: 0, name: "Tools", active: 0},
-                {id: 1, default: 1, name: "Properties", active: 1},
+                {id: 0, default: 0, name: "Tools", active: 0,html:'tools.html'},
+                {id: 1, default: 1, name: "Outline", active: 0,html:'outline.html'},
+                {id: 2, default: 1, name: "Properties", active: 1,html:'properties.html'},
             ];
 
     angular.module('freehand').value('menuModes', menuModes);

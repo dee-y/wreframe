@@ -19,6 +19,8 @@
                 var height = drawArea.clientHeight - 20;
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.on("object:selected", function (options) {
+                    var index=canvas.getObjects().indexOf(options.target);
+                    console.log(index);
                     options.target.bringToFront();
                 });
             }, 1000);
@@ -28,12 +30,14 @@
                 obj.setControlVisible('mtr', false);
                 obj.set({
                     borderColor: 'grey',
-                    cornerColor: 'black',
-                    cornerSize: 6,
+                    cornerColor: '#fff',
+                    cornerStrokeColor:"#000",
+                    padding: 4,
+                    cornerSize: 8,
+                    cornerStyle:"circle",
                     transparentCorners: false
                 });
-        }
-        ;
+        };
         
         function createObj(obj) {
             var canvasJson=canvas.toJSON();
@@ -51,11 +55,9 @@
                         throw err;
                     }
             );
-        }
-        ;
+        };
                 
         function deleteObj(){
-           var index=canvas.getObjects().indexOf(canvas.getActiveObject())
           canvas.remove(canvas.getActiveObject());
         };
         

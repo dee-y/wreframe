@@ -23,23 +23,16 @@
         };
 
         vm.togglePanel = function (opt) {
-            switch (opt) {
-                case 'tools'  :
-                    vm.panels.default = 0;
-                    break;
-                case 'outline':
-                    vm.panels.default = 1;
-                    break;
-                case 'properties':
-                    vm.panels.default = 2;
-                    break;
-                default:
-                //do nothing
-            }
+            angular.forEach(vm.menuModes,function(mode,index){
+                if(opt.name === mode.name){
+                    mode.default = 0;
+                }else{
+                    mode.default =1;
+                }
+            });
             ;
         };
 
-    }
-    ;
+    };
     angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', sidebarCtrl]);
 })();
