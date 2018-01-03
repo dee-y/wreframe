@@ -10,8 +10,9 @@
         
         var me=this;
         
-        
-        
+        function getProperties(){
+            
+        };
     };
     
     angular.module('freehand').service([propertyService]);
