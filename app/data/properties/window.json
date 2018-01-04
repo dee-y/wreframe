@@ -1,7 +1,20 @@
 {
-    "window": [
-        {"name":"window"},
-        {"title":"Untitled"},
-        {"homePage":true}
+    "name":"window",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Untitled",
+            "type":"text"
+        },
+        {
+            "name":"Home Page",
+            "value":true,
+            "type":"boolean"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        }
     ]
 }

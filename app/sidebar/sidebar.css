@@ -137,3 +137,20 @@
 span.fh-child-txt {
     vertical-align: -webkit-baseline-middle;
 }
+
+.fh-sidebar-property {
+    padding: 5px;
+    display: flex;
+}
+
+.fh-sb-prop-name {
+    width: 50%;
+}
+
+.fh-sb-prop-color{
+    min-width: 45px;
+    min-height: 17px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 1px 2px #ebebeb;
+    background: #fff;
+}
