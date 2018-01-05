@@ -9,25 +9,34 @@
     function propertyService($http) {
 
         var me = this;
-        var properties={};
+        var properties=[];
 
         function getProperties(type) {
-            properties={};
-            properties=$http.get('app/data/properties/' + type + '.json',{cache:true}).then(
+            var temp;
+            temp=$http.get('app/data/properties/' + type + '.json',{cache:true}).then(
                     function (res) {
-                        console.log(res.data);
                        return res.data;
                     },
                     function () {
                         throw 'err';
                     }
             );
-            return properties;
+            temp.then(function(data){
+                while(properties.length > 0){
+                    properties.pop();
+                }
+                properties.push(data);
+            });
         }
         ;
+        
+        
 
         return{
-            getProperties: getProperties
+            properties:properties,
+            getProperties: getProperties,
+            
+            
         }
     }
     ;

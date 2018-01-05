@@ -1,0 +1,15 @@
+{
+    "name":"button",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Button",
+            "type":"text"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        }
+    ]
+}

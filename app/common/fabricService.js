@@ -6,7 +6,7 @@
 (function(){
     'use strict';
     
-    function fabricService($http){
+    function fabricService($http,propertyService){
         
         var canvas=null;
         var objLen=[];
@@ -20,7 +20,10 @@
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.on("object:selected", function (options) {
                     options.target.bringToFront();
+                    getPropObj();
                 });
+                canvas.on("selection:cleared",getPropObj);
+                getPropObj();
             }, 1000);
         } ;
         
@@ -44,6 +47,7 @@
                 setProp.name=obj.customName;
                 setProp.value=obj.customId;
             }
+            propertyService.getProperties(setProp.value);
             return setProp;
         };
         
@@ -101,5 +105,5 @@
         };
         
     };
-    angular.module('freehand').service('fabricService',['$http',fabricService]);
+    angular.module('freehand').service('fabricService',['$http','propertyService',fabricService]);
 })();
