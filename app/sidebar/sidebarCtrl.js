@@ -37,7 +37,6 @@
         vm.setColorPicker=function(e){
             var picker=new jscolor(e.target);
             picker.show();
-            console.log(picker);
         }
 
     };

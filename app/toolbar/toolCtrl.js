@@ -7,7 +7,7 @@
     
     'use strict';
     
-    function toolbarCtrl(fabricService,fileMenuJson,editMenuJson){
+    function toolbarCtrl(fabricService,fileMenuJson,editMenuJson,electronService){
         var vm=this;
         
         vm.fileMenu=fileMenuJson;
@@ -15,6 +15,10 @@
         
         var deleteObj =function(){
             fabricService.deleteObj();
+        };
+
+        vm.newProj =function(){
+            electronService.createProj();
         };
         
         vm.editAction =function(menuJson){
@@ -31,6 +35,6 @@
         };
     };
     
-    angular.module("freehand").controller("toolbarCtrl",['fabricService','fileMenuJson','editMenuJson',toolbarCtrl]);
+    angular.module("freehand").controller("toolbarCtrl",['fabricService','fileMenuJson','editMenuJson','electronService',toolbarCtrl]);
     
 })();

@@ -57,6 +57,11 @@
     background-size: cover;
 }
 
+.fh-exit{
+    background: url(../../img/file/exit.png);
+    background-size: cover;
+}
+
 .fh-file-image {
     min-width: 19px;
     height: 19px;

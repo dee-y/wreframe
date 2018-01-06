@@ -16,7 +16,7 @@
             setTimeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                var height = drawArea.clientHeight - 20;
+                var height = drawArea.clientHeight - 10;
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.on("object:selected", function (options) {
                     options.target.bringToFront();
@@ -51,14 +51,14 @@
         };
         
         function getPropObj(){
-            var setProp={name:"Window",value:"window"};
+            var prop={name:"Window",value:"window"};
             if(canvas.getActiveObject()){
                 var obj=canvas.getActiveObject();
-                setProp.name=obj.customName;
-                setProp.value=obj.customId;
+                prop.name=obj.customName;
+                prop.value=obj.customId;
             }
-            propertyService.getProperties(setProp.value);
-            return setProp;
+            propertyService.getProperties(prop.value);
+            return prop;
         };
         
         function createObj(obj) {

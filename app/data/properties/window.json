@@ -10,11 +10,6 @@
             "name":"Home Page",
             "value":true,
             "type":"boolean"
-        },
-        {
-            "name":"Background",
-            "value":"#fff",
-            "type":"color"
         }
     ]
 }
