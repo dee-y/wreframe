@@ -143,8 +143,10 @@ span.fh-child-txt {
     display: flex;
 }
 
-.fh-sb-prop-name {
-    width: 50%;
+.fh-sb-prop-name, .fh-sb-prop-value {
+    width: 49%;
+    font-size: 13px;
+    margin: 0px 2px;
 }
 
 .fh-sb-prop-txt,.fh-sb-prop-color{

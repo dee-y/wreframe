@@ -1,0 +1,20 @@
+{
+    "name":"checkbox",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Check Box",
+            "type":"text"
+        },
+        {
+            "name":"Font Size",
+            "value":13,
+            "type":"number"
+        },
+        {
+            "name":"CheckBox Text",
+            "value": "Choice 1,Choice 2,Choice 3",
+            "type":"text"
+        }
+    ]
+}

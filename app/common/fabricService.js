@@ -24,8 +24,18 @@
                 });
                 canvas.on("selection:cleared",getPropObj);
                 getPropObj();
+                
+                document.addEventListener('keydown',canvasKey,false);
             }, 1000);
         } ;
+        
+        
+        function canvasKey(e){
+            //Delete Obj if Delete key is pressed
+            if(e.code === "Delete"){
+                deleteObj();
+            }
+        };
         
         function setCustomDecor(obj) {
                 obj.setControlVisible('mtr', false);

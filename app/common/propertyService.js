@@ -8,7 +8,6 @@
 
     function propertyService($http) {
 
-        var me = this;
         var properties=[];
 
         function getProperties(type) {
@@ -30,8 +29,11 @@
         }
         ;
         
+        function setProperty(){
+            
+        };
         
-
+        
         return{
             properties:properties,
             getProperties: getProperties,

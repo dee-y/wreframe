@@ -1,9 +1,9 @@
 {
-    "name":"button",
+    "name":"text box",
     "attr":[
         {
             "name":"Name",
-            "value":"Button",
+            "value":"Text Box",
             "type":"text"
         },
         {
@@ -15,6 +15,16 @@
             "name":"Rounded Corners",
             "value":false,
             "type":"boolean"
+        },
+        {
+            "name":"Place Holder",
+            "value":"text",
+            "type":"text"
+        },
+        {
+            "name":"Font Size",
+            "value":13,
+            "type":"number"
         }
     ]
 }
