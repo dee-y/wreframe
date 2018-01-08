@@ -11,6 +11,7 @@
         var canvas=null;
         var objLen=[];
         var isEdited=false;
+        var copiedElement=null;
         
         function intializeCanvas() {
             setTimeout(function () {
@@ -18,6 +19,8 @@
                 var width = parseInt(drawArea.clientWidth);
                 var height = drawArea.clientHeight - 10;
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
+                canvas.selection=false;
+                canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'},canvas.renderAll.bind(canvas))
                 canvas.on("object:selected", function (options) {
                     options.target.bringToFront();
                     getPropObj();
@@ -35,7 +38,48 @@
             if(e.code === "Delete"){
                 deleteObj();
             }
+            
+            if(e.code === "KeyC" && e.ctrlKey === true){
+                copyObj();
+            }
+            
+            if(e.code === "KeyV" && e.ctrlKey === true){
+                e.preventDefault();
+                pasteObj();
+            }
         };
+        
+        function copyObj() {
+            canvas.getActiveObject().clone(function (cloned) {
+                copiedElement = cloned;
+                var customId=canvas.getActiveObject().customId;
+                var customName=canvas.getActiveObject().customName;
+                cloned.customId=customId;
+                cloned.customName=customName;
+                console.log(cloned);
+            });
+        }
+        ;
+        
+        function pasteObj() {
+            copiedElement.clone(function (obj) {
+                canvas.discardActiveObject();
+                obj.set({
+                    left: obj.left + 10,
+                    top: obj.top + 10,
+                    evented: true,
+                    customId:copiedElement.customId,
+                    customName:copiedElement.customName
+                });
+                canvas.add(obj);
+                console.log(obj);
+                copiedElement.top += 10;
+                copiedElement.left += 10;
+                setCustomDecor(obj);
+            });
+        };
+        
+        
         
         function setCustomDecor(obj) {
                 obj.setControlVisible('mtr', false);

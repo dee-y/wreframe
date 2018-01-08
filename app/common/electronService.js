@@ -6,19 +6,42 @@
 
     'use strict';
 
-
     function electronService(){
         const {dialog} = require('electron').remote;
 
-        function createProj(){
-            var options = {title: 'Create New Project - Choose Folder',properties:['openDirectory']};
+        function showOpenDialog(options,callback){
                 dialog.showOpenDialog(options,function(path){
-                    console.log(path);
+                    callback(path);
                 });
+        };
+        
+        function createNew(path){
+            
+        };
+        
+        function openProj(path){
+            
+        };
+        
+        function fileActions(btn){
+            var options={};
+            switch (btn.value) {
+                case "new_proj":
+                    options={title: 'Create New - Choose Folder', properties: ['openDirectory']};
+                    showOpenDialog(options,createNew);
+                    break;
+                case "open_proj":
+                    options={title: 'Open Existing - Choose Folder', properties: ['openDirectory']};
+                    showOpenDialog(options,openProj);
+                    break;
+                default:
+
+                    break;
+            }
         };
 
         return{
-            createProj:createProj
+            fileActions:fileActions
         };
 
     };

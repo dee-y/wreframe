@@ -19,23 +19,17 @@
     height: 35px;
     border: none;
     background: transparent;
+    outline: none;
+}
+
+.fh-btn:hover {
+    background: rgba(255,255,255,0.5);
 }
 
 
 .fh-toolbar{
     float: right;
 }
-
-.fh-file-copy{
-    background: url(../../img/file/copy.png);
-    background-size: cover;
-}
-
-.fh-file-delete{
-    background: url(../../img/file/garbage.png);
-    background-size: cover;
-}
-
 
 .fh-plus{
     background: url(../../img/file/add.png);

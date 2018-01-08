@@ -50,8 +50,6 @@
 
     var editMenuJson =
             [
-                {id: 0, name: "Clone Object", value: "copy_obj", class: "fh-file-copy"},
-                {id: 0, name: "Delete Object", value: "delete_obj", class: "fh-file-delete"}
             ];
 
     angular.module('freehand').value('editMenuJson', editMenuJson);
