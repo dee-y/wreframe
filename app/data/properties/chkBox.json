@@ -4,7 +4,7 @@
         {
             "name":"Name",
             "value":"Check Box",
-            "type":"text"
+            "type":"label"
         },
         {
             "name":"Font Size",
@@ -14,7 +14,7 @@
         {
             "name":"CheckBox Text",
             "value": "Choice 1,Choice 2,Choice 3",
-            "type":"text"
+            "type":"arrayTxt"
         }
     ]
 }

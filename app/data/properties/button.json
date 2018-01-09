@@ -4,6 +4,11 @@
         {
             "name":"Name",
             "value":"Button",
+            "type":"label"
+        },
+        {
+            "name":"Text",
+            "value":"Button",
             "type":"text"
         },
         {

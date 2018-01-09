@@ -41,7 +41,7 @@
         vm.setColorPicker=function(e){
             setTimeout(function(){
                 var ele=document.getElementById(e);
-            var picker=new jscolor(ele);
+                new jscolor(ele);
             },1000);
         };
 

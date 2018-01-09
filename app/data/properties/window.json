@@ -2,9 +2,14 @@
     "name":"window",
     "attr":[
         {
-            "name":"Name",
+            "name":"Text",
             "value":"Untitled View",
             "type":"text"
+        },
+        {
+            "name":"Background",
+            "value":"Transparent",
+            "type":"color"
         },
         {
             "name":"Home Page",

@@ -4,6 +4,11 @@
         {
             "name":"Name",
             "value":"Text Box",
+            "type":"label"
+        },
+        {
+            "name":"Place Holder",
+            "value":"text",
             "type":"text"
         },
         {
@@ -15,11 +20,6 @@
             "name":"Rounded Corners",
             "value":false,
             "type":"boolean"
-        },
-        {
-            "name":"Place Holder",
-            "value":"text",
-            "type":"text"
         },
         {
             "name":"Font Size",
