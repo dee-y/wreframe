@@ -29,7 +29,9 @@
         }
         ;
         
-        function setProperty(){
+        function setProperties(type,obj){
+            console.log(obj);
+            //For Text
             
         };
         
@@ -37,8 +39,7 @@
         return{
             properties:properties,
             getProperties: getProperties,
-            
-            
+            setProperties: setProperties,
         }
     }
     ;

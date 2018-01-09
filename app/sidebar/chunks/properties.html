@@ -6,10 +6,10 @@
         <span class="fh-sb-prop-name">{{property.name}}</span>
         <span class="fh-sb-prop-value" ng-switch="property.type">
             <span ng-switch-when="color">
-                <button class="fh-sb-prop-color" ng-click="sc.setColorPicker($event)">FFFFF</button>
+                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name+'-prop')" ng-attr-id="{{property.name}}-prop">FFFFF</button>
             </span>
             <span ng-switch-when="text">
-                <input type="text" ng-model="property.value" class="fh-sb-prop-txt"/>
+                <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(sc.properties[0].name,property)"/>
             </span>
             <span ng-switch-default>{{property.value}}</span>
         </span>

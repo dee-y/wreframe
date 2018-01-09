@@ -72,7 +72,6 @@
                     customName:copiedElement.customName
                 });
                 canvas.add(obj);
-                console.log(obj);
                 copiedElement.top += 10;
                 copiedElement.left += 10;
                 setCustomDecor(obj);

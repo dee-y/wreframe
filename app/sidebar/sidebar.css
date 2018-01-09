@@ -151,6 +151,8 @@ span.fh-child-txt {
 
 .fh-sb-prop-txt,.fh-sb-prop-color{
     width: 100px;
+    border: 1px solid #ccc;
+    outline: none;
 }
 
 .fh-sb-prop-color{

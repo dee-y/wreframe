@@ -20,6 +20,10 @@
             fabricService.createObj(json);
         };
         
+        vm.setProperty=function(prop){
+          console.log(prop)  ;
+        };
+        
 
         vm.togglePanel = function (opt) {
             angular.forEach(vm.menuModes,function(mode,index){
@@ -35,9 +39,11 @@
         };
         
         vm.setColorPicker=function(e){
-            var picker=new jscolor(e.target);
-            picker.show();
-        }
+            setTimeout(function(){
+                var ele=document.getElementById(e);
+            var picker=new jscolor(ele);
+            },1000);
+        };
 
     };
     angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes','propertyService', sidebarCtrl]);
