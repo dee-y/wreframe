@@ -21,17 +21,13 @@
                 canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 canvas.selection=false;
                 canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'},canvas.renderAll.bind(canvas))
-                canvas.on("object:selected", function (options) {
-                    options.target.bringToFront();
-                    getPropObj();
-                });
+                canvas.on("object:selected", function (options) { objectSelected(options)});
                 canvas.on("selection:cleared",getPropObj);
                 getPropObj();
                 
                 document.addEventListener('keydown',canvasKey,false);
             }, 1000);
         } ;
-        
         
         function canvasKey(e){
             //Delete Obj if Delete key is pressed
@@ -56,10 +52,23 @@
                 var customName=canvas.getActiveObject().customName;
                 cloned.customId=customId;
                 cloned.customName=customName;
-                console.log(cloned);
             });
         }
         ;
+        
+        function getImgData(){
+            return canvas.toDataURL('png');
+        }
+        
+        function objectSelected(options){
+            if(options.target.customId === "tab"){
+                canvas.forEachObject(function(obj){
+                    if (obj === options.target) return;
+                    obj.bringToFront();
+                });
+            }
+            getPropObj();
+        };
         
         function pasteObj() {
             copiedElement.clone(function (obj) {
@@ -145,6 +154,16 @@
           }
         };
         
+        function setText(value){
+            var obj=canvas.getActiveObject().getObjects();
+            obj.forEach(function(obj,index){
+               if(obj.type === "text") {
+                   obj.setText(value);
+                   canvas.renderAll();
+               }
+            });
+        };
+        
         return {
             ccObj:function(json){
                 createCustomObject(json);
@@ -154,7 +173,9 @@
             isEdited:isEdited,
             deleteObj:deleteObj,
             objLen:objLen,
-            getPropObj,getPropObj
+            getPropObj:getPropObj,
+            setText:setText,
+            getImgData:getImgData
         };
         
     };

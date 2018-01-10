@@ -6,8 +6,9 @@
 
     'use strict';
 
-    function electronService(){
+    function electronService(fabricService){
         const {dialog} = require('electron').remote;
+        var fs= require('fs');
 
         function showOpenDialog(options,callback){
                 dialog.showOpenDialog(options,function(path){
@@ -16,7 +17,12 @@
         };
         
         function createNew(path){
-            
+            var imgData =fabricService.getImgData();
+            var data = imgData.replace(/^data:image\/\w+;base64,/, "");
+            var buf = new Buffer(data, 'base64');
+            fs.writeFile(path+"/1.png",buf,function(err){
+                console.log(err);
+            });
         };
         
         function openProj(path){
@@ -25,6 +31,7 @@
         
         function fileActions(btn){
             var options={};
+            console.log(btn);
             switch (btn.value) {
                 case "new_proj":
                     options={title: 'Create New - Choose Folder', properties: ['openDirectory']};
@@ -46,5 +53,5 @@
 
     };
 
-    angular.module("freehand").service("electronService",[electronService]);
+    angular.module("freehand").service("electronService",['fabricService',electronService]);
 })();

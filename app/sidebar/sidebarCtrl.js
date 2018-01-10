@@ -20,8 +20,16 @@
             fabricService.createObj(json);
         };
         
-        vm.setProperty=function(prop){
-          console.log(prop)  ;
+        vm.setProperty = function (prop) {
+            switch (prop.type) {
+                case "text":
+                    fabricService.setText(prop.value);
+                    break;            
+                default:
+                    
+                    break;
+            }
+            
         };
         
 

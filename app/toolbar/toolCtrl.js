@@ -17,8 +17,8 @@
             fabricService.deleteObj();
         };
 
-        vm.newProj =function(){
-            electronService.createProj();
+        vm.fileActions =function(menu){
+            electronService.fileActions(menu);
         };
         
         vm.editAction =function(menuJson){
