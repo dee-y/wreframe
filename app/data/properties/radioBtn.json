@@ -1,0 +1,20 @@
+{
+    "name":"radiobtn",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Radio Button",
+            "type":"label"
+        },
+        {
+            "name":"Font Size",
+            "value":13,
+            "type":"number"
+        },
+        {
+            "name":"Radio Button Text",
+            "value": "Option 1,Option 2,Option 3",
+            "type":"arrayTxt"
+        }
+    ]
+}

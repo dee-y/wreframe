@@ -16,13 +16,20 @@
                 });
         };
         
-        function createNew(path){
+        function createScreenPNG(path){
             var imgData =fabricService.getImgData();
             var data = imgData.replace(/^data:image\/\w+;base64,/, "");
             var buf = new Buffer(data, 'base64');
             fs.writeFile(path+"/1.png",buf,function(err){
                 console.log(err);
             });
+        }
+        
+        function createNew(path){
+            fs.mkdir(path+'/src',function(err){
+                console.log(err);
+            });
+            fs.mkdirSync(path+'/wireframe');
         };
         
         function openProj(path){

@@ -1,0 +1,20 @@
+{
+    "name": "Drop Down",
+    "attr":[
+        {
+            "name": "Name",
+            "value": "Drop down",
+            "type": "label"
+        },
+        {
+            "name": "Text",
+            "value": "-- Select --",
+            "type": "text"
+        },
+        {
+            "name": "Background",
+            "value": "#fff",
+            "type": "color"
+        }
+    ]
+}

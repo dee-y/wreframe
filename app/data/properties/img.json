@@ -1,0 +1,25 @@
+{
+    "name": "image",
+    "attr": [
+        {
+            "name": "Name",
+            "value": "Image",
+            "type": "label"
+        },
+        {
+            "name": "Text",
+            "value": "IMAGE",
+            "type": "text"
+        },
+        {
+            "name": "Background",
+            "value": "#fff",
+            "type": "color"
+        },
+        {
+            "name": "Cross Style",
+            "value": false,
+            "type": "boolean"
+        }
+    ]
+}

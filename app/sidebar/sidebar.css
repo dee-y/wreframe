@@ -205,7 +205,7 @@ span.fh-child-txt {
 }
 
 input:checked + .fh-prop-radio-slider {
-  background-color: #2196F3;
+  background-color: #383D46;
 }
 
 input:checked + .fh-prop-radio-slider:before {

@@ -1,14 +1,14 @@
 {
-    "name": "text box",
+    "name": "label",
     "attr": [
         {
             "name": "Name",
-            "value": "Text Box",
+            "value": "Label",
             "type": "label"
         },
         {
-            "name": "Place Holder",
-            "value": "text",
+            "name": "Text",
+            "value": "Lorem Ipsum",
             "type": "text"
         },
         {
@@ -17,12 +17,7 @@
             "type": "color"
         },
         {
-            "name": "Rounded Corners",
-            "value": false,
-            "type": "boolean"
-        },
-        {
-            "name": "Password",
+            "name": "Link Text",
             "value": false,
             "type": "boolean"
         },
