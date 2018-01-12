@@ -1,0 +1,25 @@
+{
+    "name":"popup",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Pop-up",
+            "type":"label"
+        },
+        {
+            "name":"title",
+            "value":"text",
+            "type":"text"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Show window Buttons",
+            "value":false,
+            "type":"boolean"
+        }
+    ]
+}

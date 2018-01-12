@@ -1,0 +1,25 @@
+{
+    "name":"progressbar",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Progress Bar",
+            "type":"label"
+        },
+        {
+            "name":"Status Text",
+            "value":"Loading 50%",
+            "type":"text"
+        },
+        {
+            "name":"Progress Color",
+            "value":"#000",
+            "type":"color"
+        },
+        {
+            "name":"Progress Status",
+            "value":50,
+            "type":"range"
+        }
+    ]
+}

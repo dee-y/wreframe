@@ -1,0 +1,20 @@
+{
+    "name":"avatar",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Avatar",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Add Text",
+            "value":"Profile",
+            "type":"text"
+        }
+    ]
+}

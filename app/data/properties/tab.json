@@ -1,0 +1,20 @@
+{
+    "name":"tab",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Tab",
+            "type":"label"
+        },
+        {
+            "name":"Tab Text",
+            "value": "TAB 1,TAB 2,TAB 3",
+            "type":"arrayTxt"
+        },
+        {
+            "name":"Active TAB",
+            "value":1,
+            "type":"number"
+        }
+    ]
+}
