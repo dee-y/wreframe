@@ -10,8 +10,9 @@
 
         var properties=[];
 
-        function getProperties(type) {
+        function getProperties(prop) {
             var temp;
+            var type=prop.value;
             temp=$http.get('app/data/properties/' + type + '.json',{cache:true}).then(
                     function (res) {
                        return res.data;

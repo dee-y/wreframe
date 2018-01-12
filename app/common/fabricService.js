@@ -57,7 +57,14 @@
         ;
         
         function getImgData(){
-            return canvas.toDataURL('png');
+            canvas.backgroundColor = null;
+            var pngData=canvas.toDataURL('png')
+            canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'},canvas.renderAll.bind(canvas))
+            return pngData;
+        }
+        
+        function getJSONData(){
+            return JSON.stringify(canvas);
         }
         
         function objectSelected(options){
@@ -109,7 +116,7 @@
                 prop.name=obj.customName;
                 prop.value=obj.customId;
             }
-            propertyService.getProperties(prop.value);
+            propertyService.getProperties(prop);
             return prop;
         };
         
@@ -175,7 +182,8 @@
             objLen:objLen,
             getPropObj:getPropObj,
             setText:setText,
-            getImgData:getImgData
+            getImgData:getImgData,
+            getJSONData:getJSONData
         };
         
     };
