@@ -28,9 +28,9 @@
     //0 = true , 1= false
     var menuModes =
             [
-                {id: 0, default: 1, name: "Folders", active: 1,html:''},
+                {id: 0, default: 1, name: "Folders", active: 1,html:'folder.html'},
                 {id: 1, default: 0, name: "Tools", active: 0,html:'tools.html'},
-                {id: 2, default: 1, name: "Outline", active: 0,html:'outline.html'},
+                {id: 2, default: 1, name: "Outline", active: 1,html:'outline.html'},
                 {id: 3, default: 1, name: "Properties", active: 1,html:'properties.html'}
             ];
 

@@ -10,7 +10,7 @@
 
         var properties=[];
 
-        function getProperties(prop) {
+        function setProperties(prop,objProp) {
             var temp;
             var type=prop.value;
             temp=$http.get('app/data/properties/' + type + '.json',{cache:true}).then(
@@ -26,12 +26,13 @@
                     properties.pop();
                 }
                 properties.push(data);
+                angular.extend(properties[0].attr,properties[0].attr,objProp);
             });
         }
         ;
         return{
             properties:properties,
-            getProperties: getProperties,
+            setProperties: setProperties,
         }
     }
     ;

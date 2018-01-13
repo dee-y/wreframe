@@ -12,6 +12,8 @@
 
         var projPath=null;
         var newProjErr=false;
+        var files=[];
+        var callbackFn=null;
 
         function showOpenDialog(options, callback) {
             dialog.showOpenDialog(options, function (path) {
@@ -25,7 +27,6 @@
         
         function saveSrcFile(){
             var jsonData= fabricService.getJSONData();
-           // jsonData=JSON.parse(jsonData);
             fs.writeFile(projPath+"/src/view.json",jsonData,function(err){
                 
             });
@@ -38,48 +39,51 @@
             fs.writeFile(projPath + "/wireframe/view.png", buf, function (err) {
             });
         }
+        
+        function registerCallBack(callback){
+            callbackFn=callback;
+        };
 
         function createNew(path) {
-            fs.readdir(path[0], function (err, items) {
-                if (items.length > 0) {
-                    var options = {type: "error", title: "Invalid Directory", message: "Please choose empty directory"};
-                    dialog.showMessageBox(options);
-                    return;
-                } else {
-                    fs.mkdir(path + '/src', setDirPath(err, path));
-                    fs.mkdir(path + '/wireframe', setDirPath(err,path));
-                    setTimeout(function(){
-                        if(newProjErr === false){
-                            projPath=path[0].toString();
-                        }
-                    },1000);
-                }
-            });
+            var items = fs.readdirSync(path[0]);
+            if (items.length > 0) {
+                var options = {type: "error", title: "Invalid Directory", message: "Please choose empty directory"};
+                dialog.showMessageBox(options);
+                return;
+            } else {
+                fs.mkdir(path + '/src', setDirPath(err, path));
+                fs.mkdir(path + '/wireframe', setDirPath(err, path));
+                setTimeout(function () {
+                    if (newProjErr === false) {
+                        projPath = path[0].toString();
+                    }
+                }, 1000);
+            }
         }
         ;
         
-        function openProj(path){
-          if(path === undefined )  {
-              return;
-          }
-          var findWire=false;
-          var findSrc= false;
-          fs.readdir(path[0],function(err,items){
-             items.forEach(function(fldname,index){
-                 if(fldname === "wireframe"){
-                     findWire=true;
-                 };
-                 if(fldname === "src"){
-                     findSrc=true;
-                 };
-             }) ;
-             
-                if(findSrc === true && findWire === true){
-                    //Read File
-                    projPath=path[0].toString();
-                }
-          });
-        };
+        function openProj(path) {
+            if (path === undefined) {
+                return;
+            }
+            var findWire = false;
+            var findSrc = false;
+            while(files.length > 0){
+                files.pop();
+            }
+            var items = fs.readdirSync(path[0]);
+            
+            for (var item of items) {
+                findWire = (item === "wireframe" || findWire === true) ? true : false;
+                findSrc = (item === "src" || findSrc === true) ? true : false;
+                files.push(item);
+            }
+            if (findSrc === true && findWire === true) {
+                projPath = path[0].toString();
+                callbackFn(items);
+            }
+        }
+        ;
 
         function setDirPath(err,path) {
             if (err !== null) {
@@ -101,17 +105,20 @@
                     break;
                 case "save_proj":
                     if (projPath !== null) {
-                        fs.readdir(projPath, function (err, items) {
-                            items.forEach(function (fldname, index) {
-                                if (fldname === 'wireframe') {
-                                    createScreenPNG();
-                                }
-                                if(fldname === 'src'){
-                                    saveSrcFile();
-                                }
-                            })
+                        var items = fs.readdirSync(projPath);
+                        items.forEach(function (fldname, index) {
+                            if (fldname === 'wireframe') {
+                                createScreenPNG();
+                            }
+                            if (fldname === 'src') {
+                                saveSrcFile();
+                            }
                         });
                     }
+                    break;
+                case "exit":
+                    let win = require('electron').remote.getCurrentWindow();
+                    win.close();
                     break;
                 default:
 
@@ -119,9 +126,11 @@
             }
         }
         ;
-
+        
         return{
-            fileActions: fileActions
+            fileActions: fileActions,
+            files:files,
+            registerCallBack:registerCallBack
         };
 
     }

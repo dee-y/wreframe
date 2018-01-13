@@ -31,13 +31,9 @@
         
         function canvasKey(e){
             //Delete Obj if Delete key is pressed
-            if(e.code === "Delete"){
-                deleteObj();
-            }
+            if(e.code === "Delete"){deleteObj();}
             
-            if(e.code === "KeyC" && e.ctrlKey === true){
-                copyObj();
-            }
+            if(e.code === "KeyC" && e.ctrlKey === true){copyObj();}
             
             if(e.code === "KeyV" && e.ctrlKey === true){
                 e.preventDefault();
@@ -48,13 +44,33 @@
         function copyObj() {
             canvas.getActiveObject().clone(function (cloned) {
                 copiedElement = cloned;
-                var customId=canvas.getActiveObject().customId;
-                var customName=canvas.getActiveObject().customName;
+                var activeObj=canvas.getActiveObject();
+                var customId=activeObj.customId;
+                var customName=activeObj.customName;
                 cloned.customId=customId;
                 cloned.customName=customName;
+                cloned.properties=activeObj.properties;
             });
         }
         ;
+        
+        function pasteObj() {
+            copiedElement.clone(function (obj) {
+                canvas.discardActiveObject();
+                obj.set({
+                    left: obj.left + 10,
+                    top: obj.top + 10,
+                    evented: true,
+                    customId:copiedElement.customId,
+                    customName:copiedElement.customName,
+                    properties:copiedElement.properties
+                });
+                canvas.add(obj);
+                copiedElement.top += 10;
+                copiedElement.left += 10;
+                setCustomDecor(obj);
+            });
+        };
         
         function getImgData(){
             canvas.backgroundColor = null;
@@ -77,24 +93,6 @@
             getPropObj();
         };
         
-        function pasteObj() {
-            copiedElement.clone(function (obj) {
-                canvas.discardActiveObject();
-                obj.set({
-                    left: obj.left + 10,
-                    top: obj.top + 10,
-                    evented: true,
-                    customId:copiedElement.customId,
-                    customName:copiedElement.customName
-                });
-                canvas.add(obj);
-                copiedElement.top += 10;
-                copiedElement.left += 10;
-                setCustomDecor(obj);
-            });
-        };
-        
-        
         
         function setCustomDecor(obj) {
                 obj.setControlVisible('mtr', false);
@@ -109,34 +107,57 @@
                 });
         };
         
+        
+        function setProperties(obj,canvasObj){
+            canvasObj.customName=obj.value;
+            canvasObj.customId=obj.name;
+            canvasObj.properties=[];
+            $http.get('app/data/properties/' + obj.name + '.json', {cache: true}).then(
+                    function (res) {
+                        if(res.data.attr){
+                            var attrs=res.data.attr;
+                            attrs.forEach(function(item,index){
+                                canvasObj.properties.push(item);
+                            });
+                        }
+                    },
+                    function (err) {
+
+                    }
+            );
+            return canvasObj;
+        }
+        
         function getPropObj(){
             var prop={name:"Window",value:"window"};
+            var windowAttr=[ {"name":"Text","value":"Untitled View","type":"text"},{"name":"Background","value":"Transparent","type":"color"},{"name":"Home Page","value":true,"type":"boolean"}];
+            var properties=[];
             if(canvas.getActiveObject()){
                 var obj=canvas.getActiveObject();
                 prop.name=obj.customName;
                 prop.value=obj.customId;
+                properties=obj.properties;
+            }else{
+                properties=windowAttr;
             }
-            propertyService.getProperties(prop);
+            propertyService.setProperties(prop,properties);
             return prop;
         };
         
         function createObj(obj) {
             var objName = obj.name;
-            var objValue= obj.value;
             $http.get('app/data/objects/' + objName + '.json', {cache: true}).then(
                     function (res) {
                         var data = res.data;
                         var objType = fabric.util.getKlass(data.type);
                         if (objType.async) {
-                            objType.fromObject(data, function (finalObj) {
-                                finalObj.customName=objValue;
-                                finalObj.customId=objName;
+                            objType.fromObject(data, function (ele) {
+                                var finalObj=setProperties(obj,ele);
                                 canvas.add(finalObj);
                             });
                         } else {
-                            data.customName=objValue;
-                            data.customId=objName;
-                            canvas.add(objType.fromObject(data));
+                            var finalObj=setProperties(obj,data);
+                            canvas.add(objType.fromObject(finalObj));
                         }
                         setTimeout(function(){
                             objLen.push({value:obj.value});
@@ -162,11 +183,19 @@
         };
         
         function setText(value){
-            var obj=canvas.getActiveObject().getObjects();
-            obj.forEach(function(obj,index){
+            var activeObj=canvas.getActiveObject();
+            var objects=activeObj.getObjects();
+            var prop=activeObj.properties;
+            objects.forEach(function(obj,index){
                if(obj.type === "text") {
                    obj.setText(value);
                    canvas.renderAll();
+               }
+            });
+            
+            prop.forEach(function(attr,index){
+               if(attr.name === "Text" && attr.type === "text") {
+                   attr.value=value;
                }
             });
         };

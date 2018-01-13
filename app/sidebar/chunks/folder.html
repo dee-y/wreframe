@@ -1,0 +1,12 @@
+<div class="fh-tab-content">
+    <div ng-show="sc.folders.length === 0">
+        <a href="#">+ Create Project</a>
+    </div>
+    <div>
+        <div ng-repeat="folder in sc.folders">
+            <div>
+                {{folder}}
+            </div>
+        </div>
+    </div>
+</div>
