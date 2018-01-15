@@ -17,6 +17,16 @@
             "type":"color"
         },
         {
+            "name":"Font",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Font size",
+            "value":13,
+            "type":"number"
+        },
+        {
             "name":"Rounded Corners",
             "value":false,
             "type":"boolean"

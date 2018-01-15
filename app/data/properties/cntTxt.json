@@ -8,7 +8,7 @@
         },
         {
             "name": "Rows",
-            "value": "",
+            "value": 4,
             "type": "number"
         },
         {

@@ -182,23 +182,28 @@
           }
         };
         
-        function setText(value){
-            var activeObj=canvas.getActiveObject();
-            var objects=activeObj.getObjects();
-            var prop=activeObj.properties;
-            objects.forEach(function(obj,index){
-               if(obj.type === "text") {
-                   obj.setText(value);
-                   canvas.renderAll();
-               }
-            });
-            
-            prop.forEach(function(attr,index){
-               if(attr.name === "Text" && attr.type === "text") {
-                   attr.value=value;
-               }
-            });
-        };
+        function setText(value) {
+            var activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                var objects = activeObj.getObjects();
+                var prop = activeObj.properties;
+                objects.forEach(function (obj, index) {
+                    if (obj.type === "text") {
+                        obj.setText(value);
+                        canvas.renderAll();
+                    }
+                });
+
+                prop.forEach(function (attr, index) {
+                    if (attr.name === "Text" && attr.type === "text") {
+                        attr.value = value;
+                    }
+                });
+            }else{
+                document.querySelector(".fh-canvas-title").innerText=value;
+            }
+        }
+        ;
         
         return {
             ccObj:function(json){

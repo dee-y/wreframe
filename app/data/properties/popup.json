@@ -12,6 +12,11 @@
             "type":"text"
         },
         {
+            "name":"Browser Window",
+            "value":false,
+            "type":"boolean"
+        },
+        {
             "name":"Background",
             "value":"#fff",
             "type":"color"
