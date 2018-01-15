@@ -13,7 +13,7 @@
         vm.fileMenu=fileMenuJson;
         vm.editMenu=editMenuJson;
         
-        var deleteObj =function(){
+        vm.deleteObj =function(){
             fabricService.deleteObj();
         };
 
@@ -25,7 +25,7 @@
             var menu=menuJson.value;
             switch (menu) {
                 case "delete_obj":
-                    deleteObj();
+                    vm.deleteObj();
                     break;
                     
                 default:

@@ -3,120 +3,135 @@
  */
 
 
-(function(){
+(function () {
     'use strict';
-    
-    function fabricService($http,propertyService){
-        
-        var canvas=null;
-        var objLen=[];
-        var isEdited=false;
-        var copiedElement=null;
-        
-        function intializeCanvas() {
-            setTimeout(function () {
+
+    function fabricService($http, $timeout, propertyService) {
+        var self = this;
+
+        self.canvas = null;
+        self.objLen = [];
+        self.isEdited = false;
+        self.copiedElement = null;
+        self.windowAttr = null;
+
+        self.intializeCanvas = function () {
+            self.getWindowProp().then(function (res) {
+                angular.copy(res.data, self.windowAttr);
+            });
+            $timeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
                 var height = drawArea.clientHeight - 10;
-                canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
-                canvas.selection=false;
-                canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'},canvas.renderAll.bind(canvas))
-                canvas.on("object:selected", function (options) { objectSelected(options)});
-                canvas.on("selection:cleared",getPropObj);
-                getPropObj();
-                
-                document.addEventListener('keydown',canvasKey,false);
+                self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
+                self.canvas.selection = false;
+                self.canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas));
+                self.canvas.on("object:selected", function (options) {
+                    self.objectSelected(options);
+                });
+                self.canvas.on("selection:cleared", self.getPropObj);
+                self.getPropObj();
+
+                document.addEventListener('keydown', self.canvasKey, false);
             }, 1000);
-        } ;
-        
-        function canvasKey(e){
+        };
+
+        self.getWindowProp = function () {
+            return $http.get('app/data/properties/window.json', {cache: true});
+        };
+
+        self.canvasKey = function (e) {
             //Delete Obj if Delete key is pressed
-            if(e.code === "Delete"){deleteObj();}
-            
-            if(e.code === "KeyC" && e.ctrlKey === true){copyObj();}
-            
-            if(e.code === "KeyV" && e.ctrlKey === true){
+            if (e.code === "Delete") {
+                self.deleteObj();
+            }
+
+            if (e.code === "KeyC" && e.ctrlKey === true) {
+                self.copyObj();
+            }
+
+            if (e.code === "KeyV" && e.ctrlKey === true) {
                 e.preventDefault();
-                pasteObj();
+                self.pasteObj();
             }
         };
-        
-        function copyObj() {
-            canvas.getActiveObject().clone(function (cloned) {
-                copiedElement = cloned;
-                var activeObj=canvas.getActiveObject();
-                var customId=activeObj.customId;
-                var customName=activeObj.customName;
-                cloned.customId=customId;
-                cloned.customName=customName;
-                cloned.properties=activeObj.properties;
+
+        self.copyObj = function () {
+            self.canvas.getActiveObject().clone(function (cloned) {
+                self.copiedElement = cloned;
+                var activeObj = self.canvas.getActiveObject();
+                var customId = activeObj.customId;
+                var customName = activeObj.customName;
+                cloned.customId = customId;
+                cloned.customName = customName;
+                cloned.properties = activeObj.properties;
             });
-        }
-        ;
-        
+        };
+
         function pasteObj() {
-            copiedElement.clone(function (obj) {
-                canvas.discardActiveObject();
+            self.copiedElement.clone(function (obj) {
+                self.canvas.discardActiveObject();
                 obj.set({
                     left: obj.left + 10,
                     top: obj.top + 10,
                     evented: true,
-                    customId:copiedElement.customId,
-                    customName:copiedElement.customName,
-                    properties:copiedElement.properties
+                    customId: self.copiedElement.customId,
+                    customName: self.copiedElement.customName,
+                    properties: self.copiedElement.properties
                 });
-                canvas.add(obj);
-                copiedElement.top += 10;
-                copiedElement.left += 10;
-                setCustomDecor(obj);
+                self.canvas.add(obj);
+                self.copiedElement.top += 10;
+                self.copiedElement.left += 10;
+                self.setCustomDecor(obj);
             });
-        };
-        
-        function getImgData(){
-            canvas.backgroundColor = null;
-            var pngData=canvas.toDataURL('png')
-            canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'},canvas.renderAll.bind(canvas))
+        }
+        ;
+
+        self.getImgData = function () {
+            self.canvas.backgroundColor = null;
+            var pngData = self.canvas.toDataURL('png')
+            self.canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas))
             return pngData;
         }
-        
-        function getJSONData(){
-            return JSON.stringify(canvas);
+
+        self.getJSONData = function () {
+            return JSON.stringify(self.canvas);
         }
-        
-        function objectSelected(options){
-            if(options.target.customId === "tab"){
-                canvas.forEachObject(function(obj){
-                    if (obj === options.target) return;
+
+        self.objectSelected = function (options) {
+            if (options.target.customId === "tab") {
+                self.canvas.forEachObject(function (obj) {
+                    if (obj === options.target)
+                        return;
                     obj.bringToFront();
                 });
             }
-            getPropObj();
+            self.getPropObj();
         };
-        
-        
-        function setCustomDecor(obj) {
-                obj.setControlVisible('mtr', false);
-                obj.set({
-                    borderColor: 'grey',
-                    cornerColor: '#fff',
-                    cornerStrokeColor:"#000",
-                    padding: 4,
-                    cornerSize: 8,
-                    cornerStyle:"circle",
-                    transparentCorners: false
-                });
+
+
+        self.setCustomDecor = function (obj) {
+            obj.setControlVisible('mtr', false);
+            obj.set({
+                borderColor: 'grey',
+                cornerColor: '#fff',
+                cornerStrokeColor: "#000",
+                padding: 4,
+                cornerSize: 8,
+                cornerStyle: "circle",
+                transparentCorners: false
+            });
         };
-        
-        
-        function setProperties(obj,canvasObj){
-            canvasObj.customName=obj.value;
-            canvasObj.customId=obj.name;
-            canvasObj.properties=[];
+
+        self.setProperties = function (obj, canvasObj) {
+            canvasObj.customName = obj.value;
+            canvasObj.customId = obj.name;
+            canvasObj.properties = [];
             $http.get('app/data/properties/' + obj.name + '.json', {cache: true}).then(
                     function (res) {
-                        if(res.data.attr){
-                            var attrs=res.data.attr;
-                            attrs.forEach(function(item,index){
+                        if (res.data.attr) {
+                            var attrs = res.data.attr;
+                            attrs.forEach(function (item, index) {
                                 canvasObj.properties.push(item);
                             });
                         }
@@ -126,25 +141,25 @@
                     }
             );
             return canvasObj;
-        }
-        
-        function getPropObj(){
-            var prop={name:"Window",value:"window"};
-            var windowAttr=[ {"name":"Text","value":"Untitled View","type":"text"},{"name":"Background","value":"Transparent","type":"color"},{"name":"Home Page","value":true,"type":"boolean"}];
-            var properties=[];
-            if(canvas.getActiveObject()){
-                var obj=canvas.getActiveObject();
-                prop.name=obj.customName;
-                prop.value=obj.customId;
-                properties=obj.properties;
-            }else{
-                properties=windowAttr;
+        };
+
+        self.getPropObj = function () {
+            var prop = {name: "Window", value: "window"};
+            var properties = [];
+            if (self.canvas.getActiveObject()) {
+                var obj = self.canvas.getActiveObject();
+                prop.name = obj.customName;
+                prop.value = obj.customId;
+                properties = obj.properties;
+            } else {
+                properties = self.windowAttr;
             }
-            propertyService.setProperties(prop,properties);
+            propertyService.setProperties(prop, properties);
             return prop;
         };
-        
-        function createObj(obj) {
+
+
+        self.createObj = function (obj) {
             var objName = obj.name;
             $http.get('app/data/objects/' + objName + '.json', {cache: true}).then(
                     function (res) {
@@ -152,45 +167,44 @@
                         var objType = fabric.util.getKlass(data.type);
                         if (objType.async) {
                             objType.fromObject(data, function (ele) {
-                                var finalObj=setProperties(obj,ele);
-                                canvas.add(finalObj);
+                                var finalObj = self.setProperties(obj, ele);
+                                self.canvas.add(finalObj);
                             });
                         } else {
-                            var finalObj=setProperties(obj,data);
-                            canvas.add(objType.fromObject(finalObj));
+                            var finalObj = setProperties(obj, data);
+                            self.canvas.add(objType.fromObject(finalObj));
                         }
-                        setTimeout(function(){
-                            objLen.push({value:obj.value});
-                            setCustomDecor(canvas.item(canvas.getObjects().length - 1));
-                        },100);
+                        $timeout(function () {
+                            self.objLen.push({value: obj.value});
+                            self.setCustomDecor(self.canvas.item(self.canvas.getObjects().length - 1));
+                        }, 100);
                     },
                     function (err) {
                         throw err;
                     }
             );
-        }
-        ;
-                
-        function deleteObj(){
-          while(objLen.length > 0){
-              objLen.pop();
+        };
+        
+        self.deleteObj =function(){
+          while(self.objLen.length > 0){
+              self.objLen.pop();
           }
-          canvas.remove(canvas.getActiveObject());
-          var objects=canvas.getObjects();
+          self.canvas.remove(self.canvas.getActiveObject());
+          var objects=self.canvas.getObjects();
           for(var ele of objects){
-              objLen.push({value:ele.customName});
+              self.objLen.push({value:ele.customName});
           }
         };
         
-        function setText(value) {
-            var activeObj = canvas.getActiveObject();
+        self.setText = function(value) {
+            var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
                 objects.forEach(function (obj, index) {
                     if (obj.type === "text") {
                         obj.setText(value);
-                        canvas.renderAll();
+                        self.canvas.renderAll();
                     }
                 });
 
@@ -200,26 +214,14 @@
                     }
                 });
             }else{
-                document.querySelector(".fh-canvas-title").innerText=value;
+                if(self.windowAttr){
+                    self.windowAttr.attr[0].value=value;
+                }
             }
         }
         ;
-        
-        return {
-            ccObj:function(json){
-                createCustomObject(json);
-            },
-            intializeCanvas:intializeCanvas,
-            createObj:createObj,
-            isEdited:isEdited,
-            deleteObj:deleteObj,
-            objLen:objLen,
-            getPropObj:getPropObj,
-            setText:setText,
-            getImgData:getImgData,
-            getJSONData:getJSONData
-        };
-        
-    };
-    angular.module('freehand').service('fabricService',['$http','propertyService',fabricService]);
+
+    }
+    ;
+    angular.module('freehand').service('fabricService', ['$http', '$timeout', 'propertyService', fabricService]);
 })();

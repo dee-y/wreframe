@@ -5,136 +5,136 @@
 (function () {
 
     'use strict';
+    function electronService($rootScope,fabricService) {
+        var self = this;
 
-    function electronService(fabricService) {
+        self.projPath;
+        self.newProjErr = false;
+        self.files = {folders:[]};
+        self.isNew = true;
+
         const {dialog} = require('electron').remote;
+        let win = require('electron').remote.getCurrentWindow();
         var fs = require('fs');
 
-        var projPath=null;
-        var newProjErr=false;
-        var files=[];
-        var callbackFn=null;
-
-        function showOpenDialog(options, callback) {
+        self.showOpenDialog = function (options) {
             dialog.showOpenDialog(options, function (path) {
                 if (path === undefined) {
                     return;
                 }
-                callback(path);
-            });
-        }
-        ;
-        
-        function saveSrcFile(){
-            var jsonData= fabricService.getJSONData();
-            fs.writeFile(projPath+"/src/view.json",jsonData,function(err){
-                
+                self.projPath = path.toString();
+                if (self.isNew === true) {
+                    self.createNew();
+                } else {
+                    self.openProj();
+                }
             });
         };
 
-        function createScreenPNG() {
+
+        self.createNew = function () {
+            if (self.projPath) {
+                var items = fs.readdirSync(self.projPath);
+                if (items.length > 0) {
+                    self.projPath = null;
+                    throw 'Not an empty Dir';
+                } else {
+                    try {
+                        fs.mkdirSync(self.projPath + '/wireframe');
+                        fs.mkdirSync(self.projPath + '/src');
+                    } catch (err) {
+                        throw err;
+                    }
+                }
+                self.updateFiles();
+            }
+        };
+
+
+        self.openProj = function () {
+            if (self.projPath) {
+                var items = fs.readdirSync(self.projPath);
+                if (items.length > 0) {
+                    if (items.indexOf("wireframe") === -1) {
+                        fs.mkdirSync(self.projPath + '/wireframe');
+                    }
+                    if (items.indexOf("src") === -1) {
+                        fs.mkdirSync(self.projPath + '/src');
+                    }
+                }
+                self.updateFiles();
+            }
+        };
+        
+        self.saveProj = function(){
+          if(self.projPath !== null)  {
+              var items =fs.readdirSync(self.projPath);
+              if(items.indexOf("wireframe") !== -1 && items.indexOf("src") !== -1){
+                  self.saveSrcFile();
+                  self.createScreenPNG();
+                  fabricService.isEdited=false;
+              }
+          }
+        };
+
+
+        self.saveSrcFile = function () {
+            var jsonData = fabricService.getJSONData();
+            fs.writeFile(self.projPath + "/src/view.json", jsonData, function (err) {
+                if(err !== null){
+                    throw err;
+                }
+            });
+        };
+
+        self.createScreenPNG = function () {
             var imgData = fabricService.getImgData();
             var data = imgData.replace(/^data:image\/\w+;base64,/, "");
             var buf = new Buffer(data, 'base64');
-            fs.writeFile(projPath + "/wireframe/view.png", buf, function (err) {
+            fs.writeFile(self.projPath + "/wireframe/view.png", buf, function (err) {
+                if(err !== null){
+                    throw err;
+                }
             });
-        }
-        
-        function registerCallBack(callback){
-            callbackFn=callback;
         };
 
-        function createNew(path) {
-            var items = fs.readdirSync(path[0]);
-            if (items.length > 0) {
-                var options = {type: "error", title: "Invalid Directory", message: "Please choose empty directory"};
-                dialog.showMessageBox(options);
-                return;
-            } else {
-                fs.mkdir(path + '/src', setDirPath(err, path));
-                fs.mkdir(path + '/wireframe', setDirPath(err, path));
-                setTimeout(function () {
-                    if (newProjErr === false) {
-                        projPath = path[0].toString();
-                    }
-                }, 1000);
+        self.updateFiles = function () {
+            if (self.projPath) {
+                var items = fs.readdirSync(self.projPath);
+                if (items.length > 0) {
+                    angular.copy(items,self.files.folders);
+                    $rootScope.$apply();
+                }
             }
-        }
-        ;
+        };
         
-        function openProj(path) {
-            if (path === undefined) {
-                return;
-            }
-            var findWire = false;
-            var findSrc = false;
-            while(files.length > 0){
-                files.pop();
-            }
-            var items = fs.readdirSync(path[0]);
-            
-            for (var item of items) {
-                findWire = (item === "wireframe" || findWire === true) ? true : false;
-                findSrc = (item === "src" || findSrc === true) ? true : false;
-                files.push(item);
-            }
-            if (findSrc === true && findWire === true) {
-                projPath = path[0].toString();
-                callbackFn(items);
-            }
-        }
-        ;
-
-        function setDirPath(err,path) {
-            if (err !== null) {
-                newProjErr=true;
-            }
-        }
-
-
-        function fileActions(btn) {
-            var options = {};
-            switch (btn.value) {
+        
+        
+        self.fileActions =function(btn){
+            switch(btn.value){
                 case "new_proj":
-                    options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};
-                    showOpenDialog(options, createNew);
+                    self.isNew = true;
+                    var options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};
+                    self.showOpenDialog(options);
                     break;
                 case "open_proj":
-                    options = {title: 'Open Existing - Choose Folder', properties: ['openDirectory']};
-                    showOpenDialog(options, openProj);
+                    self.isNew = false;
+                    var options = {title: 'Open Existing - Choose Folder', properties: ['openDirectory']};
+                    self.showOpenDialog(options);
                     break;
                 case "save_proj":
-                    if (projPath !== null) {
-                        var items = fs.readdirSync(projPath);
-                        items.forEach(function (fldname, index) {
-                            if (fldname === 'wireframe') {
-                                createScreenPNG();
-                            }
-                            if (fldname === 'src') {
-                                saveSrcFile();
-                            }
-                        });
-                    }
+                    self.saveProj();
                     break;
                 case "exit":
-                    let win = require('electron').remote.getCurrentWindow();
                     win.close();
                     break;
                 default:
 
                     break;
             }
-        }
-        ;
-        
-        return{
-            fileActions: fileActions,
-            files:files,
-            registerCallBack:registerCallBack
         };
 
     }
     ;
-
-    angular.module("freehand").service("electronService", ['fabricService', electronService]);
+    angular.module("freehand").service("electronService", ['$rootScope','fabricService', electronService]);
 })();

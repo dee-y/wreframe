@@ -6,7 +6,7 @@
 
     'use strict';
 
-    function sidebarCtrl($scope, sidebarValues, toolsOpt, fabricService, menuModes, propertyService, electronService) {
+    function sidebarCtrl(sidebarValues, toolsOpt, fabricService, menuModes, propertyService, electronService) {
         var vm = this;
 
         vm.sidebarValues = sidebarValues;
@@ -14,14 +14,7 @@
         vm.toolsOpt = toolsOpt;
         vm.obj = fabricService.objLen;
         vm.properties = propertyService.properties;
-        vm.folders = [];
-        
-        var updateFolders=function(files){
-            vm.folders=files;
-            $scope.$apply();
-        };
-        
-        electronService.registerCallBack(updateFolders);
+        vm.electronService = electronService;
         
         vm.createEle = function (json) {
             fabricService.isEdited = true;
@@ -63,5 +56,5 @@
 
     }
     ;
-    angular.module('freehand').controller('sidebarCtrl', ['$scope', 'sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
+    angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
 })();
