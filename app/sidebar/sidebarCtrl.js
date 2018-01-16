@@ -32,6 +32,10 @@
             }
 
         };
+        
+        vm.createNewProj=function(){
+          electronService.fileActions({value:"new_proj"})  ;
+        };
 
 
         vm.togglePanel = function (opt) {

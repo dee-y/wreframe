@@ -27,8 +27,7 @@
                 while(self.properties.length > 0){
                     self.properties.pop();
                 }
-                self.properties.push(data);
-                angular.extend(self.properties[0].attr,self.properties[0].attr,objProp);
+                self.properties.push(objProp);
             });
         };
     }

@@ -13,7 +13,7 @@
         self.objLen = [];
         self.isEdited = false;
         self.copiedElement = null;
-        self.windowAttr = null;
+        self.windowAttr = {};
 
         self.intializeCanvas = function () {
             self.getWindowProp().then(function (res) {
@@ -145,16 +145,17 @@
 
         self.getPropObj = function () {
             var prop = {name: "Window", value: "window"};
-            var properties = [];
+            var objProp = {};
             if (self.canvas.getActiveObject()) {
                 var obj = self.canvas.getActiveObject();
                 prop.name = obj.customName;
                 prop.value = obj.customId;
-                properties = obj.properties;
+                objProp.name=obj.customId;
+                objProp.attr =obj.properties;
             } else {
-                properties = self.windowAttr;
+                objProp = self.windowAttr;
             }
-            propertyService.setProperties(prop, properties);
+            propertyService.setProperties(prop, objProp);
             return prop;
         };
 
@@ -218,8 +219,16 @@
                     self.windowAttr.attr[0].value=value;
                 }
             }
-        }
-        ;
+        };
+        
+        self.loadFile = function (json) {
+            self.canvas.clear();
+            self.canvas.loadFromJSON(json, function () {
+                self.canvas.renderAll();
+            }, function (o, object) {
+                self.setCustomDecor(object);
+            });
+        };
 
     }
     ;

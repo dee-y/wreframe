@@ -5,7 +5,7 @@
 (function () {
 
     'use strict';
-    function electronService($rootScope,fabricService) {
+    function electronService($http,$rootScope,fabricService) {
         var self = this;
 
         self.projPath;
@@ -60,6 +60,19 @@
                     }
                     if (items.indexOf("src") === -1) {
                         fs.mkdirSync(self.projPath + '/src');
+                    }else{
+                        //Read Files
+                        var jsonFiles=fs.readdirSync(self.projPath+'/src');
+                        for(var file of jsonFiles){
+                           var isJson= file.split(".");
+                           isJson=(isJson[isJson.length -1] === "json") ? true :false;
+                           if(isJson === true){
+                               $http.get(self.projPath+"/src/"+file).then(function(res){
+                                   console.log(res.data);
+                                   fabricService.loadFile(res.data);
+                               });
+                           }
+                        }
                     }
                 }
                 self.updateFiles();
@@ -67,7 +80,7 @@
         };
         
         self.saveProj = function(){
-          if(self.projPath !== null)  {
+          if(self.projPath)  {
               var items =fs.readdirSync(self.projPath);
               if(items.indexOf("wireframe") !== -1 && items.indexOf("src") !== -1){
                   self.saveSrcFile();
@@ -110,8 +123,8 @@
         
         
         
-        self.fileActions =function(btn){
-            switch(btn.value){
+        self.fileActions = function (btn) {
+            switch (btn.value) {
                 case "new_proj":
                     self.isNew = true;
                     var options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};
@@ -123,7 +136,13 @@
                     self.showOpenDialog(options);
                     break;
                 case "save_proj":
-                    self.saveProj();
+                    if (self.projPath) {
+                        self.saveProj();
+                    } else {
+                        self.isNew = true;
+                        var options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};
+                        self.showOpenDialog(options);
+                    }
                     break;
                 case "exit":
                     win.close();
@@ -136,5 +155,5 @@
 
     }
     ;
-    angular.module("freehand").service("electronService", ['$rootScope','fabricService', electronService]);
+    angular.module("freehand").service("electronService", ['$http','$rootScope','fabricService', electronService]);
 })();

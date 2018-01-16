@@ -1,7 +1,7 @@
 <div class="fh-drawArea" ng-controller="drawCtrl as dc" ng-init="dc.intialize()">
     <div class="fh-outerbar">
         <div class="fh-canvas-title">
-            Untitled View<span ng-if="dc.fabricService.isEdited">*</span>
+            {{dc.fabricService.windowAttr.attr[0].value}}<span ng-if="dc.fabricService.isEdited">*</span>
         </div>
     </div>
     <div>
