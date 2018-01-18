@@ -7,11 +7,16 @@
         <span class="fh-sb-prop-value" ng-switch="property.type">
             <!-- Color -->
             <span ng-switch-when="color">
-                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name+'-prop')" ng-attr-id="{{property.name}}-prop">FFFFF</button>
+                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name)" ng-attr-id="{{property.name}}-prop"></button>
+                <label ng-attr-id="{{property.name}}-label">FFFFF</label>
             </span>
             <!-- Text -->
             <span ng-switch-when="text">
                 <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
+            </span>
+            <!--  number-->
+            <span ng-switch-when="number">
+                <input type="number" min="5" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
             </span>
             <!--- Boolean -->
             <span ng-switch-when="boolean">

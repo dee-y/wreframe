@@ -53,8 +53,12 @@
 
         vm.setColorPicker = function (e) {
             setTimeout(function () {
-                var ele = document.getElementById(e);
-                new jscolor(ele);
+                var buttonId=e+"-prop";
+                var labelId=e+"-label";
+                var ele = document.getElementById(buttonId);
+                var label=document.getElementById(labelId);
+                var colorpic=new jscolor(ele,{valueElement:label});
+                colorpic.targetElement=document.getElementById(labelId);
             }, 1000);
         };
 

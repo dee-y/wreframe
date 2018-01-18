@@ -25,6 +25,8 @@
     border-top: none;
     border-right: none;
     overflow-y: auto;
+    display: table;
+    width: 100%;
 }
 
 .fh-load-option {
@@ -165,15 +167,17 @@ span.fh-child-txt {
     display: table-cell;
 }
 
-.fh-sb-prop-txt,.fh-sb-prop-color{
+.fh-sb-prop-txt{
     width: 100px;
     padding: 5px;
     border: 1px solid #ccc;
     outline: none;
+    text-align: center;
 }
 
 .fh-sb-prop-color{
-    min-height: 17px;
+    width: 20px;
+    min-height: 20px;
     border: 1px solid #ccc;
     box-shadow: 0px 1px 2px #ebebeb;
     background: #fff;

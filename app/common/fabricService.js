@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    function fabricService($http, $timeout, propertyService) {
+    function fabricService($http, $timeout,$rootScope, propertyService) {
         var self = this;
 
         self.canvas = null;
@@ -14,6 +14,7 @@
         self.isEdited = false;
         self.copiedElement = null;
         self.windowAttr = {};
+        self.obj={moving:false,x:0,y:0};
 
         self.intializeCanvas = function () {
             self.getWindowProp().then(function (res) {
@@ -29,7 +30,18 @@
                 self.canvas.on("object:selected", function (options) {
                     self.objectSelected(options);
                 });
-                self.canvas.on("selection:cleared", self.getPropObj);
+                self.canvas.on("object:moving", function (options) {
+                    console.log(self.obj.x,options.target.left);
+                    self.obj.x = options.target.left;
+                    self.obj.y = options.target.top;
+                    $rootScope.$apply();
+                });
+                self.canvas.on("selection:cleared", function (options) {
+                    self.getPropObj();
+                    self.obj.moving = false;
+                    self.obj.x = 0;
+                    self.obj.y = 0;
+                });
                 self.getPropObj();
 
                 document.addEventListener('keydown', self.canvasKey, false);
@@ -68,7 +80,7 @@
             });
         };
 
-        function pasteObj() {
+        self.pasteObj = function() {
             self.copiedElement.clone(function (obj) {
                 self.canvas.discardActiveObject();
                 obj.set({
@@ -106,6 +118,9 @@
                     obj.bringToFront();
                 });
             }
+            self.obj.moving = true;
+            self.obj.x=options.target.left;
+            self.obj.y=options.target.top;
             self.getPropObj();
         };
 
@@ -232,5 +247,5 @@
 
     }
     ;
-    angular.module('freehand').service('fabricService', ['$http', '$timeout', 'propertyService', fabricService]);
+    angular.module('freehand').service('fabricService', ['$http', '$timeout','$rootScope', 'propertyService', fabricService]);
 })();
