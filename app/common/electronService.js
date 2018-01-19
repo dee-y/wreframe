@@ -79,32 +79,32 @@
             }
         };
         
-        self.saveProj = function(){
+        self.saveProj = function(fileName){
           if(self.projPath)  {
               var items =fs.readdirSync(self.projPath);
               if(items.indexOf("wireframe") !== -1 && items.indexOf("src") !== -1){
-                  self.saveSrcFile();
-                  self.createScreenPNG();
+                  self.saveSrcFile(fileName);
+                  self.createScreenPNG(fileName);
                   fabricService.isEdited=false;
               }
           }
         };
 
 
-        self.saveSrcFile = function () {
+        self.saveSrcFile = function (fileName) {
             var jsonData = fabricService.getJSONData();
-            fs.writeFile(self.projPath + "/src/view.json", jsonData, function (err) {
+            fs.writeFile(self.projPath + "/src/"+fileName+".json", jsonData, function (err) {
                 if(err !== null){
                     throw err;
                 }
             });
         };
 
-        self.createScreenPNG = function () {
+        self.createScreenPNG = function (fileName) {
             var imgData = fabricService.getImgData();
             var data = imgData.replace(/^data:image\/\w+;base64,/, "");
             var buf = new Buffer(data, 'base64');
-            fs.writeFile(self.projPath + "/wireframe/view.png", buf, function (err) {
+            fs.writeFile(self.projPath + "/wireframe/"+fileName+".png", buf, function (err) {
                 if(err !== null){
                     throw err;
                 }
@@ -137,7 +137,8 @@
                     break;
                 case "save_proj":
                     if (self.projPath) {
-                        self.saveProj();
+                        var fileName = (fabricService.windowAttr.attr && fabricService.windowAttr.attr > 0) ? fabricService.windowAttr.attr[0].value : "Untitled";
+                        self.saveProj(fileName);
                     } else {
                         self.isNew = true;
                         var options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};

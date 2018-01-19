@@ -31,7 +31,6 @@
                     self.objectSelected(options);
                 });
                 self.canvas.on("object:moving", function (options) {
-                    console.log(self.obj.x,options.target.left);
                     self.obj.x = options.target.left;
                     self.obj.y = options.target.top;
                     $rootScope.$apply();
@@ -43,7 +42,6 @@
                     self.obj.y = 0;
                 });
                 self.getPropObj();
-
                 document.addEventListener('keydown', self.canvasKey, false);
             }, 1000);
         };
@@ -100,9 +98,10 @@
         ;
 
         self.getImgData = function () {
-            self.canvas.backgroundColor = null;
-            var pngData = self.canvas.toDataURL('png')
-            self.canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas))
+            var pattern=new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas)) ;
+            self.canvas.backgroundColor = (self.windowAttr.attr[1].value === "Transparent") ? null : self.windowAttr.attr[1].value;
+            var pngData = self.canvas.toDataURL('png');
+            self.canvas.backgroundColor = (self.windowAttr.attr[1].value === "Transparent") ? pattern : self.windowAttr.attr[1].value;
             return pngData;
         }
 
@@ -232,6 +231,28 @@
             }else{
                 if(self.windowAttr){
                     self.windowAttr.attr[0].value=value;
+                }
+            }
+        };
+        
+        self.setBkgColor = function(value){
+            var isFound=false;
+            var activeObj=self.canvas.getActiveObject();
+            if(activeObj){
+                var objects=activeObj.getObjects();
+                objects.forEach(function(item,index){
+                    if(item.type ===  "rect" && isFound === false){
+                        item.set("fill",value);
+                        item.set("background",value);
+                        isFound=true;
+                    }
+                });
+            }else{
+                self.canvas.setBackgroundColor(value,self.canvas.renderAll.bind(self.canvas));
+                for (var item of self.windowAttr.attr) {
+                    if(item.name === 'Background'){
+                        item.value=value;
+                    }
                 }
             }
         };

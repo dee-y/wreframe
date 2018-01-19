@@ -26,6 +26,9 @@
                 case "text":
                     fabricService.setText(prop.value);
                     break;
+                case "background":
+                    fabricService.setBkgColor(prop.value);
+                break;
                 default:
 
                     break;
@@ -57,8 +60,12 @@
                 var labelId=e+"-label";
                 var ele = document.getElementById(buttonId);
                 var label=document.getElementById(labelId);
-                var colorpic=new jscolor(ele,{valueElement:label});
-                colorpic.targetElement=document.getElementById(labelId);
+                var colorpic=new jscolor(ele,{valueElement:label,hash:true,value:"transparent"});
+                colorpic.onFineChange = function(){
+                    if(e === "Background"){
+                        vm.setProperty({type:"background",value:label.innerHTML});
+                    }
+                }
             }, 1000);
         };
 
