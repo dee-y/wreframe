@@ -6,25 +6,6 @@
 
     'use strict';
 
-    var sidebarJson =
-            [
-                {"name": "button", "value": "Button", "class": "fh-draw-btn"},
-                {"name": "txtBox", "value": "Text Box", "class": "fh-draw-txtBox"},
-                {"name": "chkBox", "value": "Check Box", "class": "fh-draw-chk"},
-                {"name": "radioBtn", "value": "Radio Button", "class": "fh-draw-rdo"},
-                {"name": "dropDown", "value": "Drop Down", "class": "fh-draw-dropdwn"},
-                {"name": "cntTxt", "value": "Content Place Holder", "class": "fh-draw-conTxt"},
-                {"name": "dummyTxt", "value": "Lorem Ipsum", "class": "fh-draw-txt"},
-                {"name": "progressbar", "value": "Progress Bar", "class": "fh-draw-prg"},
-                {"name": "img", "value": "Image Place Holder", "class": "fh-draw-img"},
-                {"name": "popup", "value": "Pop-up", "class": "fh-draw-pop-up"},
-                {"name": "avatar", "value": "Avatar", "class": "fh-draw-avt"},
-                {"name": "tab", "value": "Tabbed Window", "class": "fh-draw-tab"}
-
-            ];
-    angular.module('freehand').value('sidebarValues', sidebarJson);
-
-
     //0 = true , 1= false
     var menuModes =
             [

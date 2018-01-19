@@ -40,8 +40,9 @@
                     throw 'Not an empty Dir';
                 } else {
                     try {
-                        fs.mkdirSync(self.projPath + '/wireframe');
+                        fs.mkdirSync(self.projPath + '/screens');
                         fs.mkdirSync(self.projPath + '/src');
+                        fs.mkdirSync(self.projPath + '/properties');
                     } catch (err) {
                         throw err;
                     }

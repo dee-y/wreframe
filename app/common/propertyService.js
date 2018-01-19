@@ -30,6 +30,11 @@
                 self.properties.push(objProp);
             });
         };
+        
+        
+        self.getTools =function(){
+          return $http.get('app/data/tools/tools.json') ;
+        };
     }
     ;
 

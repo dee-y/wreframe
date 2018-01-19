@@ -9,6 +9,7 @@
     position: absolute;
     top: 32px;
     border-radius: 5px;
-    font-size: 25px;
+    font-size: 19px;
     right: 32px;
+    opacity: 0.8
 }

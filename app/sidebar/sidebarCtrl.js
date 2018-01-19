@@ -6,12 +6,11 @@
 
     'use strict';
 
-    function sidebarCtrl(sidebarValues, toolsOpt, fabricService, menuModes, propertyService, electronService) {
+    function sidebarCtrl(fabricService, menuModes, propertyService, electronService) {
         var vm = this;
 
-        vm.sidebarValues = sidebarValues;
+        vm.tools=[];
         vm.menuModes = menuModes;
-        vm.toolsOpt = toolsOpt;
         vm.obj = fabricService.objLen;
         vm.properties = propertyService.properties;
         vm.electronService = electronService;
@@ -19,6 +18,13 @@
         vm.createEle = function (json) {
             fabricService.isEdited = true;
             fabricService.createObj(json);
+        };
+        
+        vm.getTools=function(){
+          propertyService.getTools().then(function(res){
+             var data=res.data;
+             vm.tools=data.tools;
+          });
         };
 
         vm.setProperty = function (prop) {
@@ -71,5 +77,5 @@
 
     }
     ;
-    angular.module('freehand').controller('sidebarCtrl', ['sidebarValues', 'toolsOpt', 'fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
+    angular.module('freehand').controller('sidebarCtrl', ['fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
 })();

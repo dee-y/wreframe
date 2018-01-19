@@ -31,8 +31,8 @@
                     self.objectSelected(options);
                 });
                 self.canvas.on("object:moving", function (options) {
-                    self.obj.x = options.target.left;
-                    self.obj.y = options.target.top;
+                    self.obj.x = parseInt(options.target.left);
+                    self.obj.y = parseInt(options.target.top);
                     $rootScope.$apply();
                 });
                 self.canvas.on("selection:cleared", function (options) {
@@ -118,8 +118,8 @@
                 });
             }
             self.obj.moving = true;
-            self.obj.x=options.target.left;
-            self.obj.y=options.target.top;
+            self.obj.x=parseInt(options.target.left);
+            self.obj.y=parseInt(options.target.top);
             self.getPropObj();
         };
 
@@ -255,6 +255,7 @@
                     }
                 }
             }
+            $rootScope.$apply();
         };
         
         self.loadFile = function (json) {
