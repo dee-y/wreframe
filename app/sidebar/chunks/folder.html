@@ -1,11 +1,12 @@
 <div class="fh-tab-content">
-    <div ng-show="sc.electronService.files.folders.length === 0" class="fh-sb-folder-wrapper">
+    <div ng-show="sc.electronService.files.screens.length === 0" style="text-align:  center; margin-top: 10px;">
         <a href="#" ng-click="sc.createNewProj()">+ Create Project</a>
     </div>
     <div>
-        <div ng-repeat="folder in sc.electronService.files.folders">
+        <div ng-repeat="screen in sc.electronService.files.screens">
             <div class="fh-sb-folder-wrapper">
-                <span class="fh-sb-folder-icon"></span><span class="fh-sb-folder-name">{{folder}}</span>
+                <span class="fh-sb-screen" ng-style="{'background': 'url('+screen.img+')','background-size':'cover'}"></span>
+                <span class="fh-sb-folder-name">{{screen.name}}</span>
             </div>
         </div>
     </div>

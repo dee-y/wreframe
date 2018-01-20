@@ -259,6 +259,7 @@
         };
         
         self.loadFile = function (json) {
+            self.windowAttr.attr[1].value=json.background;
             self.canvas.clear();
             self.canvas.loadFromJSON(json, function () {
                 self.canvas.renderAll();

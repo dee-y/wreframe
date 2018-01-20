@@ -10,7 +10,7 @@
 
         self.projPath;
         self.newProjErr = false;
-        self.files = {folders:[]};
+        self.files = {screens:[]};
         self.isNew = true;
 
         const {dialog} = require('electron').remote;
@@ -47,7 +47,6 @@
                         throw err;
                     }
                 }
-                self.updateFiles();
             }
         };
 
@@ -63,17 +62,9 @@
                         fs.mkdirSync(self.projPath + '/src');
                     }else{
                         //Read Files
-                        var jsonFiles=fs.readdirSync(self.projPath+'/src');
-                        for(var file of jsonFiles){
-                           var isJson= file.split(".");
-                           isJson=(isJson[isJson.length -1] === "json") ? true :false;
-                           if(isJson === true){
-                               $http.get(self.projPath+"/src/"+file).then(function(res){
-                                   console.log(res.data);
-                                   fabricService.loadFile(res.data);
-                               });
-                           }
-                        }
+                        var isSync=false;
+                        var screens=[];
+                        
                     }
                 }
                 self.updateFiles();
@@ -114,10 +105,29 @@
 
         self.updateFiles = function () {
             if (self.projPath) {
-                var items = fs.readdirSync(self.projPath);
-                if (items.length > 0) {
-                    angular.copy(items,self.files.folders);
-                    $rootScope.$apply();
+                var path=self.projPath.replace(/\\/g, "/");
+                var screens = [];
+                var jsonFiles = fs.readdirSync(self.projPath + '/src');
+                var pngFiles = fs.readdirSync(self.projPath + '/wireframe');
+                for (var file of pngFiles) {
+                    var fileName = file.split('.');
+                    fileName = fileName[0];
+                    var check = fileName + ".json";
+                    if (jsonFiles.indexOf(check) !== -1) {
+                        screens.push({"name":fileName,"img":path+'/wireframe/'+fileName+'.png'});
+                    } 
+                }
+                angular.copy(screens,self.files.screens);
+                $rootScope.$apply();
+                
+                for (var file of jsonFiles) {
+                    var isJson = file.split(".");
+                    isJson = (isJson[isJson.length - 1] === "json") ? true : false;
+                    if (isJson === true) {
+                        $http.get(self.projPath + "/src/" + file).then(function (res) {
+                            fabricService.loadFile(res.data);
+                        });
+                    }
                 }
             }
         };
@@ -138,7 +148,7 @@
                     break;
                 case "save_proj":
                     if (self.projPath) {
-                        var fileName = (fabricService.windowAttr.attr && fabricService.windowAttr.attr > 0) ? fabricService.windowAttr.attr[0].value : "Untitled";
+                        var fileName = (fabricService.windowAttr.attr && (fabricService.windowAttr.attr.length > 0)) ? fabricService.windowAttr.attr[0].value : "Untitled";
                         self.saveProj(fileName);
                     } else {
                         self.isNew = true;
