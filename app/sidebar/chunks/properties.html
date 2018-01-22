@@ -25,6 +25,12 @@
                     <span class="fh-prop-radio-slider round"></span>
                 </label>
             </span>
+            
+            <!--            Array Txt-->
+            <span ng-switch-when="arrayTxt">
+                <input class="fh-sb-prop-txt" ng-repeat="txt in property.value.split(',')" ng-value="txt"/>
+            </span>
+            
             <span ng-switch-default>{{property.value}}</span>
         </span>
     </div>

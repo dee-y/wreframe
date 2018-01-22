@@ -5,7 +5,7 @@
 (function () {
 
     'use strict';
-    function electronService($http,$timeout,$rootScope,fabricService) {
+    function electronService($http,$timeout,$rootScope,fabricService,FOLDERS) {
         var self = this;
 
         self.projPath;
@@ -40,9 +40,9 @@
                     throw 'Not an empty Dir';
                 } else {
                     try {
-                        fs.mkdirSync(self.projPath + '/screens');
-                        fs.mkdirSync(self.projPath + '/src');
-                        fs.mkdirSync(self.projPath + '/properties');
+                        fs.mkdirSync(self.projPath + FOLDERS.SCREEN);
+                        fs.mkdirSync(self.projPath + FOLDERS.SRC);
+                        fs.mkdirSync(self.projPath + FOLDERS.PROP);
                     } catch (err) {
                         throw err;
                     }
@@ -59,10 +59,10 @@
                 var items = fs.readdirSync(self.projPath);
                 if (items.length > 0) {
                     if (items.indexOf("screens") === -1) {
-                        fs.mkdirSync(self.projPath + '/screens');
+                        fs.mkdirSync(self.projPath + FOLDERS.SCREEN);
                     }
                     if (items.indexOf("src") === -1) {
-                        fs.mkdirSync(self.projPath + '/src');
+                        fs.mkdirSync(self.projPath + FOLDERS.SRC);
                     }
                 }
                 self.updateFiles();
@@ -84,7 +84,7 @@
         
         self.createPropFile= function(fileName){
           var objects=fabricService.genProperty()  ;
-          fs.writeFile(self.projPath+"/properties/"+fileName+".json",objects,function (err){
+          fs.writeFile(self.projPath+FOLDERS.PROP+fileName+".json",objects,function (err){
              if(err !== null) {
                  throw err;
              }
@@ -94,7 +94,7 @@
 
         self.saveSrcFile = function (fileName) {
             var jsonData = fabricService.getJSONData();
-            fs.writeFile(self.projPath + "/src/"+fileName+".json", jsonData, function (err) {
+            fs.writeFile(self.projPath +FOLDERS.SRC+fileName+".json", jsonData, function (err) {
                 if(err !== null){
                     throw err;
                 }
@@ -105,7 +105,7 @@
             var imgData = fabricService.getImgData();
             var data = imgData.replace(/^data:image\/\w+;base64,/, "");
             var buf = new Buffer(data, 'base64');
-            fs.writeFile(self.projPath + "/screens/"+fileName+".png", buf, function (err) {
+            fs.writeFile(self.projPath + FOLDERS.SCREEN+fileName+".png", buf, function (err) {
                 if(err !== null){
                     throw err;
                 }
@@ -116,14 +116,14 @@
             if (self.projPath) {
                 var path = self.projPath.replace(/\\/g, "/");
                 var screens = [];
-                var jsonFiles = fs.readdirSync(self.projPath + '/src');
-                var pngFiles = fs.readdirSync(self.projPath + '/screens');
+                var jsonFiles = fs.readdirSync(self.projPath + FOLDERS.SRC);
+                var pngFiles = fs.readdirSync(self.projPath + FOLDERS.SCREEN);
                 for (var file of pngFiles) {
                     var fileName = file.split('.');
                     fileName = fileName[0];
                     var check = fileName + ".json";
                     if (jsonFiles.indexOf(check) !== -1) {
-                        screens.push({"name": fileName, "img": path + '/screens/' + fileName + '.png'});
+                        screens.push({"name": fileName, "img": path + FOLDERS.SCREEN + fileName + '.png'});
                     }
                 }
                 angular.copy(screens, self.files.screens);
@@ -136,29 +136,18 @@
         self.loadFile = function (fileName) {
             var check=fileName+".json";
             var objJson = null, propJson = null;
-            var jsonFiles = fs.readdirSync(self.projPath + '/src');
+            var jsonFiles = fs.readdirSync(self.projPath + FOLDERS.SRC);
             for (var i = 0; i < jsonFiles.length; i++) {
                 if(check === jsonFiles[i]){
-                    $http.get(self.projPath + "/src/" + check).then(function (res) {objJson = res.data;});
-                    $http.get(self.projPath + "/properties/" + check).then(function (res) {propJson = res.data;});
+                    $http.get(self.projPath + FOLDERS.SRC + check).then(function (res) {objJson = res.data;});
+                    $http.get(self.projPath +FOLDERS.PROP + check).then(function (res) {propJson = res.data;});
                     $timeout(function(){
                         fabricService.loadFile(objJson,propJson);
                     },100);
                     break;
                 }
             }
-//            for (var file of jsonFiles) {
-//                var isJson = file.split(".");
-//                isJson = (isJson[isJson.length - 1] === "json") ? true : false;
-//                if (isJson === true) {
-//                    $http.get(self.projPath + "/src/" + file).then(function (res) {
-//                        fabricService.loadFile(res.data);
-//                    });
-//                }
-//            }
         };
-        
-        
         
         self.fileActions = function (btn) {
             switch (btn.value) {
@@ -193,5 +182,5 @@
 
     }
     ;
-    angular.module("freehand").service("electronService", ['$http','$timeout','$rootScope','fabricService', electronService]);
+    angular.module("freehand").service("electronService", ['$http','$timeout','$rootScope','fabricService','FOLDERS', electronService]);
 })();

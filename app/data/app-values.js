@@ -16,8 +16,19 @@
             ];
 
     angular.module('freehand').value('menuModes', menuModes);
-
-
+    
+    var folders =
+            [
+                {SRC: '/src/'},
+                {SCREEN: '/screens/'},
+                {PROP: '/properties/'},
+                {ANI: '/animate/'},
+                {ANI: '/comments/'}
+                
+            ];
+            
+     angular.module('freehand').constant('FOLDERS',folders);
+    
     var fileMenuJson =
             [
                 {id: 0, name: "New", value: "new_proj", class: "fh-plus"},
@@ -28,25 +39,4 @@
             ];
 
     angular.module('freehand').value('fileMenuJson', fileMenuJson);
-
-    var editMenuJson =
-            [
-            ];
-
-    angular.module('freehand').value('editMenuJson', editMenuJson);
-
-    var toolsOpt =
-            [
-                {id: 0,name: "Default",value:"default","default":0},
-                {id: 1,name: "Forms",value:"frm","default":1},
-                {id: 2,name: "Person",value:"person","default":1},
-                {id: 3,name: "Maps",value:"maps","default":1},
-                {id: 4,name: "Charts",value:"charts","default":1},
-                {id: 5,name: "Windows",value:"window","default":1},
-                {id: 6,name: "Flow Chart",value:"flowchart","default":1}
-            ];
-            
-            angular.module("freehand").value("toolsOpt",toolsOpt);
-
 })();
-

@@ -17,6 +17,11 @@
             "type":"color"
         },
         {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
             "name":"Font",
             "value":"#fff",
             "type":"color"
