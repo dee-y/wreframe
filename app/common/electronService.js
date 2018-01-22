@@ -5,7 +5,7 @@
 (function () {
 
     'use strict';
-    function electronService($http,$rootScope,fabricService) {
+    function electronService($http,$timeout,$rootScope,fabricService) {
         var self = this;
 
         self.projPath;
@@ -47,6 +47,9 @@
                         throw err;
                     }
                 }
+                $timeout(function(){
+                    $rootScope.$apply();
+                },1000);
             }
         };
 
@@ -55,16 +58,11 @@
             if (self.projPath) {
                 var items = fs.readdirSync(self.projPath);
                 if (items.length > 0) {
-                    if (items.indexOf("wireframe") === -1) {
-                        fs.mkdirSync(self.projPath + '/wireframe');
+                    if (items.indexOf("screens") === -1) {
+                        fs.mkdirSync(self.projPath + '/screens');
                     }
                     if (items.indexOf("src") === -1) {
                         fs.mkdirSync(self.projPath + '/src');
-                    }else{
-                        //Read Files
-                        var isSync=false;
-                        var screens=[];
-                        
                     }
                 }
                 self.updateFiles();
@@ -74,12 +72,23 @@
         self.saveProj = function(fileName){
           if(self.projPath)  {
               var items =fs.readdirSync(self.projPath);
-              if(items.indexOf("wireframe") !== -1 && items.indexOf("src") !== -1){
+              if(items.indexOf("screens") !== -1 && items.indexOf("src") !== -1){
                   self.saveSrcFile(fileName);
                   self.createScreenPNG(fileName);
+                  self.createPropFile(fileName);
                   fabricService.isEdited=false;
               }
           }
+          self.updateFiles();
+        };
+        
+        self.createPropFile= function(fileName){
+          var objects=fabricService.genProperty()  ;
+          fs.writeFile(self.projPath+"/properties/"+fileName+".json",objects,function (err){
+             if(err !== null) {
+                 throw err;
+             }
+          });
         };
 
 
@@ -96,40 +105,57 @@
             var imgData = fabricService.getImgData();
             var data = imgData.replace(/^data:image\/\w+;base64,/, "");
             var buf = new Buffer(data, 'base64');
-            fs.writeFile(self.projPath + "/wireframe/"+fileName+".png", buf, function (err) {
+            fs.writeFile(self.projPath + "/screens/"+fileName+".png", buf, function (err) {
                 if(err !== null){
                     throw err;
                 }
             });
         };
 
-        self.updateFiles = function () {
+        self.updateFiles = function (callback = null) {
             if (self.projPath) {
-                var path=self.projPath.replace(/\\/g, "/");
+                var path = self.projPath.replace(/\\/g, "/");
                 var screens = [];
                 var jsonFiles = fs.readdirSync(self.projPath + '/src');
-                var pngFiles = fs.readdirSync(self.projPath + '/wireframe');
+                var pngFiles = fs.readdirSync(self.projPath + '/screens');
                 for (var file of pngFiles) {
                     var fileName = file.split('.');
                     fileName = fileName[0];
                     var check = fileName + ".json";
                     if (jsonFiles.indexOf(check) !== -1) {
-                        screens.push({"name":fileName,"img":path+'/wireframe/'+fileName+'.png'});
-                    } 
-                }
-                angular.copy(screens,self.files.screens);
-                $rootScope.$apply();
-                
-                for (var file of jsonFiles) {
-                    var isJson = file.split(".");
-                    isJson = (isJson[isJson.length - 1] === "json") ? true : false;
-                    if (isJson === true) {
-                        $http.get(self.projPath + "/src/" + file).then(function (res) {
-                            fabricService.loadFile(res.data);
-                        });
+                        screens.push({"name": fileName, "img": path + '/screens/' + fileName + '.png'});
                     }
                 }
+                angular.copy(screens, self.files.screens);
+                $timeout(function(){
+                    $rootScope.$apply();
+                },1000);
             }
+        };
+        
+        self.loadFile = function (fileName) {
+            var check=fileName+".json";
+            var objJson = null, propJson = null;
+            var jsonFiles = fs.readdirSync(self.projPath + '/src');
+            for (var i = 0; i < jsonFiles.length; i++) {
+                if(check === jsonFiles[i]){
+                    $http.get(self.projPath + "/src/" + check).then(function (res) {objJson = res.data;});
+                    $http.get(self.projPath + "/properties/" + check).then(function (res) {propJson = res.data;});
+                    $timeout(function(){
+                        fabricService.loadFile(objJson,propJson);
+                    },100);
+                    break;
+                }
+            }
+//            for (var file of jsonFiles) {
+//                var isJson = file.split(".");
+//                isJson = (isJson[isJson.length - 1] === "json") ? true : false;
+//                if (isJson === true) {
+//                    $http.get(self.projPath + "/src/" + file).then(function (res) {
+//                        fabricService.loadFile(res.data);
+//                    });
+//                }
+//            }
         };
         
         
@@ -167,5 +193,5 @@
 
     }
     ;
-    angular.module("freehand").service("electronService", ['$http','$rootScope','fabricService', electronService]);
+    angular.module("freehand").service("electronService", ['$http','$timeout','$rootScope','fabricService', electronService]);
 })();

@@ -42,6 +42,10 @@
 
         };
         
+        vm.loadFile=function(fileName){
+          electronService.loadFile(fileName)  ;
+        };
+        
         vm.createNewProj=function(){
           electronService.fileActions({value:"new_proj"})  ;
         };

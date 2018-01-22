@@ -107,7 +107,20 @@
 
         self.getJSONData = function () {
             return JSON.stringify(self.canvas);
-        }
+        };
+        
+        self.genProperty = function (){
+          var obj={"objects":[]}  ;
+          var canvasObj=self.canvas.getObjects();
+          canvasObj.forEach(function(ob,index){
+             var object={};
+             object.customId=ob.customId;
+             object.customName=ob.customName;
+             object.properties=ob.properties;
+             obj.objects.push(object);
+          });
+          return JSON.stringify(obj);
+        };
 
         self.objectSelected = function (options) {
             if (options.target.customId === "tab") {
@@ -258,12 +271,18 @@
             $rootScope.$apply();
         };
         
-        self.loadFile = function (json) {
-            self.windowAttr.attr[1].value=json.background;
+        self.loadFile = function (objJSON,propJSON) {
+            self.windowAttr.attr[1].value=objJSON.background;
             self.canvas.clear();
-            self.canvas.loadFromJSON(json, function () {
+            var inc=0;
+            var prop=propJSON.objects;
+            self.canvas.loadFromJSON(objJSON, function () {
                 self.canvas.renderAll();
             }, function (o, object) {
+                object.customId=prop[inc].customId;
+                object.customName=prop[inc].customName;
+                object.properties=prop[inc].properties;
+                inc++;
                 self.setCustomDecor(object);
             });
         };
