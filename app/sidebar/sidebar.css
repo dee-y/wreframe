@@ -8,14 +8,16 @@
     text-align: center;
     display: inline-block;
     padding: 5px;
+    color: #b1afaf;
     min-width: 100%;
-    background: #E5E9EE;
+    background: #3B3B3B;
     font-size: 13px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #6d6d6d;
 }
 
-.fh-tab .active{
-    border: 1px solid #d6d6d6;
+.fh-tab.active {
+    background: #4E94FB;
+    color: #e6e6e6;
 }
 
 .fh-tab-content {
@@ -111,8 +113,9 @@ span.fh-child-txt {
 }
 
 .fh-sb-prop-type {
-    background: #DCE0E6;
+    background: #b1b1b1;
     padding: 5px;
+    color: #ebebeb;
     text-transform: capitalize;
 }
 

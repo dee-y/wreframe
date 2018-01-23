@@ -3,72 +3,82 @@
         {
             "name": "button",
             "value": "Button",
-            "img": "img/draw/ok-button.svg"
+            "img": "ok-button.svg"
         },
         {
             "name": "txtBox",
             "value": "Text Box",
-            "img": "img/draw/txt-box.svg"
+            "img": "txt-box.svg"
         },
         {
             "name": "chkBox",
             "value": "Check Box",
-            "img": "img/draw/check-box.png"
+            "img": "check-box.png"
         },
         {
             "name": "radioBtn",
             "value": "Radio Button",
-            "img": "img/draw/radio-button.png"
+            "img": "radio-button.png"
         },
         {
             "name": "dropDown",
             "value": "Drop Down",
-            "img": "img/draw/drop-down-list.png"
+            "img": "drop-down-list.png"
         },
         {
             "name": "cntTxt",
             "value": "Content Place Holder",
-            "img": "img/draw/content.png"
+            "img": "content.png"
         },
         {
             "name": "dummyTxt",
             "value": "Lorem Ipsum",
-            "img": "img/draw/txt.png"
+            "img": "txt.png"
         },
         {
             "name": "progressbar",
             "value": "Progress Bar",
-            "img": "img/draw/progress-bar.png"
+            "img": "progress-bar.png"
         },
         {
             "name": "img",
             "value": "Image Place Holder",
-            "img": "img/draw/photos.png"
+            "img": "photos.png"
         },
         {
             "name": "popup",
             "value": "Pop-up",
-            "img": "img/draw/pop-up.png"
+            "img": "pop-up.png"
         },
         {
             "name": "avatar",
             "value": "Avatar",
-            "img": "img/draw/avatar.svg"
+            "img": "avatar.svg"
         },
         {
             "name": "tab",
             "value": "Tabbed Window",
-            "img": "img/draw/tabs.png"
+            "img": "tabs.png"
         },
         {
             "name": "toggle",
             "value": "Toggle button",
-            "img": "img/draw/toggle.svg"
+            "img": "toggle.svg"
         },
         {
             "name": "table",
             "value": "Table Grid",
-            "img": "img/draw/table.svg"
+            "img": "table.svg"
+        },
+        {
+            "name": "slider",
+            "value": "Slider",
+            "img": "slider.png"
+        },
+        {
+            "name": "tag",
+            "value": "tag",
+            "img": "tags.svg"
         }
     ]
 }

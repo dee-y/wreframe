@@ -23,10 +23,12 @@
             $timeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                var height = drawArea.clientHeight - 10;
+                width=(width * 85)/100;
+                var height = drawArea.clientHeight;
+                height=(height * 120) /100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
-                self.canvas.backgroundColor = new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas));
+                self.canvas.backgroundColor = "#fff";
                 self.canvas.on("object:selected", function (options) {
                     self.objectSelected(options);
                 });
@@ -98,10 +100,7 @@
         ;
 
         self.getImgData = function () {
-            var pattern=new fabric.Pattern({source: 'img/draw/desktop-bkg.png'}, self.canvas.renderAll.bind(self.canvas)) ;
-            self.canvas.backgroundColor = (self.windowAttr.attr[1].value === "Transparent") ? null : self.windowAttr.attr[1].value;
             var pngData = self.canvas.toDataURL('png');
-            self.canvas.backgroundColor = (self.windowAttr.attr[1].value === "Transparent") ? pattern : self.windowAttr.attr[1].value;
             return pngData;
         }
 

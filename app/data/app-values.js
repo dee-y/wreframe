@@ -17,15 +17,7 @@
 
     angular.module('freehand').value('menuModes', menuModes);
     
-    var folders =
-            [
-                {SRC: '/src/'},
-                {SCREEN: '/screens/'},
-                {PROP: '/properties/'},
-                {ANI: '/animate/'},
-                {CMT: '/comments/'},
-                
-            ];
+    var folders = {SRC: '/src/',SCREEN: '/screens/',PROP: '/properties/',ANI: '/animate/',CMT: '/comments/'};
             
      angular.module('freehand').constant('FOLDERS',folders);
     

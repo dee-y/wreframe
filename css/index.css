@@ -15,26 +15,28 @@ body > *{
 }
 
 .fh-divider-horizontal{
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #404040;
 }
 
 .fh-divider-vertical{
-    border-right: 1px solid #ccc;
+        border-right: 1px solid rgba(64,64,64,0.4);
 }
 
 .fh-sidebar{
-    height: 93vh;
+    height: 94vh;
     padding: 0px;
 }
 
 .fh-drawArea{
-    min-height: 100%;
+  min-height: 100%;
     border: 1px solid #ccc;
     border-top: none;
     border-left: none;
     margin: 0 auto;
     width: 100%;
-    height: 92vh;
+    background: #ccc;
+    height: 94vh;
+    overflow-y: hidden;
 }
 
 .fh-canvas{
@@ -44,6 +46,7 @@ body > *{
 
 .fh-outerbar {
     min-height: 25px;
+    background: #b1b1b1;
     border-bottom: 1px solid #ebebeb;
 }
 
@@ -52,7 +55,7 @@ body > *{
     text-align: center;
     font-size: 16px;
     max-width: 15%;
-    background: #ccc;
+    background: #4F4D50;
     outline: none;
     font-family: verdana;
     line-height: 26px;

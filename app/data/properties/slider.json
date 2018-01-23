@@ -1,0 +1,35 @@
+{
+    "name":"slider",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Slider",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Progress Color",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
+            "name":"Range Status",
+            "value":50,
+            "type":"range"
+        },
+        {
+            "name":"Rounded Corners",
+            "value":false,
+            "type":"boolean"
+        }
+    ]
+}

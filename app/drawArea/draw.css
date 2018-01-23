@@ -13,3 +13,14 @@
     right: 32px;
     opacity: 0.8
 }
+
+.canvas-container {
+    box-shadow: 1px 3px 1px #848484;
+    margin: 5% auto;
+    background: #fff;
+}
+
+.fh-canvas-wrapper {
+    overflow-y: auto;
+    height: 100%;
+}
