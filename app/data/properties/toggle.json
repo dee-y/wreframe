@@ -1,0 +1,25 @@
+{
+    "name":"button",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Toggle",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
+            "name":"Switched On",
+            "value":true,
+            "type":"boolean"
+        }
+    ]
+}

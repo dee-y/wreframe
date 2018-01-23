@@ -3,62 +3,72 @@
         {
             "name": "button",
             "value": "Button",
-            "class": "fh-draw-btn"
+            "img": "img/draw/ok-button.svg"
         },
         {
             "name": "txtBox",
             "value": "Text Box",
-            "class": "fh-draw-txtBox"
+            "img": "img/draw/txt-box.svg"
         },
         {
             "name": "chkBox",
             "value": "Check Box",
-            "class": "fh-draw-chk"
+            "img": "img/draw/check-box.png"
         },
         {
             "name": "radioBtn",
             "value": "Radio Button",
-            "class": "fh-draw-rdo"
+            "img": "img/draw/radio-button.png"
         },
         {
             "name": "dropDown",
             "value": "Drop Down",
-            "class": "fh-draw-dropdwn"
+            "img": "img/draw/drop-down-list.png"
         },
         {
             "name": "cntTxt",
             "value": "Content Place Holder",
-            "class": "fh-draw-conTxt"
+            "img": "img/draw/content.png"
         },
         {
             "name": "dummyTxt",
             "value": "Lorem Ipsum",
-            "class": "fh-draw-txt"
+            "img": "img/draw/txt.png"
         },
         {
             "name": "progressbar",
             "value": "Progress Bar",
-            "class": "fh-draw-prg"
+            "img": "img/draw/progress-bar.png"
         },
         {
             "name": "img",
             "value": "Image Place Holder",
-            "class": "fh-draw-img"
+            "img": "img/draw/photos.png"
         },
         {
             "name": "popup",
             "value": "Pop-up",
-            "class": "fh-draw-pop-up"
+            "img": "img/draw/pop-up.png"
         },
         {
             "name": "avatar",
             "value": "Avatar",
-            "class": "fh-draw-avt"
+            "img": "img/draw/avatar.svg"
         },
         {
             "name": "tab",
             "value": "Tabbed Window",
-            "class": "fh-draw-tab"
+            "img": "img/draw/tabs.png"
+        },
+        {
+            "name": "toggle",
+            "value": "Toggle button",
+            "img": "img/draw/toggle.svg"
+        },
+        {
+            "name": "table",
+            "value": "Table Grid",
+            "img": "img/draw/table.svg"
         }
     ]
 }

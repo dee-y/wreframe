@@ -1,0 +1,35 @@
+{
+    "name":"button",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Table",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
+            "name":"Rows",
+            "value":13,
+            "type":"number"
+        },
+        {
+            "name":"Columns",
+            "value":13,
+            "type":"number"
+        },
+        {
+            "name":"Header",
+            "value":true,
+            "type":"boolean"
+        }
+    ]
+}

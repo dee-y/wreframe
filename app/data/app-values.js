@@ -23,7 +23,7 @@
                 {SCREEN: '/screens/'},
                 {PROP: '/properties/'},
                 {ANI: '/animate/'},
-                {ANI: '/comments/'}
+                {CMT: '/comments/'},
                 
             ];
             
