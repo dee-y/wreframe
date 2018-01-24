@@ -1,0 +1,9 @@
+<div class="fh-tab-panel" ng-repeat="mode in sc.menuModes.right" ng-click="sc.togglePanel(mode,'right')">
+    <div class="fh-tab-pane">
+        <div class="fh-tab" ng-class="{'active':mode.active === 0}">{{mode.name}}</div>
+    </div>
+    <div ng-if="mode.active === 0" ng-include="'app/sidebar/chunks/'+mode.html">
+        
+    </div>
+    
+</div>

@@ -19,10 +19,13 @@ Main HTML file for app
             <div  ng-include="'app/toolbar/toolbar.html'"></div>
             <div class="row">
                 <div class="col-md-2 fh-divider-vertical fh-sidebar" ng-controller="sidebarCtrl as sc">
-                    <div  ng-include="'app/sidebar/sidebar.html'"></div>
+                    <div  ng-include="'app/sidebar/sidebar-left.html'"></div>
                 </div>
-                <div class="col-md-10" style="padding:0px">
+                <div class="col-md-8" style="padding:0px">
                     <div  ng-include="'app/drawArea/draw.html'"></div>
+                </div>
+                <div class="col-md-2 fh-divider-vertical fh-sidebar" ng-controller="sidebarCtrl as sc">
+                    <div  ng-include="'app/sidebar/sidebar-right.html'"></div>
                 </div>
             </div>
         </div>

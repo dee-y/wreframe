@@ -1,4 +1,4 @@
-<div class="fh-tab-panel" ng-repeat="mode in sc.menuModes" ng-click="sc.togglePanel(mode)">
+<div class="fh-tab-panel" ng-repeat="mode in sc.menuModes.left" ng-click="sc.togglePanel(mode,'left')">
     <div class="fh-tab-pane">
         <div class="fh-tab" ng-class="{'active':mode.active === 0}">{{mode.name}}</div>
     </div>

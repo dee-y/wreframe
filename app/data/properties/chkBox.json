@@ -12,19 +12,14 @@
             "type":"number"
         },
         {
-            "name":"Check Boxes",
-            "value":3,
-            "type":"number"
+            "name":"Label Text",
+            "value": "Choice 1",
+            "type":"text"
         },
         {
-            "name":"Align Horizontal",
+            "name":"Checked",
             "value":false,
             "type":"boolean"
-        },
-        {
-            "name":"CheckBox Text",
-            "value": "Choice 1,Choice 2,Choice 3",
-            "type":"arrayTxt"
         }
     ]
 }

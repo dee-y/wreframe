@@ -51,8 +51,9 @@
         };
 
 
-        vm.togglePanel = function (opt) {
-            angular.forEach(vm.menuModes, function (mode, index) {
+        vm.togglePanel = function (opt,side) {
+            var modes=(side === 'left') ? vm.menuModes.left : vm.menuModes.right;
+            angular.forEach(modes, function (mode, index) {
                 if (opt.name === mode.name) {
                     if (mode.active === 1) {
                         mode.active = 0;

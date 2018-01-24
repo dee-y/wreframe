@@ -5,7 +5,7 @@
     <div>
         <div ng-repeat="screen in sc.electronService.files.screens">
             <div class="fh-sb-folder-wrapper" ng-click="sc.loadFile(screen.name)">
-                <span class="fh-sb-screen" ng-style="{'background': 'url('+screen.img+')','background-size':'cover'}"></span>
+                <span class="fh-sb-screen" ng-style="{'background-image': 'url('+screen.img+')','background-size':'cover','background-repeat':'no-repeat'}"></span>
                 <span class="fh-sb-folder-name">{{screen.name}}</span>
             </div>
         </div>

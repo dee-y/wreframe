@@ -3,8 +3,11 @@
     Author     : Pradhaban
 */
 
-.fh-actionbar{
+.fh-actionbar {
     margin-left: 15px;
+    border-right: 1px solid rgba(144, 143, 143, 0.5);
+    box-sizing: border-box;
+    border-right-width: thin;
 }
 
 .fh-menu{
@@ -23,7 +26,7 @@
 }
 
 .fh-btn:hover {
-    background: rgba(255,255,255,0.5);
+    background: #4E94FB;
 }
 
 
@@ -53,6 +56,16 @@
 
 .fh-exit{
     background: url(../../img/file/exit.png);
+    background-size: cover;
+}
+
+.fh-zoom-in{
+    background: url(../../img/file/zoom-in.png);
+    background-size: cover;
+}
+
+.fh-zoom-out{
+    background: url(../../img/file/zoom-out.png);
     background-size: cover;
 }
 

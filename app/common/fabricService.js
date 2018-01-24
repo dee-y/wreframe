@@ -25,7 +25,7 @@
                 var width = parseInt(drawArea.clientWidth);
                 width=(width * 85)/100;
                 var height = drawArea.clientHeight;
-                height=(height * 120) /100;
+                height=(height * 85) /100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";

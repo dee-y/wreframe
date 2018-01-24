@@ -12,9 +12,14 @@
             "type":"number"
         },
         {
-            "name":"Radio Button Text",
-            "value": "Option 1,Option 2,Option 3",
-            "type":"arrayTxt"
+            "name":"Label Text",
+            "value": "Option 1",
+            "type":"text"
+        },
+        {
+            "name": "Checked",
+            "value": false,
+            "type":"boolean"
         }
     ]
 }
