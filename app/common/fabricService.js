@@ -29,6 +29,7 @@
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
+                self.canvas.setZoom(0.8);
                 self.canvas.on("object:selected", function (options) {
                     self.objectSelected(options);
                 });

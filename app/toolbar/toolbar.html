@@ -1,8 +1,14 @@
 <div class="row fh-divider-horizontal fh-menu" ng-controller="toolbarCtrl as tc">
-    <div class="col-md-2 fh-actionbar" ng-repeat="menu in tc.fileMenu">
-        <button ng-repeat="menuItem in menu" class="fh-btn" title="{{menuItem.name}}" ng-attr-id="{{menuItem.value}}" ng-click="tc.fileActions(menuItem)">
-            <span class="fh-file-image" ng-class="menuItem.class"></span>
-        </button>
-        <span class="fh-menu-divider"></span>
-    </div>
+    <div class="col-md-2 logo">LOGO</div>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="fh-actionbar" ng-repeat="(menuName,menu) in tc.fileMenu" 
+                 ng-class="{'col-md-2': (menuName !== 'ext'),'col-md-1 pull-right': (menuName === 'ext') }">
+                     <button ng-repeat="menuItem in menu" class="fh-btn" title="{{menuItem.name}}" ng-attr-id="{{menuItem.value}}" ng-click="tc.fileActions(menuItem)">
+                         <span class="fh-file-image" ng-class="menuItem.class"></span>
+                     </button>
+                     <span class="fh-menu-divider"></span>
+                 </div>
+            </div>
+        </div>
 </div>

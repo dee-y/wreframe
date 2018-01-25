@@ -79,6 +79,11 @@
             "name": "tag",
             "value": "tag",
             "img": "tags.svg"
+        },
+        {
+            "name": "video",
+            "value": "video",
+            "img": "video.png"
         }
     ]
 }

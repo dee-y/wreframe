@@ -125,6 +125,7 @@ span.fh-child-txt {
     background: #b1b1b1;
     padding: 5px;
     color: #ebebeb;
+    font-family: verdana;
     text-transform: capitalize;
 }
 
@@ -133,7 +134,7 @@ span.fh-child-txt {
     position: relative;
     display: inline-block;
     width: 50px;
-    height: 24px;
+    height: 13px;
     vertical-align: middle;
 }
 
@@ -154,12 +155,14 @@ span.fh-child-txt {
 .fh-prop-radio-slider:before{
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
+    height: 20px;
+    width: 20px;
+    left: -2px;
+    bottom: -4px;
     background-color: white;
     -webkit-transition: .4s;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 9px #ccc;
     transition: .4s;
 }
 
@@ -168,9 +171,9 @@ input:checked + .fh-prop-radio-slider {
 }
 
 input:checked + .fh-prop-radio-slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(38px);
+    -ms-transform: translateX(38px);
+    transform: translateX(38px);
 }
 
 .fh-prop-radio-slider.round {
@@ -182,7 +185,7 @@ input:checked + .fh-prop-radio-slider:before {
 }
 
 .fh-sb-folder-name {
-        line-height: 15px;
+    line-height: 15px;
     font-size: 12px;
     margin: 2px;
     display: inline-block;
@@ -208,4 +211,11 @@ input:checked + .fh-prop-radio-slider:before {
 
 .fh-sb-folder-wrapper:hover {
     background: #ebebeb;
+}
+
+.logo{
+    line-height: 34px;
+    color: #fff;
+    margin: auto;
+    text-align: center;
 }

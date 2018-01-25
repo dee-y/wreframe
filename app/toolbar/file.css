@@ -69,6 +69,47 @@
     background-size: cover;
 }
 
+.fh-cmt-mode{
+    background: url(../../img/file/comment.png);
+    background-size: cover;
+}
+
+.fh-mobile{
+    background: url(../../img/file/mobile-phone.png);
+    background-size: cover;
+}
+.fh-desktop{
+    background: url(../../img/file/desktop.png);
+    background-size: cover;
+}
+.fh-tablet{
+    background: url(../../img/file/tablet.png);
+    background-size: cover;
+}
+.fh-settings{
+    background: url(../../img/file/settings.png);
+    background-size: cover;
+}
+.fh-help{
+    background: url(../../img/file/help.png);
+    background-size: cover;
+}
+
+.fh-info{
+    background: url(../../img/file/info.png);
+    background-size: cover;
+}
+
+.fh-share{
+    background: url(../../img/file/share.png);
+    background-size: cover;
+}
+
+.fh-notify{
+    background: url(../../img/file/notify.png);
+    background-size: cover;
+}
+
 .fh-file-image {
     min-width: 19px;
     height: 19px;
