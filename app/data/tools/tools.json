@@ -84,6 +84,16 @@
             "name": "video",
             "value": "video",
             "img": "video.png"
+        },
+        {
+            "name": "audio",
+            "value": "audio",
+            "img": "music.png"
+        },
+        {
+            "name": "steps",
+            "value": "steps",
+            "img": "steps.png"
         }
     ]
 }

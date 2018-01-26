@@ -7,7 +7,7 @@
         <span class="fh-sb-prop-value" ng-switch="property.type">
             <!-- Color -->
             <span ng-switch-when="color">
-                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name)" ng-attr-id="{{property.name}}-prop"></button>
+                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name,property.value)" ng-attr-id="{{property.name}}-prop"></button>
                 <label ng-attr-id="{{property.name}}-label">FFFFF</label>
             </span>
             <!-- Text -->

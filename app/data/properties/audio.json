@@ -1,0 +1,20 @@
+{
+    "name":"Audio Player",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Audio Player",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        }
+    ]
+}

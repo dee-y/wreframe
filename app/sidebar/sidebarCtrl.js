@@ -28,6 +28,7 @@
         };
 
         vm.setProperty = function (prop) {
+            fabricService.isEdited = true;
             switch (prop.type) {
                 case "text":
                     fabricService.setText(prop.value);
@@ -65,19 +66,20 @@
             ;
         };
 
-        vm.setColorPicker = function (e) {
+        vm.setColorPicker = function (e,val) {
             setTimeout(function () {
                 var buttonId=e+"-prop";
                 var labelId=e+"-label";
                 var ele = document.getElementById(buttonId);
                 var label=document.getElementById(labelId);
                 var colorpic=new jscolor(ele,{valueElement:label,hash:true,value:"transparent"});
+                colorpic.fromString(val);
                 colorpic.onFineChange = function(){
                     if(e === "Background"){
                         vm.setProperty({type:"background",value:label.innerHTML});
                     }
                 }
-            }, 1000);
+            }, 300);
         };
 
     }

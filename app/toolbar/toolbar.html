@@ -4,8 +4,11 @@
         <div class="row">
             <div class="fh-actionbar" ng-repeat="(menuName,menu) in tc.fileMenu" 
                  ng-class="{'col-md-2': (menuName !== 'ext'),'col-md-1 pull-right': (menuName === 'ext') }">
-                     <button ng-repeat="menuItem in menu" class="fh-btn" title="{{menuItem.name}}" ng-attr-id="{{menuItem.value}}" ng-click="tc.fileActions(menuItem)">
-                         <span class="fh-file-image" ng-class="menuItem.class"></span>
+                     <button ng-repeat="menuItem in menu" 
+                             ng-class="menuItem.class"
+                             class="fh-btn" title="{{menuItem.name}}" ng-attr-id="{{menuItem.value}}" ng-click="tc.fileActions(menuItem)">
+                         <span class="fh-file-image"
+                               ng-style="{'background':'url(img/file/'+menuItem.img+')','background-size':'cover','background-repeat':'no-repeat'}"></span>
                      </button>
                      <span class="fh-menu-divider"></span>
                  </div>

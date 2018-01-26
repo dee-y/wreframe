@@ -1,0 +1,30 @@
+{
+    "name":"step",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Stepper",
+            "type":"label"
+        },
+        {
+            "name":"Font Size",
+            "value":13,
+            "type":"number"
+        },
+        {
+            "name":"Label Text",
+            "value": "Step 1",
+            "type":"text"
+        },
+        {
+            "name":"Index",
+            "value": "1",
+            "type":"number"
+        },
+        {
+            "name":"Done",
+            "value":true,
+            "type":"boolean"
+        }
+    ]
+}

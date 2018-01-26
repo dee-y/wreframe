@@ -229,10 +229,12 @@
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
+                var isFound = false;
                 objects.forEach(function (obj, index) {
-                    if (obj.type === "text") {
+                    if (obj.type === "text" && isFound === false) {
                         obj.setText(value);
                         self.canvas.renderAll();
+                        isFound = true;
                     }
                 });
 
@@ -248,23 +250,28 @@
             }
         };
         
-        self.setBkgColor = function(value){
-            var isFound=false;
-            var activeObj=self.canvas.getActiveObject();
-            if(activeObj){
-                var objects=activeObj.getObjects();
-                objects.forEach(function(item,index){
-                    if(item.type ===  "rect" && isFound === false){
-                        item.set("fill",value);
-                        item.set("background",value);
-                        isFound=true;
+        self.setBkgColor = function (value) {
+            var isFound = false;
+            var activeObj = self.canvas.getActiveObject();
+            if (activeObj) {
+                var objects = activeObj.getObjects();
+                objects.forEach(function (item, index) {
+                    if (item.type === "rect" && isFound === false) {
+                        item.set("fill", value);
+                        item.set("background", value);
+                        isFound = true;
                     }
                 });
-            }else{
-                self.canvas.setBackgroundColor(value,self.canvas.renderAll.bind(self.canvas));
+                for (var prop of activeObj.properties) {
+                    if (prop.name === 'Background') {
+                        prop.value = value;
+                    }
+                }
+            } else {
+                self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
                 for (var item of self.windowAttr.attr) {
-                    if(item.name === 'Background'){
-                        item.value=value;
+                    if (item.name === 'Background') {
+                        item.value = value;
                     }
                 }
             }
