@@ -1,0 +1,30 @@
+{
+    "name":"scrollbar",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Scrollbar",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Horizontal",
+            "value":false,
+            "type":"boolean"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
+            "name":"Rounded Corners",
+            "value":false,
+            "type":"boolean"
+        }
+    ]
+}

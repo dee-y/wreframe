@@ -94,6 +94,11 @@
             "name": "steps",
             "value": "steps",
             "img": "steps.png"
+        },
+        {
+            "name": "scrollbar",
+            "value": "scrollbar",
+            "img": "scroll.png"
         }
     ]
 }
