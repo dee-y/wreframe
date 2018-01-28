@@ -99,6 +99,11 @@
             "name": "scrollbar",
             "value": "scrollbar",
             "img": "scroll.png"
+        },
+         {
+            "name": "datepicker",
+            "value": "datepicker",
+            "img": "datepicker.png"
         }
     ]
 }

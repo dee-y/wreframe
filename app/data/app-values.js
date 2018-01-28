@@ -35,15 +35,15 @@
                 ],
 
                 animate: [
-                    {id: 0, name: "Preview", value: "preview", img: "play-button.png"},
-                    {id: 1, name: "Zoom In", value: "zoomin", img: "zoom-in.png"},
-                    {id: 2, name: "Zoom Out", value: "zoomin", img: "zoom-out.png"},
+                    {id: 0, name: "Link Views", value: "interact", img: "tap.png"},
+                    {id: 1, name: "Preview", value: "preview", img: "play-button.png"},
+                    {id: 2, name: "Zoom", value: "zoomin", img: "zoom-in.png",class:""},
                 ],
                 
                 view:[
-                    {id: 0, name: "Mobile", value: "mobile", img: "mobile-phone.png"},
+                    {id: 0, name: "Mobile", value: "mobile", img: "mobile-phone.png",class:""},
                     {id: 1, name: "Desktop", value: "desktop", img: "desktop.png",class:"active"},
-                    {id: 2, name: "Tablet", value: "tablet", img: "tablet.png"},
+                    {id: 2, name: "Tablet", value: "tablet", img: "tablet.png",class:""},
                 ],
                 team:[
                     {id: 0, name: "Share", value: "mobile", img: "share.png"},

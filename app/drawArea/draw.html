@@ -7,9 +7,9 @@
     <div class="fh-canvas-wrapper">
         <canvas class="fh-canvas" id="fhCanvas"></canvas>
     </div>
-    <aside class="fh-canvas-move-pos" ng-if="dc.fabricService.obj.moving === true">
+    <aside class="fh-canvas-move-pos" ng-if="dc.fabricService.obj.show === true">
         <div>
-            X:{{dc.fabricService.obj.x}} Y:{{dc.fabricService.obj.y}}
+            {{dc.fabricService.obj.msg}}
         </div>
     </aside>
 </div>

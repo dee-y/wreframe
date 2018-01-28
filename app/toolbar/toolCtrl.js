@@ -16,8 +16,38 @@
             fabricService.deleteObj();
         };
 
-        vm.fileActions =function(menu){
-            electronService.fileActions(menu);
+        vm.fileActions =function(menu,category){
+            switch (category) {
+                case "file":
+                    electronService.fileActions(menu);
+                    break;
+                case "animate":
+                    if(menu.name === "Zoom"){
+                        vm.toggleZoom(menu);
+                    }
+                    break;
+                default:
+                    //do nothing
+                    break;
+            }
+        };
+        
+        vm.toggleZoom=function(zoomVal){
+            if (zoomVal.value === "zoomin") {
+                if (zoomVal.class === "active") {
+                    zoomVal.value = "zoomout";
+                    zoomVal.img = "zoom-out.png";
+                    fabricService.zoomEnabled("zoomout");
+                } else {
+                    zoomVal.class = "active";
+                    fabricService.zoomEnabled("zoomin");
+                }
+            } else {
+                zoomVal.class = "";
+                zoomVal.value = "zoomin";
+                zoomVal.img = "zoom-in.png";
+                fabricService.zoomDisabled();
+            }
         };
         
         vm.editAction =function(menuJson){

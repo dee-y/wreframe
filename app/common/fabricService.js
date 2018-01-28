@@ -14,7 +14,8 @@
         self.isEdited = false;
         self.copiedElement = null;
         self.windowAttr = {};
-        self.obj={moving:false,x:0,y:0};
+        self.obj={show:false,msg:""};
+        self.isZoom={zoomIn:false,zoomOut:false,default:0.8};
 
         self.intializeCanvas = function () {
             self.getWindowProp().then(function (res) {
@@ -29,28 +30,49 @@
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
-                self.canvas.setZoom(0.8);
-                self.canvas.on("object:selected", function (options) {
-                    self.objectSelected(options);
-                });
-                self.canvas.on("object:moving", function (options) {
-                    self.obj.x = parseInt(options.target.left);
-                    self.obj.y = parseInt(options.target.top);
-                    $rootScope.$apply();
-                });
-                self.canvas.on("selection:cleared", function (options) {
-                    self.getPropObj();
-                    self.obj.moving = false;
-                    self.obj.x = 0;
-                    self.obj.y = 0;
-                });
+                self.canvas.setZoom(self.isZoom.default);
+                self.canvasEvt();
                 self.getPropObj();
-                document.addEventListener('keydown', self.canvasKey, false);
             }, 1000);
         };
-
+         
+        self.canvasEvt = function () {
+            self.canvas.on("object:selected", function (options) {
+                self.objectSelected(options);
+            });
+            self.canvas.on("object:moving", function (options) {
+                self.objMove(options);
+            });
+            self.canvas.on("selection:cleared", function (options) {
+                self.getPropObj();
+                self.obj.show = false;
+                self.obj.msg ="";
+            });
+            self.canvas.on("mouse:up",function(evt){
+                self.setZoom(evt);
+            });
+            document.addEventListener('keydown', self.canvasKey, false);
+        };
+        
         self.getWindowProp = function () {
             return $http.get('app/data/properties/window.json', {cache: true});
+        };
+        
+        self.setZoom = function (evt) {
+            var zoom = self.canvas.getZoom();
+            
+            if (self.isZoom.zoomIn === true) {
+                zoom += 0.1;
+            }
+            if (self.isZoom.zoomOut === true) {
+                zoom -= 0.1;
+            }
+            var zoomLevel = (zoom * 100) / (self.isZoom.default * 100);
+            zoomLevel *= 100;
+            self.obj.show = true;
+            self.obj.msg = "Zoom : " + parseInt(zoomLevel) + "%";
+            self.canvas.setZoom(zoom);
+            $rootScope.$apply();
         };
 
         self.canvasKey = function (e) {
@@ -67,6 +89,11 @@
                 e.preventDefault();
                 self.pasteObj();
             }
+        };
+        
+        self.objMove = function (options) {
+            self.obj.msg="X: "+parseInt(options.target.left)+" Y: "+parseInt(options.target.top);
+            $rootScope.$apply();
         };
 
         self.copyObj = function () {
@@ -99,11 +126,47 @@
             });
         }
         ;
+        
+        self.zoomEnabled =function(val){
+            self.deactiveAll();
+            if(val === "zoomin"){
+                self.canvas.defaultCursor = "zoom-in";
+                self.isZoom.zoomIn = true;
+                self.isZoom.zoomOut = false;
+            }else{
+                self.canvas.defaultCursor = 'zoom-out';
+                self.isZoom.zoomIn = false;
+                self.isZoom.zoomOut = true;
+            }
+            self.canvas.renderAll.bind(self.canvas);
+        };
+        
+        self.zoomDisabled = function (){
+           self.canvas.defaultCursor = "default";
+           self.isZoom.zoomIn = false;
+           self.isZoom.zoomOut = false;
+           self.obj.show=false;
+          var objects=self.canvas.getObjects();
+          if(objects.length > 0){
+              objects.forEach(function(item,index){
+                 item.selectable = true; 
+              });
+          }  
+        };
+        
+        self.deactiveAll = function(){
+          var objects=self.canvas.getObjects();
+          if(objects.length > 0){
+              objects.forEach(function(item,index){
+                 item.selectable = false; 
+              });
+          }
+        };
 
         self.getImgData = function () {
             var pngData = self.canvas.toDataURL('png');
             return pngData;
-        }
+        };
 
         self.getJSONData = function () {
             return JSON.stringify(self.canvas);
@@ -130,9 +193,8 @@
                     obj.bringToFront();
                 });
             }
-            self.obj.moving = true;
-            self.obj.x=parseInt(options.target.left);
-            self.obj.y=parseInt(options.target.top);
+            self.obj.show = true;
+            self.obj.msg="X: "+parseInt(options.target.left)+" Y: "+parseInt(options.target.top);
             self.getPropObj();
         };
 

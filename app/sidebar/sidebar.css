@@ -187,20 +187,21 @@ input:checked + .fh-prop-radio-slider:before {
 .fh-sb-folder-name {
     line-height: 15px;
     font-size: 12px;
-    margin: 2px;
-    display: inline-block;
+    font-weight: bold;
+    background: #ccc;
+    display: block;
+    padding: 5px 10px;
 }
 
 .fh-sb-screen {
     width: 100px;
     height: 95px;
     border: 1px solid #ccc;
-    margin: auto;
+    margin: 10px auto;
     display: block;
 }
 
 .fh-sb-folder-wrapper {
-    padding: 2px;
     margin: 2px auto;
     width: 70%;
     text-align: center;

@@ -1,0 +1,30 @@
+{
+    "name":"datepicker",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Date Picker",
+            "type":"label"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+          "name"  :"Border Width",
+            "value": 0,
+            "type":"number"
+        },
+        {
+            "name":"Font",
+            "value":"#000",
+            "type":"color"
+        },
+        {
+            "name":"Font size",
+            "value":13,
+            "type":"number"
+        }
+    ]
+}
