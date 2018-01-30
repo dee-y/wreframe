@@ -61,4 +61,9 @@
             };
 
     angular.module('freehand').value('fileMenuJson', fileMenuJson);
+    
+    var canvasProperties ={desktop:{width:85,height:125}, mobile:{width:40,height:85}};
+    
+    angular.module('freehand').value('canvasProperties', canvasProperties);
+    
 })();

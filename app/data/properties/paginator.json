@@ -1,0 +1,30 @@
+{
+    "name":"button",
+    "attr":[
+        {
+            "name":"Name",
+            "value":"Paginator",
+            "type":"label"
+        },
+        {
+            "name":"Text",
+            "value":"Page 2",
+            "type":"text"
+        },
+        {
+            "name":"Background",
+            "value":"#fff",
+            "type":"color"
+        },
+        {
+            "name":"Font",
+            "value":"#000",
+            "type":"color"
+        },
+        {
+            "name":"Font size",
+            "value":13,
+            "type":"number"
+        }
+    ]
+}

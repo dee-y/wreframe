@@ -100,10 +100,15 @@
             "value": "scrollbar",
             "img": "scroll.png"
         },
-         {
+        {
             "name": "datepicker",
             "value": "datepicker",
             "img": "datepicker.png"
+        },
+        {
+            "name": "paginator",
+            "value": "paginator",
+            "img": "pages.png"
         }
     ]
 }

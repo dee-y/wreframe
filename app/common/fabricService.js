@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    function fabricService($http, $timeout,$rootScope, propertyService) {
+    function fabricService($http, $timeout,$rootScope, propertyService,canvasProperties) {
         var self = this;
 
         self.canvas = null;
@@ -16,6 +16,7 @@
         self.windowAttr = {};
         self.obj={show:false,msg:""};
         self.isZoom={zoomIn:false,zoomOut:false,default:0.8};
+        self.canvasMode={desktop:true,mobile:false};
 
         self.intializeCanvas = function () {
             self.getWindowProp().then(function (res) {
@@ -24,9 +25,9 @@
             $timeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                width=(width * 85)/100;
+                width=(width * canvasProperties.desktop.width)/100;
                 var height = drawArea.clientHeight;
-                height=(height * 85) /100;
+                height=(height * canvasProperties.desktop.height) /100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
@@ -46,9 +47,9 @@
             self.canvas.on("selection:cleared", function (options) {
                 self.getPropObj();
                 self.obj.show = false;
-                self.obj.msg ="";
+                self.obj.msg = "";
             });
-            self.canvas.on("mouse:up",function(evt){
+            self.canvas.on("mouse:up", function (evt) {
                 self.setZoom(evt);
             });
             document.addEventListener('keydown', self.canvasKey, false);
@@ -58,21 +59,38 @@
             return $http.get('app/data/properties/window.json', {cache: true});
         };
         
+        
+        self.resizeCanvas = function(viewMode){
+            if(viewMode.value === "mobile"){
+                self.canvas.clear();
+                var drawArea = document.querySelector(".fh-drawArea");
+               var width = parseInt(drawArea.clientWidth);
+                width=(width * canvasProperties.mobile.width)/100;
+                var height = drawArea.clientHeight;
+                height=(height * canvasProperties.mobile.height) /100;
+
+                self.canvas.setWidth(width);
+                self.canvas.setHeight(height);
+            }
+        };
+        
         self.setZoom = function (evt) {
-            var zoom = self.canvas.getZoom();
-            
-            if (self.isZoom.zoomIn === true) {
-                zoom += 0.1;
+            if (self.isZoom.zoomIn === true || self.isZoom.zoomOut === true) {
+                var zoom = self.canvas.getZoom();
+
+                if (self.isZoom.zoomIn === true) {
+                    zoom += 0.1;
+                }
+                if (self.isZoom.zoomOut === true) {
+                    zoom -= 0.1;
+                }
+                var zoomLevel = (zoom * 100) / (self.isZoom.default * 100);
+                zoomLevel *= 100;
+                self.obj.show = true;
+                self.obj.msg = "Zoom : " + parseInt(zoomLevel) + "%";
+                self.canvas.setZoom(zoom);
+                $rootScope.$apply();
             }
-            if (self.isZoom.zoomOut === true) {
-                zoom -= 0.1;
-            }
-            var zoomLevel = (zoom * 100) / (self.isZoom.default * 100);
-            zoomLevel *= 100;
-            self.obj.show = true;
-            self.obj.msg = "Zoom : " + parseInt(zoomLevel) + "%";
-            self.canvas.setZoom(zoom);
-            $rootScope.$apply();
         };
 
         self.canvasKey = function (e) {
@@ -261,7 +279,7 @@
                                 self.canvas.add(finalObj);
                             });
                         } else {
-                            var finalObj = setProperties(obj, data);
+                            var finalObj = self.setProperties(obj, data);
                             self.canvas.add(objType.fromObject(finalObj));
                         }
                         $timeout(function () {
@@ -358,5 +376,5 @@
 
     }
     ;
-    angular.module('freehand').service('fabricService', ['$http', '$timeout','$rootScope', 'propertyService', fabricService]);
+    angular.module('freehand').service('fabricService', ['$http', '$timeout','$rootScope', 'propertyService','canvasProperties', fabricService]);
 })();
