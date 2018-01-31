@@ -4,14 +4,15 @@
 */
 
 @font-face {
-    font-family: 'TitilliumWeb-Light';
+    font-family: 'Arimo';
     font-style: normal;
     font-weight: 400;
-    src: local('TitilliumWeb-Light'), local('TitilliumWeb-Light'), url('../fonts/TitilliumWeb-Light.ttf') format('ttf');
+    src: local('Arimo-Regular'), local('Arimo-Regular'), url('../fonts/Arimo/Arimo-Regular.ttf') format('ttf');
 }
 
 body > *{
     outline: none;
+    font-family: 'Arimo';
 }
 
 .fh-divider-horizontal{
@@ -53,12 +54,13 @@ body > *{
 .fh-canvas-title{
     color: #fff;
     text-align: center;
-    font-size: 16px;
-    max-width: 15%;
+    font-size: 13px;
     background: #4F4D50;
     outline: none;
     font-family: verdana;
     line-height: 26px;
+    padding: 0px 20px;
+    display: inline-block;
 }
 
 .fh-listBtn{

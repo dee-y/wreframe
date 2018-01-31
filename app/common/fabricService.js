@@ -60,18 +60,30 @@
         };
         
         
-        self.resizeCanvas = function(viewMode){
-            if(viewMode.value === "mobile"){
-                self.canvas.clear();
-                var drawArea = document.querySelector(".fh-drawArea");
-               var width = parseInt(drawArea.clientWidth);
-                width=(width * canvasProperties.mobile.width)/100;
-                var height = drawArea.clientHeight;
-                height=(height * canvasProperties.mobile.height) /100;
-
+        self.resizeCanvas = function (viewMode) {
+            var drawArea = document.querySelector(".fh-drawArea");
+            var width = parseInt(drawArea.clientWidth);
+            var height = drawArea.clientHeight;
+            self.canvas.clear();
+            if (viewMode.value === "mobile") {
+                width = (width * canvasProperties.mobile.width) / 100;
+                height = (height * canvasProperties.mobile.height) / 100;
                 self.canvas.setWidth(width);
                 self.canvas.setHeight(height);
+                self.canvas.setZoom(0.5);
+                self.canvasMode.desktop = false;
+                self.canvasMode.mobile = true;
             }
+            if (viewMode.value === "desktop") {
+                width = (width * canvasProperties.desktop.width) / 100;
+                height = (height * canvasProperties.desktop.height) / 100;
+                self.canvas.setWidth(width);
+                self.canvas.setHeight(height);
+                self.canvas.setZoom(0.8);
+                self.canvasMode.desktop = true;
+                self.canvasMode.mobile = false;
+            }
+
         };
         
         self.setZoom = function (evt) {
@@ -191,7 +203,8 @@
         };
         
         self.genProperty = function (){
-          var obj={"objects":[]}  ;
+          var mode =(self.canvasMode.desktop === true) ? "desktop" : "mobile";
+          var obj={"window":mode,"objects":[]}  ;
           var canvasObj=self.canvas.getObjects();
           canvasObj.forEach(function(ob,index){
              var object={};
@@ -363,6 +376,8 @@
             self.canvas.clear();
             var inc=0;
             var prop=propJSON.objects;
+            var viewMode=propJSON.window;
+            self.resizeCanvas({value:viewMode});
             self.canvas.loadFromJSON(objJSON, function () {
                 self.canvas.renderAll();
             }, function (o, object) {

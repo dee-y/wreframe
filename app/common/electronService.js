@@ -72,10 +72,12 @@
         self.saveProj = function(fileName){
           if(self.projPath)  {
               var items =fs.readdirSync(self.projPath);
+              var mode=(fabricService.canvasMode.desktop === true) ? "desktop" : "mobile";
+              var saveName=fileName+"-"+mode;
               if(items.indexOf("screens") !== -1 && items.indexOf("src") !== -1){
-                  self.saveSrcFile(fileName);
-                  self.createScreenPNG(fileName);
-                  self.createPropFile(fileName);
+                  self.saveSrcFile(saveName);
+                  self.createScreenPNG(saveName);
+                  self.createPropFile(saveName);
                   fabricService.isEdited=false;
               }
           }
@@ -150,7 +152,7 @@
         };
         
         self.fileActions = function (btn) {
-            switch (btn.value) {
+            switch (btn) {
                 case "new_proj":
                     self.isNew = true;
                     var options = {title: 'Create New - Choose Folder', properties: ['openDirectory']};

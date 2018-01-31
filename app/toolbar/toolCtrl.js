@@ -7,7 +7,7 @@
 
     'use strict';
 
-    function toolbarCtrl(fabricService, fileMenuJson, electronService) {
+    function toolbarCtrl(fabricService, fileMenuJson, electronService,infoService) {
         var vm = this;
 
         vm.fileMenu = fileMenuJson;
@@ -16,12 +16,10 @@
             fabricService.deleteObj();
         };
 
-        vm.fileActions = function (menu, category) {
-            console.log(menu);
-            console.log(category);
+        vm.fileActions = function (menu, category) {            
             switch (category) {
                 case "file":
-                    electronService.fileActions(menu);
+                    electronService.fileActions(menu.value);
                     break;
                 case "animate":
                     if (menu.name === "Zoom") {
@@ -31,10 +29,19 @@
                 case "view":
                     if(fabricService.isEdited === false){
                         vm.toggleMode(menu);
+                    }else{
+                        infoService.showAlertDialog("Do you want to save Changes?",
+                                function () {
+                                    electronService.fileActions("save_proj");
+                                },
+                                function () {
+                                    fabricService.resizeCanvas({value: "mobile"})
+                                }
+                        );
                     }
                 break;
                 case "ext":
-                    electronService.fileActions(menu);
+                    electronService.fileActions(menu.value);
                     break;
                 default:
                     //do nothing
@@ -51,7 +58,6 @@
                    }else{
                        item.class="";
                    }
-                   console.log(JSON.stringify(item));
                 });
                 fabricService.resizeCanvas(menu);
             }
@@ -90,6 +96,6 @@
     }
     ;
 
-    angular.module("freehand").controller("toolbarCtrl", ['fabricService', 'fileMenuJson', 'electronService', toolbarCtrl]);
+    angular.module("freehand").controller("toolbarCtrl", ['fabricService', 'fileMenuJson', 'electronService','infoService', toolbarCtrl]);
 
 })();

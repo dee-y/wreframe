@@ -1,7 +1,10 @@
 <div class="fh-drawArea" ng-controller="drawCtrl as dc" ng-init="dc.intialize()">
     <div class="fh-outerbar">
         <div class="fh-canvas-title">
-            {{dc.fabricService.windowAttr.attr[0].value}}<span ng-if="dc.fabricService.isEdited">*</span>
+            {{dc.fabricService.windowAttr.attr[0].value}}
+            <span ng-if="dc.fabricService.isEdited">*</span>
+            <span ng-if="dc.fabricService.canvasMode.desktop === true"> | Desktop</span>
+            <span ng-if="dc.fabricService.canvasMode.mobile === true"> | Mobile</span>
         </div>
     </div>
     <div class="fh-canvas-wrapper">
