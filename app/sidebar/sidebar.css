@@ -85,7 +85,7 @@ span.fh-child-txt {
 }
 
 .fh-sb-prop-value {
-    border-left: 1px solid #ccc;
+/*    border-left: 1px solid #ccc;*/
     vertical-align: top;
     width: 55%;
 }
@@ -97,7 +97,7 @@ span.fh-child-txt {
 }
 
 .fh-sb-prop-name, .fh-sb-prop-value {
-    font-size: 13px;
+    font-size: 11px;
     padding: 10px 5px;
     border-bottom: 1px solid #ccc;
     margin: 0px 5px;

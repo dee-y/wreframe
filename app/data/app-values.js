@@ -54,9 +54,6 @@
                      {id: 0, name: "Settings", value: "settings", img: "settings.png"},
                      {id: 1, name: "Help", value: "help", img: "help.png"},
                     {id: 2, name: "About", value: "info", img: "info.png"}
-                ],
-                ext:[
-                    {id: 0, name: "Exit", value: "exit", img: "exit.png"}
                 ]
             };
 

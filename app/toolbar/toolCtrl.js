@@ -7,7 +7,7 @@
 
     'use strict';
 
-    function toolbarCtrl(fabricService, fileMenuJson, electronService,infoService) {
+    function toolbarCtrl(fabricService, fileMenuJson, electronService, infoService) {
         var vm = this;
 
         vm.fileMenu = fileMenuJson;
@@ -16,7 +16,7 @@
             fabricService.deleteObj();
         };
 
-        vm.fileActions = function (menu, category) {            
+        vm.fileActions = function (menu, category) {
             switch (category) {
                 case "file":
                     electronService.fileActions(menu.value);
@@ -27,37 +27,48 @@
                     }
                     break;
                 case "view":
-                    if(fabricService.isEdited === false){
+                    if (fabricService.isEdited === false) {
                         vm.toggleMode(menu);
-                    }else{
+                    } else {
                         infoService.showAlertDialog("Do you want to save Changes?",
                                 function () {
                                     electronService.fileActions("save_proj");
                                 },
                                 function () {
-                                    fabricService.resizeCanvas({value: "mobile"})
+                                    vm.toggleMode(menu);
                                 }
                         );
                     }
-                break;
+                    break;
                 case "ext":
-                    electronService.fileActions(menu.value);
+                    if (fabricService.isEdited === false) {
+                        electronService.fileActions(menu.value);
+                    } else {
+                        infoService.showAlertDialog("Do you want to save Changes?",
+                                function () {
+                                    electronService.fileActions("save_proj");
+                                },
+                                function () {
+                                    electronService.fileActions(menu.value);
+                                }
+                        );
+                    }
                     break;
                 default:
                     //do nothing
                     break;
             }
         };
-        
-        
-        vm.toggleMode = function(menu){
-            if(menu.class !== "active"){
-                fileMenuJson.view.forEach(function(item,index){
-                   if(item.value === menu.value) {
-                       item.class = "active";
-                   }else{
-                       item.class="";
-                   }
+
+
+        vm.toggleMode = function (menu) {
+            if (menu.class !== "active") {
+                fileMenuJson.view.forEach(function (item, index) {
+                    if (item.value === menu.value) {
+                        item.class = "active";
+                    } else {
+                        item.class = "";
+                    }
                 });
                 fabricService.resizeCanvas(menu);
             }
@@ -96,6 +107,6 @@
     }
     ;
 
-    angular.module("freehand").controller("toolbarCtrl", ['fabricService', 'fileMenuJson', 'electronService','infoService', toolbarCtrl]);
+    angular.module("freehand").controller("toolbarCtrl", ['fabricService', 'fileMenuJson', 'electronService', 'infoService', toolbarCtrl]);
 
 })();

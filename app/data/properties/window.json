@@ -2,7 +2,7 @@
     "name":"window",
     "attr":[
         {
-            "name":"Text",
+            "name":"Name",
             "value":"Untitled",
             "type":"text"
         },

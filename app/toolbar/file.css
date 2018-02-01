@@ -17,6 +17,9 @@
 
 .fh-btn{
     margin-right: 8px;
+}
+
+.fh-btn ,.fh-ext{
     padding: 5px;
     min-width: 40px;
     height: 35px;
@@ -29,6 +32,9 @@
     background: #4E94FB;
 }
 
+.fh-ext:hover {
+   background: #e64a4a;
+}
 
 .fh-toolbar{
     float: right;

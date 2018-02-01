@@ -65,6 +65,7 @@
             var width = parseInt(drawArea.clientWidth);
             var height = drawArea.clientHeight;
             self.canvas.clear();
+            self.isEdited=false;
             if (viewMode.value === "mobile") {
                 width = (width * canvasProperties.mobile.width) / 100;
                 height = (height * canvasProperties.mobile.height) / 100;
@@ -83,6 +84,9 @@
                 self.canvasMode.desktop = true;
                 self.canvasMode.mobile = false;
             }
+            $timeout(function(){
+                $rootScope.$apply();
+            },100);
 
         };
         
