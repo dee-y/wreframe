@@ -254,10 +254,7 @@
             $http.get('app/data/properties/' + obj.name + '.json', {cache: true}).then(
                     function (res) {
                         if (res.data.attr) {
-                            var attrs = res.data.attr;
-                            attrs.forEach(function (item, index) {
-                                canvasObj.properties.push(item);
-                            });
+                            angular.copy(res.data.attr,canvasObj.properties);
                         }
                     },
                     function (err) {
@@ -274,11 +271,12 @@
                 var obj = self.canvas.getActiveObject();
                 prop.name = obj.customName;
                 prop.value = obj.customId;
-                objProp.name=obj.customId;
+                objProp.name=obj.customName;
                 objProp.attr =obj.properties;
             } else {
                 objProp = self.windowAttr;
             }
+            console.log(JSON.stringify(objProp));
             propertyService.setProperties(prop, objProp);
             return prop;
         };

@@ -1,20 +1,21 @@
 {
-    "name":"window",
-    "attr":[
+    "name": "window",
+    "attr": [
         {
-            "name":"Name",
-            "value":"Untitled",
-            "type":"text"
-        },
-        {
-            "name":"Background",
-            "value":"Transparent",
-            "type":"color"
-        },
-        {
-            "name":"Home Page",
-            "value":true,
-            "type":"boolean"
+            "category": "Fill",
+            "active": true,
+            "prop": [
+                {
+                    "name": "Name",
+                    "value": "Untitled",
+                    "type": "text"
+                },
+                {
+                    "name": "Background",
+                    "value": "Transparent",
+                    "type": "color"
+                }
+            ]
         }
     ]
 }

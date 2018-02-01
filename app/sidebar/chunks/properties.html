@@ -2,36 +2,40 @@
     Type : {{sc.properties[0].name}}
 </div>
 <div class="fh-tab-content">
-    <div class="fh-sidebar-property" ng-repeat="property in sc.properties[0].attr">
-        <span class="fh-sb-prop-name">{{property.name}}</span>
-        <span class="fh-sb-prop-value" ng-switch="property.type">
-            <!-- Color -->
-            <span ng-switch-when="color">
-                <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name,property.value)" ng-attr-id="{{property.name}}-prop"></button>
-                <label ng-attr-id="{{property.name}}-label">FFFFF</label>
+    <div class="fh-sidebar-property" ng-repeat="category in sc.properties[0].attr">
+        <div class="fh-sb-prop-cat-name" ng-click="category.active = !category.active">{{category.category}}</div> 
+        <div class="fh-sb-prop-wrapper" ng-repeat="property in category.prop" ng-show="category.active">
+            <span class="fh-sb-prop-name">{{property.name}}</span>
+            <span class="fh-sb-prop-value" ng-switch="property.type">
+                <!-- Color -->
+                <span ng-switch-when="color">
+                    <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property.name, property.value)" ng-attr-id="{{property.name}}-prop"></button>
+                    <label ng-attr-id="{{property.name}}-label">FFFFF</label>
+                </span>
+                <!-- Text -->
+                <span ng-switch-when="text">
+                    <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
+                </span>
+                <!--  number-->
+                <span ng-switch-when="number">
+                    <input type="number" min="5" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
+                </span>
+                <!--- Boolean -->
+                <span ng-switch-when="boolean">
+                    <label class="fh-prop-radio">
+                        <input type="checkbox">
+                        <span class="fh-prop-radio-slider round"></span>
+                    </label>
+                </span>
+
+                <!--            Array Txt-->
+                <span ng-switch-when="arrayTxt">
+                    <input class="fh-sb-prop-txt" ng-repeat="txt in property.value.split(',')" ng-value="txt"/>
+                </span>
+
+                <span ng-switch-default>{{property.value}}</span>
             </span>
-            <!-- Text -->
-            <span ng-switch-when="text">
-                <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
-            </span>
-            <!--  number-->
-            <span ng-switch-when="number">
-                <input type="number" min="5" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
-            </span>
-            <!--- Boolean -->
-            <span ng-switch-when="boolean">
-                <label class="fh-prop-radio">
-                    <input type="checkbox">
-                    <span class="fh-prop-radio-slider round"></span>
-                </label>
-            </span>
-            
-            <!--            Array Txt-->
-            <span ng-switch-when="arrayTxt">
-                <input class="fh-sb-prop-txt" ng-repeat="txt in property.value.split(',')" ng-value="txt"/>
-            </span>
-            
-            <span ng-switch-default>{{property.value}}</span>
-        </span>
+
+        </div>
     </div>
 </div>
