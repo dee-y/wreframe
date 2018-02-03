@@ -17,22 +17,22 @@
                 },
                 {
                     "name": "Pos X",
-                    "value": 0,
+                    "value": 150,
                     "type": "number"
                 },
                 {
                     "name": "Pos Y",
-                    "value": 0,
+                    "value": 100,
                     "type": "number"
                 },
                 {
                     "name": "Width",
-                    "value": 0,
+                    "value": 101,
                     "type": "number"
                 },
                 {
                     "name": "Height",
-                    "value": 0,
+                    "value": 31,
                     "type": "number"
                 },
                 {
@@ -58,7 +58,7 @@
                 },
                 {
                     "name": "Font",
-                    "value": "#fff",
+                    "value": "#000",
                     "type": "color"
                 },
                 {

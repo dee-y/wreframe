@@ -126,7 +126,22 @@
         };
         
         self.objMove = function (options) {
-            self.obj.msg="X: "+parseInt(options.target.left)+" Y: "+parseInt(options.target.top);
+            var top=parseInt(options.target.top);
+            var left=parseInt(options.target.left);
+            self.obj.msg="X: "+left+" Y: "+top;
+            var prop=self.canvas.getActiveObject().properties;
+            for (var cat of prop) {
+                if(cat.category === 'Fill'){
+                    for(var item of cat.prop){
+                        if(item.name === "Pos X"){
+                            item.value=left;
+                        }
+                        if(item.name === "Pos Y"){
+                            item.value=top;
+                        }
+                    }
+                }
+            }
             $rootScope.$apply();
         };
 
@@ -276,11 +291,13 @@
             } else {
                 objProp = self.windowAttr;
             }
-            console.log(JSON.stringify(objProp));
             propertyService.setProperties(prop, objProp);
             return prop;
         };
-
+        
+        self.getCurrentObj=function(){
+          return self.canvas.getActiveObject();
+        };
 
         self.createObj = function (obj) {
             var objName = obj.name;
@@ -345,9 +362,37 @@
             }
         };
         
+        
+        self.setBorderWidth = function(value) {
+            var activeObj = self.canvas.getActiveObject();
+            if (activeObj) {
+                var objects = activeObj.getObjects();
+                var prop = activeObj.properties;
+                var isFound = false;
+                objects.forEach(function (obj, index) {
+                    if (obj.type === "rect" && isFound === false) {
+                        obj.set('strokeWidth',value);
+                        self.canvas.renderAll();
+                        isFound = true;
+                    }
+                });
+
+                prop.forEach(function (attr, index) {
+                    if (attr.name === "Border Width" && attr.type === "number") {
+                        attr.value = value;
+                    }
+                });
+            }else{
+                if(self.windowAttr){
+                    self.windowAttr.attr[0].value=value;
+                }
+            }
+        };
+        
         self.setBkgColor = function (value) {
             var isFound = false;
             var activeObj = self.canvas.getActiveObject();
+            var prop={};
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 objects.forEach(function (item, index) {
@@ -357,19 +402,20 @@
                         isFound = true;
                     }
                 });
-                for (var prop of activeObj.properties) {
-                    if (prop.name === 'Background') {
-                        prop.value = value;
-                    }
-                }
+               prop=activeObj.properties;
             } else {
                 self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
-                for (var item of self.windowAttr.attr) {
-                    if (item.name === 'Background') {
-                        item.value = value;
+                prop=self.windowAttr.attr;
+            }
+            for (var cat of prop) {
+                if(cat.category === 'Fill'){
+                    for(var item of cat.prop){
+                        if(item.name === "Background"){
+                            item.value=value;
+                        }
                     }
                 }
-            }
+            }            
             $rootScope.$apply();
         };
         

@@ -29,13 +29,17 @@
 
         vm.setProperty = function (prop) {
             fabricService.isEdited = true;
-            switch (prop.type) {
-                case "text":
+            var obj=fabricService.getCurrentObj();
+            switch (prop.name) {
+                case "Text":
                     fabricService.setText(prop.value);
                     break;
-                case "background":
+                case "Background":
                     fabricService.setBkgColor(prop.value);
-                break;
+                    break;
+                case "Border Width":
+                    fabricService.setBorderWidth(prop.value);
+                    break;
                 default:
 
                     break;
@@ -66,8 +70,10 @@
             ;
         };
 
-        vm.setColorPicker = function (e,val) {
+        vm.setColorPicker = function (property) {
             setTimeout(function () {
+                var e=property.name;
+                var val=property.value;
                 var buttonId=e+"-prop";
                 var labelId=e+"-label";
                 var ele = document.getElementById(buttonId);
@@ -76,7 +82,8 @@
                 colorpic.fromString(val);
                 colorpic.onFineChange = function(){
                     if(e === "Background"){
-                        vm.setProperty({type:"background",value:label.innerHTML});
+                        property.value=label.innerHTML;
+                        vm.setProperty(property);
                     }
                 }
             }, 300);

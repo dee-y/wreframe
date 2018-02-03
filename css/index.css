@@ -26,6 +26,7 @@ body > *{
 .fh-sidebar{
     height: 94vh;
     padding: 0px;
+    overflow-y: hidden;
 }
 
 .fh-drawArea{
