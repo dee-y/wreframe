@@ -1,25 +1,72 @@
 {
-    "name":"checkbox",
-    "attr":[
+    "name": "checkbox",
+    "attr": [
         {
-            "name":"Name",
-            "value":"Check Box",
-            "type":"label"
+            "category": "CheckBox",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos X",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos Y",
+                    "value": 100,
+                    "type": "number"
+                },
+                {
+                    "name": "Width",
+                    "value": 101,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
+                    "value": 31,
+                    "type": "number"
+                },
+                {
+                    "name": "Checked",
+                    "value": false,
+                    "type": "boolean"
+                }
+            ]
         },
         {
-            "name":"Font Size",
-            "value":13,
-            "type":"number"
-        },
-        {
-            "name":"Label Text",
-            "value": "Choice 1",
-            "type":"text"
-        },
-        {
-            "name":"Checked",
-            "value":false,
-            "type":"boolean"
+            "category": "Text",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Text",
+                    "value": "Choice 1",
+                    "type": "text"
+                },
+                {
+                    "name": "Font",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Font size",
+                    "value": 13,
+                    "type": "number"
+                },
+                {
+                    "name": "Font Family",
+                    "value": "sans",
+                    "type": "dropdown"
+                },
+                {
+                    "name": "Font Weight",
+                    "value": "bold",
+                    "type": "dropdown"
+                }
+            ]
         }
     ]
 }

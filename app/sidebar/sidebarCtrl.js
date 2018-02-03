@@ -40,6 +40,9 @@
                 case "Border Width":
                     fabricService.setBorderWidth(prop.value);
                     break;
+                case "Font":
+                    fabricService.setFontColor(prop.value);
+                    break;
                 default:
 
                     break;
@@ -81,10 +84,8 @@
                 var colorpic=new jscolor(ele,{valueElement:label,hash:true,value:"transparent"});
                 colorpic.fromString(val);
                 colorpic.onFineChange = function(){
-                    if(e === "Background"){
                         property.value=label.innerHTML;
                         vm.setProperty(property);
-                    }
                 }
             }, 300);
         };

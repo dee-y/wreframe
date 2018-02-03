@@ -75,6 +75,11 @@
                     "name": "Font Weight",
                     "value": "bold",
                     "type": "dropdown"
+                },
+                {
+                    "name":"Text Shadow",
+                    "value":false,
+                    "type": "boolean"
                 }
             ]
         }

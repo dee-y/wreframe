@@ -272,9 +272,7 @@
                             angular.copy(res.data.attr,canvasObj.properties);
                         }
                     },
-                    function (err) {
-
-                    }
+                    function (err) {}
             );
             return canvasObj;
         };
@@ -334,6 +332,32 @@
           for(var ele of objects){
               self.objLen.push({value:ele.customName});
           }
+        };
+        
+        self.setFontColor = function(value){
+              var activeObj = self.canvas.getActiveObject();
+            if (activeObj) {
+                var objects = activeObj.getObjects();
+                var prop = activeObj.properties;
+                var isFound = false;
+                objects.forEach(function (obj, index) {
+                    if (obj.type === "text" && isFound === false) {
+                        obj.setColor(value);
+                        self.canvas.renderAll();
+                        isFound = true;
+                    }
+                });
+
+                prop.forEach(function (attr, index) {
+                    if (attr.name === "Font" && attr.type === "color") {
+                        attr.value = value;
+                    }
+                });
+            }else{
+                if(self.windowAttr){
+                    self.windowAttr.attr[0].value=value;
+                }
+            }
         };
         
         self.setText = function(value) {
