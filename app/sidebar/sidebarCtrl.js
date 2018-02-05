@@ -27,21 +27,20 @@
           });
         };
 
-        vm.setProperty = function (prop) {
+        vm.setProperty = function (prop,mapIndex) {
             fabricService.isEdited = true;
-            var obj=fabricService.getCurrentObj();
             switch (prop.name) {
                 case "Text":
-                    fabricService.setText(prop.value);
+                    fabricService.setText(prop.value,mapIndex);
                     break;
                 case "Background":
-                    fabricService.setBkgColor(prop.value);
+                    fabricService.setBkgColor(prop.value,mapIndex);
                     break;
                 case "Border Width":
-                    fabricService.setBorderWidth(prop.value);
+                    fabricService.setBorderWidth(prop.value,mapIndex);
                     break;
                 case "Font":
-                    fabricService.setFontColor(prop.value);
+                    fabricService.setFontColor(prop.value,mapIndex);
                     break;
                 default:
 
@@ -73,7 +72,7 @@
             ;
         };
 
-        vm.setColorPicker = function (property) {
+        vm.setColorPicker = function (property,mapIndex) {
             setTimeout(function () {
                 var e=property.name;
                 var val=property.value;
@@ -85,7 +84,7 @@
                 colorpic.fromString(val);
                 colorpic.onFineChange = function(){
                         property.value=label.innerHTML;
-                        vm.setProperty(property);
+                        vm.setProperty(property,mapIndex);
                 }
             }, 300);
         };

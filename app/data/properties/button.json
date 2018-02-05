@@ -4,6 +4,7 @@
         {
             "category": "Fill",
             "active": false,
+            "mapIndex":0,
             "prop": [
                 {
                     "name": "Background",
@@ -50,6 +51,7 @@
         {
             "category": "Text",
             "active": false,
+            "mapIndex":1,
             "prop": [
                 {
                     "name": "Text",

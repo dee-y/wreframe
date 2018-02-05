@@ -9,16 +9,16 @@
             <span class="fh-sb-prop-value" ng-switch="property.type">
                 <!-- Color -->
                 <span ng-switch-when="color">
-                    <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property)" ng-attr-id="{{property.name}}-prop"></button>
+                    <button class="fh-sb-prop-color" ng-init="sc.setColorPicker(property,category.mapIndex)" ng-attr-id="{{property.name}}-prop"></button>
                     <label ng-attr-id="{{property.name}}-label">FFFFF</label>
                 </span>
                 <!-- Text -->
                 <span ng-switch-when="text">
-                    <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
+                    <input type="text" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property,category.mapIndex)"/>
                 </span>
                 <!--  number-->
                 <span ng-switch-when="number">
-                    <input type="number" min="0" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property)"/>
+                    <input type="number" min="0" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property,category.mapIndex)"/>
                 </span>
                 <!--- Boolean -->
                 <span ng-switch-when="boolean">

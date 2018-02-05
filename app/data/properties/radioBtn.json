@@ -4,6 +4,7 @@
                 {
             "category": "Radio Button",
             "active": false,
+            "mapIndex":0,
             "prop": [
                 {
                     "name": "Border Width",
@@ -40,6 +41,7 @@
         {
             "category": "Text",
             "active": false,
+            "mapIndex":1,
             "prop": [
                 {
                     "name": "Text",

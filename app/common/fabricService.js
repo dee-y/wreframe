@@ -360,20 +360,13 @@
             }
         };
         
-        self.setText = function(value) {
+        self.setText = function(value,mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
-                var isFound = false;
-                objects.forEach(function (obj, index) {
-                    if (obj.type === "text" && isFound === false) {
-                        obj.setText(value);
-                        self.canvas.renderAll();
-                        isFound = true;
-                    }
-                });
-
+                objects[mapIndex].setText(value);
+                self.canvas.renderAll();
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Text" && attr.type === "text") {
                         attr.value = value;
@@ -387,45 +380,38 @@
         };
         
         
-        self.setBorderWidth = function(value) {
+        self.setBorderWidth = function(value,mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
                 var isFound = false;
-                objects.forEach(function (obj, index) {
-                    if (obj.type === "rect" && isFound === false) {
-                        obj.set('strokeWidth',value);
-                        self.canvas.renderAll();
-                        isFound = true;
-                    }
-                });
+                console.log(objects[mapIndex]);
+                objects[mapIndex].set('strokeWidth',value);
+                self.canvas.renderAll();
+//                objects.forEach(function (obj, index) {
+//                    if (obj.type === "rect" && isFound === false) {
+//                        obj.set('strokeWidth',value);
+//                        self.canvas.renderAll();
+//                        isFound = true;
+//                    }
+//                });
 
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Border Width" && attr.type === "number") {
                         attr.value = value;
                     }
                 });
-            }else{
-                if(self.windowAttr){
-                    self.windowAttr.attr[0].value=value;
-                }
             }
         };
         
-        self.setBkgColor = function (value) {
-            var isFound = false;
+        self.setBkgColor = function (value,mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             var prop={};
             if (activeObj) {
                 var objects = activeObj.getObjects();
-                objects.forEach(function (item, index) {
-                    if (item.type === "rect" && isFound === false) {
-                        item.set("fill", value);
-                        item.set("background", value);
-                        isFound = true;
-                    }
-                });
+                objects[mapIndex].set("fill", value);
+                objects[mapIndex].set("background", value);
                prop=activeObj.properties;
             } else {
                 self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
