@@ -2,24 +2,69 @@
     "name":"progressbar",
     "attr":[
         {
-            "name":"Name",
-            "value":"Progress Bar",
-            "type":"label"
+            "category": "Fill",
+            "active": false,
+            "mapIndex": 0,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Pos X",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos Y",
+                    "value": 100,
+                    "type": "number"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                }
+            ]
         },
         {
-            "name":"Status Text",
-            "value":"Loading 50%",
-            "type":"text"
-        },
-        {
-            "name":"Progress Color",
-            "value":"#000",
-            "type":"color"
-        },
-        {
-            "name":"Progress Status",
-            "value":50,
-            "type":"range"
+            "category": "Text",
+            "active": false,
+            "mapIndex": 2,
+            "prop": [
+                {
+                    "name": "Text",
+                    "value": "Loading 50%",
+                    "type": "text"
+                },
+                {
+                    "name": "Font",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Font size",
+                    "value": 13,
+                    "type": "number"
+                },
+                {
+                    "name": "Font Family",
+                    "value": "sans",
+                    "type": "dropdown"
+                },
+                {
+                    "name": "Font Weight",
+                    "value": "bold",
+                    "type": "dropdown"
+                },
+                {
+                    "name": "Text Shadow",
+                    "value": false,
+                    "type": "boolean"
+                }
+
+            ]
         }
     ]
 }

@@ -385,17 +385,8 @@
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
-                var isFound = false;
-                console.log(objects[mapIndex]);
                 objects[mapIndex].set('strokeWidth',value);
                 self.canvas.renderAll();
-//                objects.forEach(function (obj, index) {
-//                    if (obj.type === "rect" && isFound === false) {
-//                        obj.set('strokeWidth',value);
-//                        self.canvas.renderAll();
-//                        isFound = true;
-//                    }
-//                });
 
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Border Width" && attr.type === "number") {
@@ -410,8 +401,15 @@
             var prop={};
             if (activeObj) {
                 var objects = activeObj.getObjects();
-                objects[mapIndex].set("fill", value);
-                objects[mapIndex].set("background", value);
+                if (Array.isArray(mapIndex) === true) {
+                    for (var item of mapIndex) {
+                        objects[item].set("fill", value);
+                        objects[item].set("background", value);
+                    }
+                } else {
+                    objects[mapIndex].set("fill", value);
+                    objects[mapIndex].set("background", value);
+                }
                prop=activeObj.properties;
             } else {
                 self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
