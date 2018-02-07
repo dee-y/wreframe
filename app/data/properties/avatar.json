@@ -1,20 +1,37 @@
 {
     "name":"avatar",
     "attr":[
-        {
-            "name":"Name",
-            "value":"Avatar",
-            "type":"label"
-        },
-        {
-            "name":"Background",
-            "value":"#fff",
-            "type":"color"
-        },
-        {
-            "name":"Add Text",
-            "value":"Profile",
-            "type":"text"
+       {
+            "category": "General",
+            "active": false,
+            "mapIndex":0,
+            "prop": [
+                {
+                    "name": "Pos X",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos Y",
+                    "value": 100,
+                    "type": "number"
+                },
+                {
+                    "name": "Width",
+                    "value": 101,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
+                    "value": 31,
+                    "type": "number"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                }
+            ]
         }
     ]
 }

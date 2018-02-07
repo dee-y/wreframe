@@ -62,10 +62,10 @@
             "ry": 0
         }, {
             "type": "text",
-            "originX": "left",
-            "originY": "top",
-            "left": -35.5,
-            "top": -15.5,
+            "originX": "center",
+            "originY": "center",
+            "left": 0,
+            "top": 0,
             "width": 58.99,
             "height": 20.34,
             "fill": "rgb(0,0,0)",

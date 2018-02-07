@@ -165,7 +165,7 @@
             "width": 98,
             "height": 30,
             "fill": "#fff",
-            "stroke": "#fff",
+            "stroke": "transparent",
             "strokeWidth": 1,
             "strokeDashArray": null,
             "strokeLineCap": "butt",
