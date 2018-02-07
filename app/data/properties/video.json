@@ -2,19 +2,46 @@
     "name":"Video Player",
     "attr":[
         {
-            "name":"Name",
-            "value":"Video Player",
-            "type":"label"
-        },
-        {
-            "name":"Background",
-            "value":"#fff",
-            "type":"color"
-        },
-        {
-          "name"  :"Border Width",
-            "value": 0,
-            "type":"number"
+            "category": "Fill",
+            "active": false,
+            "mapIndex":0,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos X",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos Y",
+                    "value": 100,
+                    "type": "number"
+                },
+                {
+                    "name": "Width",
+                    "value": 101,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
+                    "value": 31,
+                    "type": "number"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                }
+            ]
         }
     ]
 }

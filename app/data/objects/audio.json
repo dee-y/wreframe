@@ -172,7 +172,7 @@
             "height": 30,
             "fill": "rgb(0,0,0)",
             "stroke": "black",
-            "strokeWidth": 1,
+            "strokeWidth": 0,
             "strokeDashArray": null,
             "strokeLineCap": "butt",
             "strokeLineJoin": "miter",
