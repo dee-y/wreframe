@@ -221,6 +221,15 @@
             return JSON.stringify(self.canvas);
         };
         
+        self.getFileName= function(){
+          var attrs=self.windowAttr.attr[0];
+          for(var property of attrs.prop){
+              if(property.name === "Name"){
+                  return property.value;
+              }
+          }
+        };
+        
         self.genProperty = function (){
           var mode =(self.canvasMode.desktop === true) ? "desktop" : "mobile";
           var obj={"window":mode,"objects":[]}  ;
@@ -334,6 +343,21 @@
           }
         };
         
+        self.setShadow = function(value,mapIndex){
+            var activeObj = self.canvas.getActiveObject();
+            if (activeObj) {
+                var objects = activeObj.getObjects();
+                var prop = activeObj.properties;
+                objects[mapIndex].set('shadow','rgba(255,255,255,0.5) 0 0 3px');
+                self.canvas.renderAll();
+                prop.forEach(function (attr, index) {
+                    if (attr.name === "Text Shadow" && attr.type === "boolean") {
+                        attr.value = value;
+                    }
+                });
+            }
+        };
+        
         self.setFontColor = function(value){
               var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
@@ -410,6 +434,7 @@
                     objects[mapIndex].set("fill", value);
                     objects[mapIndex].set("background", value);
                 }
+               $rootScope.$apply();
                prop=activeObj.properties;
             } else {
                 self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
@@ -428,7 +453,7 @@
         };
         
         self.loadFile = function (objJSON,propJSON) {
-            self.windowAttr.attr[1].value=objJSON.background;
+//            self.windowAttr.attr[1].value=objJSON.background;
             self.canvas.clear();
             var inc=0;
             var prop=propJSON.objects;

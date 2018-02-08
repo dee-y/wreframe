@@ -2,29 +2,88 @@
     "name":"datepicker",
     "attr":[
         {
-            "name":"Name",
-            "value":"Date Picker",
-            "type":"label"
+            "category": "Fill",
+            "active": false,
+            "mapIndex":0,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos X",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Pos Y",
+                    "value": 100,
+                    "type": "number"
+                },
+                {
+                    "name": "Width",
+                    "value": 101,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
+                    "value": 31,
+                    "type": "number"
+                },
+                {
+                    "name": "Rounded Corners",
+                    "value": false,
+                    "type": "boolean"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                }
+            ]
         },
         {
-            "name":"Background",
-            "value":"#fff",
-            "type":"color"
-        },
-        {
-          "name"  :"Border Width",
-            "value": 0,
-            "type":"number"
-        },
-        {
-            "name":"Font",
-            "value":"#000",
-            "type":"color"
-        },
-        {
-            "name":"Font size",
-            "value":13,
-            "type":"number"
+            "category": "Text",
+            "active": false,
+            "mapIndex":1,
+            "prop": [
+                {
+                    "name": "Text",
+                    "value": "Jan 2018",
+                    "type": "text"
+                },
+                {
+                    "name": "Font",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Font size",
+                    "value": 13,
+                    "type": "number"
+                },
+                {
+                    "name": "Font Family",
+                    "value": "sans",
+                    "type": "dropdown"
+                },
+                {
+                    "name": "Font Weight",
+                    "value": "bold",
+                    "type": "dropdown"
+                },
+                {
+                    "name":"Text Shadow",
+                    "value":false,
+                    "type": "boolean"
+                }
+            ]
         }
     ]
 }

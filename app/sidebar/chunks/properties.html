@@ -23,7 +23,7 @@
                 <!--- Boolean -->
                 <span ng-switch-when="boolean">
                     <label class="fh-prop-radio">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-model="property.value" ng-change="sc.setProperty(property,category.mapIndex)">
                         <span class="fh-prop-radio-slider round"></span>
                     </label>
                 </span>

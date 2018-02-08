@@ -165,7 +165,8 @@
                     break;
                 case "save_proj":
                     if (self.projPath) {
-                        var fileName = (fabricService.windowAttr.attr && (fabricService.windowAttr.attr.length > 0)) ? fabricService.windowAttr.attr[0].value : "Untitled";
+                        var fileName = fabricService.getFileName();
+                        fileName = (fileName && fileName.length > 0) ? fileName : "Untitled";
                         self.saveProj(fileName);
                     } else {
                         self.isNew = true;

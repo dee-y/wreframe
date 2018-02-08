@@ -29,6 +29,7 @@
 
         vm.setProperty = function (prop,mapIndex) {
             fabricService.isEdited = true;
+            console.log(prop.name);
             switch (prop.name) {
                 case "Text":
                     fabricService.setText(prop.value,mapIndex);
@@ -41,6 +42,9 @@
                     break;
                 case "Font":
                     fabricService.setFontColor(prop.value,mapIndex);
+                    break;
+                case "Text Shadow":
+                    fabricService.setShadow(prop.value,mapIndex);
                     break;
                 default:
 
