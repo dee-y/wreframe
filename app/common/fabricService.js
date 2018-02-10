@@ -5,8 +5,7 @@
 
 (function () {
     'use strict';
-
-    function fabricService($http, $timeout,$rootScope, propertyService,canvasProperties) {
+    function fabricService($http, $timeout, $rootScope, propertyService, canvasProperties) {
         var self = this;
 
         self.canvas = null;
@@ -14,9 +13,9 @@
         self.isEdited = false;
         self.copiedElement = null;
         self.windowAttr = {};
-        self.obj={show:false,msg:""};
-        self.isZoom={zoomIn:false,zoomOut:false,default:0.8};
-        self.canvasMode={desktop:true,mobile:false};
+        self.obj = {show: false, msg: ""};
+        self.isZoom = {zoomIn: false, zoomOut: false, default: 0.8};
+        self.canvasMode = {desktop: true, mobile: false};
 
         self.intializeCanvas = function () {
             self.getWindowProp().then(function (res) {
@@ -25,9 +24,9 @@
             $timeout(function () {
                 var drawArea = document.querySelector(".fh-drawArea");
                 var width = parseInt(drawArea.clientWidth);
-                width=(width * canvasProperties.desktop.width)/100;
+                width = (width * canvasProperties.desktop.width) / 100;
                 var height = drawArea.clientHeight;
-                height=(height * canvasProperties.desktop.height) /100;
+                height = (height * canvasProperties.desktop.height) / 100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
@@ -36,7 +35,7 @@
                 self.getPropObj();
             }, 1000);
         };
-         
+
         self.canvasEvt = function () {
             self.canvas.on("object:selected", function (options) {
                 self.objectSelected(options);
@@ -54,18 +53,18 @@
             });
             document.addEventListener('keydown', self.canvasKey, false);
         };
-        
+
         self.getWindowProp = function () {
             return $http.get('app/data/properties/window.json', {cache: true});
         };
-        
-        
+
+
         self.resizeCanvas = function (viewMode) {
             var drawArea = document.querySelector(".fh-drawArea");
             var width = parseInt(drawArea.clientWidth);
             var height = drawArea.clientHeight;
             self.canvas.clear();
-            self.isEdited=false;
+            self.isEdited = false;
             if (viewMode.value === "mobile") {
                 width = (width * canvasProperties.mobile.width) / 100;
                 height = (height * canvasProperties.mobile.height) / 100;
@@ -84,12 +83,12 @@
                 self.canvasMode.desktop = true;
                 self.canvasMode.mobile = false;
             }
-            $timeout(function(){
+            $timeout(function () {
                 $rootScope.$apply();
-            },100);
+            }, 100);
 
         };
-        
+
         self.setZoom = function (evt) {
             if (self.isZoom.zoomIn === true || self.isZoom.zoomOut === true) {
                 var zoom = self.canvas.getZoom();
@@ -124,20 +123,20 @@
                 self.pasteObj();
             }
         };
-        
+
         self.objMove = function (options) {
-            var top=parseInt(options.target.top);
-            var left=parseInt(options.target.left);
-            self.obj.msg="X: "+left+" Y: "+top;
-            var prop=self.canvas.getActiveObject().properties;
+            var top = parseInt(options.target.top);
+            var left = parseInt(options.target.left);
+            self.obj.msg = "X: " + left + " Y: " + top;
+            var prop = self.canvas.getActiveObject().properties;
             for (var cat of prop) {
-                if(cat.category === 'Fill'){
-                    for(var item of cat.prop){
-                        if(item.name === "Pos X"){
-                            item.value=left;
+                if (cat.category === 'Fill') {
+                    for (var item of cat.prop) {
+                        if (item.name === "Pos X") {
+                            item.value = left;
                         }
-                        if(item.name === "Pos Y"){
-                            item.value=top;
+                        if (item.name === "Pos Y") {
+                            item.value = top;
                         }
                     }
                 }
@@ -157,7 +156,7 @@
             });
         };
 
-        self.pasteObj = function() {
+        self.pasteObj = function () {
             self.copiedElement.clone(function (obj) {
                 self.canvas.discardActiveObject();
                 obj.set({
@@ -175,41 +174,41 @@
             });
         }
         ;
-        
-        self.zoomEnabled =function(val){
+
+        self.zoomEnabled = function (val) {
             self.deactiveAll();
-            if(val === "zoomin"){
+            if (val === "zoomin") {
                 self.canvas.defaultCursor = "zoom-in";
                 self.isZoom.zoomIn = true;
                 self.isZoom.zoomOut = false;
-            }else{
+            } else {
                 self.canvas.defaultCursor = 'zoom-out';
                 self.isZoom.zoomIn = false;
                 self.isZoom.zoomOut = true;
             }
             self.canvas.renderAll.bind(self.canvas);
         };
-        
-        self.zoomDisabled = function (){
-           self.canvas.defaultCursor = "default";
-           self.isZoom.zoomIn = false;
-           self.isZoom.zoomOut = false;
-           self.obj.show=false;
-          var objects=self.canvas.getObjects();
-          if(objects.length > 0){
-              objects.forEach(function(item,index){
-                 item.selectable = true; 
-              });
-          }  
+
+        self.zoomDisabled = function () {
+            self.canvas.defaultCursor = "default";
+            self.isZoom.zoomIn = false;
+            self.isZoom.zoomOut = false;
+            self.obj.show = false;
+            var objects = self.canvas.getObjects();
+            if (objects.length > 0) {
+                objects.forEach(function (item, index) {
+                    item.selectable = true;
+                });
+            }
         };
-        
-        self.deactiveAll = function(){
-          var objects=self.canvas.getObjects();
-          if(objects.length > 0){
-              objects.forEach(function(item,index){
-                 item.selectable = false; 
-              });
-          }
+
+        self.deactiveAll = function () {
+            var objects = self.canvas.getObjects();
+            if (objects.length > 0) {
+                objects.forEach(function (item, index) {
+                    item.selectable = false;
+                });
+            }
         };
 
         self.getImgData = function () {
@@ -220,28 +219,28 @@
         self.getJSONData = function () {
             return JSON.stringify(self.canvas);
         };
-        
-        self.getFileName= function(){
-          var attrs=self.windowAttr.attr[0];
-          for(var property of attrs.prop){
-              if(property.name === "Name"){
-                  return property.value;
-              }
-          }
+
+        self.getFileName = function () {
+            var attrs = self.windowAttr.attr[0];
+            for (var property of attrs.prop) {
+                if (property.name === "Name") {
+                    return property.value;
+                }
+            }
         };
-        
-        self.genProperty = function (){
-          var mode =(self.canvasMode.desktop === true) ? "desktop" : "mobile";
-          var obj={"window":mode,"objects":[]}  ;
-          var canvasObj=self.canvas.getObjects();
-          canvasObj.forEach(function(ob,index){
-             var object={};
-             object.customId=ob.customId;
-             object.customName=ob.customName;
-             object.properties=ob.properties;
-             obj.objects.push(object);
-          });
-          return JSON.stringify(obj);
+
+        self.genProperty = function () {
+            var mode = (self.canvasMode.desktop === true) ? "desktop" : "mobile";
+            var obj = {"window": mode, "objects": []};
+            var canvasObj = self.canvas.getObjects();
+            canvasObj.forEach(function (ob, index) {
+                var object = {};
+                object.customId = ob.customId;
+                object.customName = ob.customName;
+                object.properties = ob.properties;
+                obj.objects.push(object);
+            });
+            return JSON.stringify(obj);
         };
 
         self.objectSelected = function (options) {
@@ -253,7 +252,7 @@
                 });
             }
             self.obj.show = true;
-            self.obj.msg="X: "+parseInt(options.target.left)+" Y: "+parseInt(options.target.top);
+            self.obj.msg = "X: " + parseInt(options.target.left) + " Y: " + parseInt(options.target.top);
             self.getPropObj();
         };
 
@@ -278,7 +277,7 @@
             $http.get('app/data/properties/' + obj.name + '.json', {cache: true}).then(
                     function (res) {
                         if (res.data.attr) {
-                            angular.copy(res.data.attr,canvasObj.properties);
+                            angular.copy(res.data.attr, canvasObj.properties);
                         }
                     },
                     function (err) {}
@@ -293,17 +292,17 @@
                 var obj = self.canvas.getActiveObject();
                 prop.name = obj.customName;
                 prop.value = obj.customId;
-                objProp.name=obj.customName;
-                objProp.attr =obj.properties;
+                objProp.name = obj.customName;
+                objProp.attr = obj.properties;
             } else {
                 objProp = self.windowAttr;
             }
             propertyService.setProperties(prop, objProp);
             return prop;
         };
-        
-        self.getCurrentObj=function(){
-          return self.canvas.getActiveObject();
+
+        self.getCurrentObj = function () {
+            return self.canvas.getActiveObject();
         };
 
         self.createObj = function (obj) {
@@ -331,24 +330,24 @@
                     }
             );
         };
-        
-        self.deleteObj =function(){
-          while(self.objLen.length > 0){
-              self.objLen.pop();
-          }
-          self.canvas.remove(self.canvas.getActiveObject());
-          var objects=self.canvas.getObjects();
-          for(var ele of objects){
-              self.objLen.push({value:ele.customName});
-          }
+
+        self.deleteObj = function () {
+            while (self.objLen.length > 0) {
+                self.objLen.pop();
+            }
+            self.canvas.remove(self.canvas.getActiveObject());
+            var objects = self.canvas.getObjects();
+            for (var ele of objects) {
+                self.objLen.push({value: ele.customName});
+            }
         };
-        
-        self.setShadow = function(value,mapIndex){
+
+        self.setShadow = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
-                objects[mapIndex].set('shadow','rgba(255,255,255,0.5) 0 0 3px');
+                objects[mapIndex].set('shadow', 'rgba(255,255,255,0.5) 0 0 3px');
                 self.canvas.renderAll();
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Text Shadow" && attr.type === "boolean") {
@@ -357,9 +356,9 @@
                 });
             }
         };
-        
-        self.setFontColor = function(value){
-              var activeObj = self.canvas.getActiveObject();
+
+        self.setFontColor = function (value) {
+            var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
@@ -377,14 +376,14 @@
                         attr.value = value;
                     }
                 });
-            }else{
-                if(self.windowAttr){
-                    self.windowAttr.attr[0].value=value;
+            } else {
+                if (self.windowAttr) {
+                    self.windowAttr.attr[0].value = value;
                 }
             }
         };
-        
-        self.setText = function(value,mapIndex) {
+
+        self.setText = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
@@ -396,20 +395,20 @@
                         attr.value = value;
                     }
                 });
-            }else{
-                if(self.windowAttr){
-                    self.windowAttr.attr[0].value=value;
+            } else {
+                if (self.windowAttr) {
+                    self.windowAttr.attr[0].value = value;
                 }
             }
         };
-        
-        
-        self.setBorderWidth = function(value,mapIndex) {
+
+
+        self.setBorderWidth = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 var prop = activeObj.properties;
-                objects[mapIndex].set('strokeWidth',value);
+                objects[mapIndex].set('strokeWidth', value);
                 self.canvas.renderAll();
 
                 prop.forEach(function (attr, index) {
@@ -419,52 +418,52 @@
                 });
             }
         };
-        
-        self.setBkgColor = function (value,mapIndex) {
+
+        self.setBkgColor = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
-            var prop={};
+            var prop = {};
             if (activeObj) {
                 var objects = activeObj.getObjects();
                 if (Array.isArray(mapIndex) === true) {
                     for (var item of mapIndex) {
                         objects[item].set("fill", value);
-                        objects[item].set("background", value);
+                        self.canvas.renderAll();
                     }
                 } else {
                     objects[mapIndex].set("fill", value);
-                    objects[mapIndex].set("background", value);
+                    self.canvas.renderAll();
                 }
-               $rootScope.$apply();
-               prop=activeObj.properties;
+                self.canvas.renderAll.bind(self.canvas);
+                prop = activeObj.properties;
             } else {
                 self.canvas.setBackgroundColor(value, self.canvas.renderAll.bind(self.canvas));
-                prop=self.windowAttr.attr;
+                prop = self.windowAttr.attr;
             }
             for (var cat of prop) {
-                if(cat.category === 'Fill'){
-                    for(var item of cat.prop){
-                        if(item.name === "Background"){
-                            item.value=value;
+                if (cat.category === 'Fill') {
+                    for (var item of cat.prop) {
+                        if (item.name === "Background") {
+                            item.value = value;
                         }
                     }
                 }
-            }            
+            }
             $rootScope.$apply();
         };
-        
-        self.loadFile = function (objJSON,propJSON) {
+
+        self.loadFile = function (objJSON, propJSON) {
 //            self.windowAttr.attr[1].value=objJSON.background;
             self.canvas.clear();
-            var inc=0;
-            var prop=propJSON.objects;
-            var viewMode=propJSON.window;
-            self.resizeCanvas({value:viewMode});
+            var inc = 0;
+            var prop = propJSON.objects;
+            var viewMode = propJSON.window;
+            self.resizeCanvas({value: viewMode});
             self.canvas.loadFromJSON(objJSON, function () {
                 self.canvas.renderAll();
             }, function (o, object) {
-                object.customId=prop[inc].customId;
-                object.customName=prop[inc].customName;
-                object.properties=prop[inc].properties;
+                object.customId = prop[inc].customId;
+                object.customName = prop[inc].customName;
+                object.properties = prop[inc].properties;
                 inc++;
                 self.setCustomDecor(object);
             });
@@ -472,5 +471,5 @@
 
     }
     ;
-    angular.module('freehand').service('fabricService', ['$http', '$timeout','$rootScope', 'propertyService','canvasProperties', fabricService]);
+    angular.module('freehand').service('fabricService', ['$http', '$timeout', '$rootScope', 'propertyService', 'canvasProperties', fabricService]);
 })();
