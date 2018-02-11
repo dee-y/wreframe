@@ -31,7 +31,17 @@
            }
        };
        
+       var animate={
+         url:'/animate' ,
+         views:{
+             'main-view':{
+                 'templateUrl':'app/animate/animate.html'
+             }
+         }
+       };
+       
        $stateProvider.state("home",home);
+       $stateProvider.state("animate",animate);
        $urlRouterProvider.when('',"/");
        
    });

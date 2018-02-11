@@ -7,7 +7,7 @@
 
     'use strict';
 
-    function toolbarCtrl(fabricService, fileMenuJson, electronService, infoService) {
+    function toolbarCtrl($state,fabricService, fileMenuJson, electronService, infoService) {
         var vm = this;
 
         vm.fileMenu = fileMenuJson;
@@ -17,6 +17,7 @@
         };
 
         vm.fileActions = function (menu, category) {
+            console.log(menu);
             switch (category) {
                 case "file":
                     electronService.fileActions(menu.value);
@@ -24,6 +25,9 @@
                 case "animate":
                     if (menu.name === "Zoom") {
                         vm.toggleZoom(menu);
+                    }
+                    if (menu.value === "interact") {
+                        vm.toggleAnimate(menu);
                     }
                     break;
                 case "view":
@@ -60,7 +64,25 @@
             }
         };
 
-
+        vm.toggleAnimate= function(menu){
+            if (fabricService.isEdited === false) {
+                if (!electronService.projPath) {
+                    infoService.showInfoDialog("No Projects Found.");
+                }else{
+                    $state.go('animate');
+                }
+            } else {
+                infoService.showAlertDialog("Do you want to save Changes?",
+                        function () {
+                            electronService.fileActions("save_proj");
+                        },
+                        function () {
+                            //Action here
+                        }
+                );
+            }
+        };
+        
         vm.toggleMode = function (menu) {
             if (menu.class !== "active") {
                 fileMenuJson.view.forEach(function (item, index) {
@@ -107,6 +129,6 @@
     }
     ;
 
-    angular.module("freehand").controller("toolbarCtrl", ['fabricService', 'fileMenuJson', 'electronService', 'infoService', toolbarCtrl]);
+    angular.module("freehand").controller("toolbarCtrl", ['$state','fabricService', 'fileMenuJson', 'electronService', 'infoService', toolbarCtrl]);
 
 })();
