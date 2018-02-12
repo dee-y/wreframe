@@ -17,7 +17,6 @@
         };
 
         vm.fileActions = function (menu, category) {
-            console.log(menu);
             switch (category) {
                 case "file":
                     electronService.fileActions(menu.value);
