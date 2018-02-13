@@ -28,7 +28,7 @@
                 var height = drawArea.clientHeight;
                 height = (height * canvasProperties.desktop.height) / 100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
-               // self.canvas.selection = false;
+                self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
                 self.canvas.setZoom(self.isZoom.default);
                 self.canvasEvt();
@@ -342,14 +342,26 @@
                 self.objLen.push({value: ele.customName});
             }
         };
+        
+        self.setObjProp = function (obj, mapIndex) {
+            var activeObj = self.canvas.getActiveObject();
+            var objects = activeObj.getObjects();
+            if (Array.isArray(mapIndex) === true) {
+                for (var item of mapIndex) {
+                    objects[item].set(obj.type, obj.value);
+                }
+            } else {
+                objects[mapIndex].set(obj.type, obj.value);
+            }
+            self.canvas.renderAll();
+        };
 
         self.setShadow = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
-                var objects = activeObj.getObjects();
+                var obj={type:'shadow',value:'rgba(255,255,255,0.5) 0 0 3px'};
+                self.setObjProp(obj,mapIndex);
                 var prop = activeObj.properties;
-                objects[mapIndex].set('shadow', 'rgba(255,255,255,0.5) 0 0 3px');
-                self.canvas.renderAll();
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Text Shadow" && attr.type === "boolean") {
                         attr.value = value;
@@ -358,20 +370,12 @@
             }
         };
 
-        self.setFontColor = function (value) {
+        self.setFontColor = function (value,mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
-                var objects = activeObj.getObjects();
+                var obj={type:'fill',value:value};
+                self.setObjProp(obj,mapIndex);
                 var prop = activeObj.properties;
-                var isFound = false;
-                objects.forEach(function (obj, index) {
-                    if (obj.type === "text" && isFound === false) {
-                        obj.setColor(value);
-                        self.canvas.renderAll();
-                        isFound = true;
-                    }
-                });
-
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Font" && attr.type === "color") {
                         attr.value = value;
@@ -387,10 +391,9 @@
         self.setText = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
-                var objects = activeObj.getObjects();
+                var obj={type:'text',value:value};
+                self.setObjProp(obj,mapIndex);
                 var prop = activeObj.properties;
-                objects[mapIndex].setText(value);
-                self.canvas.renderAll();
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Text" && attr.type === "text") {
                         attr.value = value;
@@ -407,10 +410,9 @@
         self.setBorderWidth = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
-                var objects = activeObj.getObjects();
+                var obj={type:'strokeWidth',value:value};
+                self.setObjProp(obj,mapIndex);
                 var prop = activeObj.properties;
-                objects[mapIndex].set('strokeWidth', value);
-                self.canvas.renderAll();
 
                 prop.forEach(function (attr, index) {
                     if (attr.name === "Border Width" && attr.type === "number") {
@@ -424,16 +426,8 @@
             var activeObj = self.canvas.getActiveObject();
             var prop = {};
             if (activeObj) {
-                var objects = activeObj.getObjects();
-                if (Array.isArray(mapIndex) === true) {
-                    for (var item of mapIndex) {
-                        objects[item].set("fill", value);
-                        self.canvas.renderAll();
-                    }
-                } else {
-                    objects[mapIndex].set("fill", value);
-                    self.canvas.renderAll();
-                }
+                var obj={type:'fill',value:value};
+                self.setObjProp(obj,mapIndex);
                 self.canvas.renderAll.bind(self.canvas);
                 prop = activeObj.properties;
             } else {

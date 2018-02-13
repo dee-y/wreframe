@@ -89,7 +89,7 @@
                 colorpic.onFineChange = function(){
                         property.value=label.innerHTML;
                         vm.setProperty(property,mapIndex);
-                }
+                };
             }, 300);
         };
 
