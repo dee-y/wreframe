@@ -40,9 +40,9 @@
                     throw 'Not an empty Dir';
                 } else {
                     try {
-                        fs.mkdirSync(self.projPath + FOLDERS.SCREEN);
-                        fs.mkdirSync(self.projPath + FOLDERS.SRC);
-                        fs.mkdirSync(self.projPath + FOLDERS.PROP);
+                        for(var folder in FOLDERS){
+                            fs.mkdirSync(self.projPath + FOLDERS[folder]);
+                        }
                     } catch (err) {
                         throw err;
                     }

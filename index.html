@@ -16,7 +16,7 @@ Main HTML file for app
     </head>
     <body>
         <div class="container-fluid">
-            <div  ng-include="'app/toolbar/toolbar.html'"></div>
+            <div ui-view="toolbar"></div>
             <div class="row">
                 <div ui-view="left-nav" class="col-md-2 fh-divider-vertical fh-sidebar"></div>
                 <div class="col-md-8" style="padding:0px" ui-view="main-view"></div>

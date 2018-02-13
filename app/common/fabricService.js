@@ -14,7 +14,7 @@
         self.copiedElement = null;
         self.windowAttr = {};
         self.obj = {show: false, msg: ""};
-        self.isZoom = {zoomIn: false, zoomOut: false, default: 0.8};
+        self.isZoom = {zoomIn: false, zoomOut: false, default: 1};
         self.canvasMode = {desktop: true, mobile: false};
 
         self.intializeCanvas = function () {
@@ -28,7 +28,7 @@
                 var height = drawArea.clientHeight;
                 height = (height * canvasProperties.desktop.height) / 100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
-                self.canvas.selection = false;
+               // self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
                 self.canvas.setZoom(self.isZoom.default);
                 self.canvasEvt();
@@ -79,7 +79,7 @@
                 height = (height * canvasProperties.desktop.height) / 100;
                 self.canvas.setWidth(width);
                 self.canvas.setHeight(height);
-                self.canvas.setZoom(0.8);
+                self.canvas.setZoom(1);
                 self.canvasMode.desktop = true;
                 self.canvasMode.mobile = false;
             }
@@ -244,6 +244,7 @@
         };
 
         self.objectSelected = function (options) {
+            console.log(fabric.Canvas.prototype);
             if (options.target.customId === "tab") {
                 self.canvas.forEachObject(function (obj) {
                     if (obj === options.target)
@@ -464,7 +465,7 @@
                 object.customId = prop[inc].customId;
                 object.customName = prop[inc].customName;
                 object.properties = prop[inc].properties;
-                inc++;
+                inc++;  
                 self.setCustomDecor(object);
             });
         };

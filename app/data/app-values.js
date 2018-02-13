@@ -22,7 +22,7 @@
 
     angular.module('freehand').value('menuModes', menuModes);
     
-    var folders = {SRC: '/src/',SCREEN: '/screens/',PROP: '/properties/',ANI: '/animate/',CMT: '/comments/'};
+    var folders = {SRC: '/src/',SCREEN: '/screens/',PROP: '/properties/',ANI: '/animate/',CMT: '/comments/',LIB:'/lib/'};
             
      angular.module('freehand').constant('FOLDERS',folders);
     
@@ -59,7 +59,7 @@
 
     angular.module('freehand').value('fileMenuJson', fileMenuJson);
     
-    var canvasProperties ={desktop:{width:85,height:125}, mobile:{width:40,height:85}};
+    var canvasProperties ={desktop:{width:90,height:80}, mobile:{width:40,height:85}};
     
     angular.module('freehand').value('canvasProperties', canvasProperties);
     
