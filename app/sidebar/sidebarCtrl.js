@@ -29,7 +29,9 @@
 
         vm.setProperty = function (prop,mapIndex) {
             fabricService.isEdited = true;
-            console.log(prop.name);
+            //var switchProp=(prop.fn) ? prop.fn : prop.name;
+            var switchProp=prop.name;
+            console.log(switchProp);
             switch (prop.name) {
                 case "Text":
                     fabricService.setText(prop.value,mapIndex);
