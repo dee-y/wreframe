@@ -6,66 +6,87 @@
 
     'use strict';
 
-    function sidebarCtrl(fabricService, menuModes, propertyService, electronService) {
+    function sidebarCtrl($http, fabricService, menuModes, propertyService, electronService) {
         var vm = this;
 
-        vm.tools=[];
+        vm.tools = [];
         vm.menuModes = menuModes;
         vm.obj = fabricService.objLen;
         vm.properties = propertyService.properties;
         vm.electronService = electronService;
-        
+
         vm.createEle = function (json) {
             fabricService.isEdited = true;
             fabricService.createObj(json);
         };
-        
-        vm.getTools=function(){
-          propertyService.getTools().then(function(res){
-             var data=res.data;
-             vm.tools=data.tools;
-          });
+
+        vm.getTools = function () {
+            propertyService.getTools().then(function (res) {
+                var data = res.data;
+                vm.tools = data.tools;
+            });
         };
 
-        vm.setProperty = function (prop,mapIndex) {
-            fabricService.isEdited = true;
-            //var switchProp=(prop.fn) ? prop.fn : prop.name;
-            var switchProp=prop.name;
-            console.log(switchProp);
+        vm.fireEvt = function (prop, mapIndex) {
+            console.log(prop);
             switch (prop.name) {
                 case "Text":
-                    fabricService.setText(prop.value,mapIndex);
+                    fabricService.setText(prop.value, mapIndex);
                     break;
                 case "Background":
-                    fabricService.setBkgColor(prop.value,mapIndex);
+                    fabricService.setBkgColor(prop.value, mapIndex);
                     break;
                 case "Border Width":
-                    fabricService.setBorderWidth(prop.value,mapIndex);
+                    fabricService.setBorderWidth(prop.value, mapIndex);
                     break;
                 case "Font":
-                    fabricService.setFontColor(prop.value,mapIndex);
+                    fabricService.setFontColor(prop.value, mapIndex);
                     break;
                 case "Text Shadow":
-                    fabricService.setShadow(prop.value,mapIndex);
+                    fabricService.setShadow(prop.value, mapIndex);
                     break;
                 default:
 
                     break;
             }
-
-        };
-        
-        vm.loadFile=function(fileName){
-          electronService.loadFile(fileName)  ;
-        };
-        
-        vm.createNewProj=function(){
-          electronService.fileActions({value:"new_proj"})  ;
         };
 
+        vm.setProperty = function (prop, mapIndex) {
+            fabricService.isEdited = true;
+            var customId = (fabricService.getCurrentObj().customId) ? fabricService.getCurrentObj().customId : null;
+            if (customId) {
+                $http.get('app/data/events/' + customId + '.json', {cache: true})
+                        .then(
+                                function (res) {
+                                    var evt=res.data;
+                                    for (var key in evt) {
+                                        if(key === prop.name){
+                                            var property={name:key,value:prop.value};
+                                            vm.fireEvt(property,evt[key].mapIndex);
+                                            break;
+                                        }
+                                        
+                                    }
+                                    return res.data;
+                                },
+                                function (err) {
+                                    throw 'Cant find events';
+                                }
+                        );
+            };
+        };
 
-        vm.togglePanel = function (opt,side) {
-            var modes=(side === 'left') ? vm.menuModes.left : vm.menuModes.right;
+        vm.loadFile = function (fileName) {
+            electronService.loadFile(fileName);
+        };
+
+        vm.createNewProj = function () {
+            electronService.fileActions({value: "new_proj"});
+        };
+
+
+        vm.togglePanel = function (opt, side) {
+            var modes = (side === 'left') ? vm.menuModes.left : vm.menuModes.right;
             angular.forEach(modes, function (mode, index) {
                 if (opt.name === mode.name) {
                     if (mode.active === 1) {
@@ -78,24 +99,24 @@
             ;
         };
 
-        vm.setColorPicker = function (property,mapIndex) {
+        vm.setColorPicker = function (property, mapIndex) {
             setTimeout(function () {
-                var e=property.name;
-                var val=property.value;
-                var buttonId=e+"-prop";
-                var labelId=e+"-label";
+                var e = property.name;
+                var val = property.value;
+                var buttonId = e + "-prop";
+                var labelId = e + "-label";
                 var ele = document.getElementById(buttonId);
-                var label=document.getElementById(labelId);
-                var colorpic=new jscolor(ele,{valueElement:label,hash:true,value:"transparent"});
+                var label = document.getElementById(labelId);
+                var colorpic = new jscolor(ele, {valueElement: label, hash: true, value: "transparent"});
                 colorpic.fromString(val);
-                colorpic.onFineChange = function(){
-                        property.value=label.innerHTML;
-                        vm.setProperty(property,mapIndex);
+                colorpic.onFineChange = function () {
+                    property.value = label.innerHTML;
+                    vm.setProperty(property, mapIndex);
                 };
             }, 300);
         };
 
     }
     ;
-    angular.module('freehand').controller('sidebarCtrl', ['fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
+    angular.module('freehand').controller('sidebarCtrl', ['$http', 'fabricService', 'menuModes', 'propertyService', 'electronService', sidebarCtrl]);
 })();

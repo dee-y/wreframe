@@ -4,21 +4,16 @@
         {
             "category": "Fill",
             "active": false,
-            "mapIndex":0,
             "prop": [
                 {
                     "name": "Background",
                     "value": "#fff",
-                    "type": "color",
-                    "mapIndex":0,
-                    "fn":"setFill"
+                    "type": "color"
                 },
                 {
                     "name": "Border Width",
                     "value": 1,
-                    "type": "number",
-                    "mapIndex":0,
-                    "fn":"setBorder"
+                    "type": "number"
                 },
                 {
                     "name": "Pos X",
@@ -43,8 +38,6 @@
                 {
                     "name": "Rounded Corners",
                     "value": false,
-                    "mapIndex":0,
-                    "fn":"setRx",
                     "type": "boolean"
                 },
                 {
@@ -62,43 +55,31 @@
                 {
                     "name": "Text",
                     "value": "Button",
-                    "fn":"setTxt",
-                    "mapIndex":1,
                     "type": "text"
                 },
                 {
                     "name": "Font",
                     "value": "#000",
-                    "mapIndex":1,
-                    "fn":"setBkg",
                     "type": "color"
                 },
                 {
                     "name": "Font size",
                     "value": 13,
-                    "mapIndex":1,
-                    "fn":"setFntSize",
                     "type": "number"
                 },
                 {
                     "name": "Font Family",
                     "value": "sans",
-                    "mapIndex":1,
-                    "fn":"setFntType",
                     "type": "dropdown"
                 },
                 {
                     "name": "Font Weight",
                     "value": "bold",
-                    "mapIndex":0,
-                    "fn":"setFntWeight",
                     "type": "dropdown"
                 },
                 {
                     "name":"Text Shadow",
                     "value":false,
-                    "mapIndex":0,
-                    "fn":"setShadow",
                     "type": "boolean"
                 }
             ]

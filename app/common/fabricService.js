@@ -443,11 +443,12 @@
                     }
                 }
             }
-            $rootScope.$apply();
+            $timeout(function(){
+                $rootScope.$apply();
+            },100);
         };
 
         self.loadFile = function (objJSON, propJSON) {
-//            self.windowAttr.attr[1].value=objJSON.background;
             self.canvas.clear();
             var inc = 0;
             var prop = propJSON.objects;

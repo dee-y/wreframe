@@ -9,16 +9,12 @@
                 {
                     "name": "Background",
                     "value": "#fff",
-                    "type": "color",
-                    "mapIndex":0,
-                    "fn":"setFill"
+                    "type": "color"
                 },
                 {
                     "name": "Border Width",
                     "value": 1,
-                    "type": "number",
-                    "mapIndex":0,
-                    "fn":"setBorder"
+                    "type": "number"
                 },
                 {
                     "name": "Pos X",
@@ -55,43 +51,31 @@
                 {
                     "name": "Text",
                     "value": "00:12",
-                    "type": "text",
-                    "fn":"setTxt",
-                    "mapIndex":1
+                    "type": "text"
                 },
                 {
                     "name": "Font",
                     "value": "#fff",
-                    "type": "color",
-                    "fn":"setBkg",
-                    "mapIndex":1
+                    "type": "color"
                 },
                 {
                     "name": "Font size",
                     "value": 13,
-                    "type": "number",
-                    "mapIndex":1,
-                    "fn":"setFntSize"
+                    "type": "number"
                 },
                 {
                     "name": "Font Family",
                     "value": "sans",
-                    "type": "dropdown",
-                    "mapIndex":1,
-                    "fn":"setFntType"
+                    "type": "dropdown"
                 },
                 {
                     "name": "Font Weight",
                     "value": "bold",
-                    "type": "dropdown",
-                    "fn":"setFntWeight",
                     "type": "dropdown"
                 },
                 {
                     "name":"Text Shadow",
                     "value":false,
-                    "type": "boolean",
-                    "fn":"setShadow",
                     "type": "boolean"
                 }
             ]
