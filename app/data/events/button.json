@@ -18,5 +18,9 @@
     "Font Color": {
         "mapIndex": 1,
         "fn": "setFill"
+    },
+    "Text Shadow":{
+        "mapIndex":1,
+        "fn":"setBorder"
     }
 }

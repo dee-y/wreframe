@@ -211,13 +211,6 @@ input:checked + .fh-prop-radio-slider:before {
     background: #ebebeb;
 }
 
-.logo{
-    line-height: 34px;
-    color: #fff;
-    margin: auto;
-    text-align: center;
-}
-
 .fh-sb-prop-cat-name{
     width: 100%;
     display: block;
@@ -233,4 +226,8 @@ input:checked + .fh-prop-radio-slider:before {
 .fh-sb-prop-wrapper {
     width: 100%;
     display: inline-table;
+}
+
+.right-nav.fh-divider-vertical {
+    border-left: 1px solid rgba(64,64,64,0.4);
 }

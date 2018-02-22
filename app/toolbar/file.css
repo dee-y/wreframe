@@ -3,6 +3,15 @@
     Author     : Pradhaban
 */
 
+.logo {
+    background: url(../../img/navbar/logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 30px;
+    width: 140px;
+    margin: auto;
+}
+
 .fh-actionbar {
     margin-left: 15px;
     border-right: 1px solid rgba(144, 143, 143, 0.5);

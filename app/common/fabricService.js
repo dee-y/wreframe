@@ -244,7 +244,6 @@
         };
 
         self.objectSelected = function (options) {
-            console.log(fabric.Canvas.prototype);
             if (options.target.customId === "tab") {
                 self.canvas.forEachObject(function (obj) {
                     if (obj === options.target)
