@@ -20,6 +20,11 @@
                 <span ng-switch-when="number">
                     <input type="number" min="0" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property,category.mapIndex)"/>
                 </span>
+                
+                <!--  slider-->
+                <span ng-switch-when="slider">
+                    <input type="range" min="0" max="35" ng-model="property.value" class="fh-sb-prop-txt" ng-change="sc.setProperty(property,category.mapIndex)"/>
+                </span>
                 <!--- Boolean -->
                 <span ng-switch-when="boolean">
                     <label class="fh-prop-radio">

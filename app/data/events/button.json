@@ -2,5 +2,21 @@
     "Background": {
         "mapIndex": 0,
         "fn": "setFill"
+    },
+    "Border Width": {
+        "mapIndex": 0,
+        "fn": "setBorder"
+    },
+    "Rounded Corners": {
+        "mapIndex": 0,
+        "fn": "setRx"
+    },
+    "Text": {
+        "mapIndex": 1,
+        "fn": "setTxt"
+    },
+    "Font Color": {
+        "mapIndex": 1,
+        "fn": "setFill"
     }
 }

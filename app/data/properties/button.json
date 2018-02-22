@@ -37,8 +37,8 @@
                 },
                 {
                     "name": "Rounded Corners",
-                    "value": false,
-                    "type": "boolean"
+                    "value": 0,
+                    "type": "slider"
                 },
                 {
                     "name": "Opacity",
@@ -58,7 +58,7 @@
                     "type": "text"
                 },
                 {
-                    "name": "Font",
+                    "name": "Font Color",
                     "value": "#000",
                     "type": "color"
                 },

@@ -370,24 +370,6 @@
             }
         };
 
-        self.setFontColor = function (value,mapIndex) {
-            var activeObj = self.canvas.getActiveObject();
-            if (activeObj) {
-                var obj={type:'fill',value:value};
-                self.setObjProp(obj,mapIndex);
-                var prop = activeObj.properties;
-                prop.forEach(function (attr, index) {
-                    if (attr.name === "Font" && attr.type === "color") {
-                        attr.value = value;
-                    }
-                });
-            } else {
-                if (self.windowAttr) {
-                    self.windowAttr.attr[0].value = value;
-                }
-            }
-        };
-
         self.setText = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {

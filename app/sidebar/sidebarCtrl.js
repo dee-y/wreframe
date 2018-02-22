@@ -30,17 +30,14 @@
         vm.fireEvt = function (prop, mapIndex) {
             console.log(prop);
             switch (prop.name) {
-                case "Text":
+                case "setTxt":
                     fabricService.setText(prop.value, mapIndex);
                     break;
-                case "Background":
+                case "setFill":
                     fabricService.setBkgColor(prop.value, mapIndex);
                     break;
-                case "Border Width":
+                case "setBorder":
                     fabricService.setBorderWidth(prop.value, mapIndex);
-                    break;
-                case "Font":
-                    fabricService.setFontColor(prop.value, mapIndex);
                     break;
                 case "Text Shadow":
                     fabricService.setShadow(prop.value, mapIndex);
@@ -61,7 +58,7 @@
                                     var evt=res.data;
                                     for (var key in evt) {
                                         if(key === prop.name){
-                                            var property={name:key,value:prop.value};
+                                            var property={name:evt[key].fn,value:prop.value};
                                             vm.fireEvt(property,evt[key].mapIndex);
                                             break;
                                         }
