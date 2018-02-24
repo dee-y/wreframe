@@ -46,18 +46,9 @@
     border-top: none;
 }
 
-.fh-child-border {
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-    border-left: 1px dashed #909090;
-    border-bottom: 1px dashed #909090;
-}
-
 .fh-obj-child {
     margin-left: 30px;
     user-select: none;
-    margin-top: -8px;
 }
 
 .fh-obj-master {
@@ -70,7 +61,7 @@
 }
 
 span.fh-child-txt {
-    vertical-align: -webkit-baseline-middle;
+    margin-left: 2px;
     text-transform: uppercase;
     letter-spacing: 1.15px;
     font-family: verdana;

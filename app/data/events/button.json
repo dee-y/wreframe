@@ -21,6 +21,10 @@
     },
     "Text Shadow":{
         "mapIndex":1,
-        "fn":"setBorder"
+        "fn":"setTxtBorder"
+    },
+    "Text Shadow Color":{
+        "mapIndex":1,
+        "fn":"setTxtBorderColor"
     }
 }

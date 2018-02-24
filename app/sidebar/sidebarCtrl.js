@@ -28,7 +28,6 @@
         };
 
         vm.fireEvt = function (prop, mapIndex) {
-            console.log(prop);
             switch (prop.name) {
                 case "setTxt":
                     fabricService.setText(prop.value, mapIndex);
@@ -39,8 +38,9 @@
                 case "setBorder":
                     fabricService.setBorderWidth(prop.value, mapIndex);
                     break;
-                case "Text Shadow":
-                    fabricService.setShadow(prop.value, mapIndex);
+                case "setTxtBorder":
+                    fabricService.setBorderColor("rgba(255,255,255,1)", mapIndex);
+                    fabricService.setBorderWidth(0.1, mapIndex);
                     break;
                 default:
 

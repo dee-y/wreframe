@@ -355,17 +355,15 @@
             self.canvas.renderAll();
         };
 
-        self.setShadow = function (value, mapIndex) {
+        self.setBorderColor =function(value,mapIndex){
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
-                var obj={type:'shadow',value:'rgba(255,255,255,0.5) 0 0 3px'};
+                var obj={type:'stroke',value:value};
                 self.setObjProp(obj,mapIndex);
-                var prop = activeObj.properties;
-                prop.forEach(function (attr, index) {
-                    if (attr.name === "Text Shadow" && attr.type === "boolean") {
-                        attr.value = value;
-                    }
-                });
+            } else {
+                if (self.windowAttr) {
+                    self.windowAttr.attr[0].value = value;
+                }
             }
         };
 
