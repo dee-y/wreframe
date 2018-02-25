@@ -7,6 +7,10 @@
         "mapIndex": 0,
         "fn": "setBorder"
     },
+    "Border Color": {
+        "mapIndex": 0,
+        "fn": "setBorderColor"
+    },
     "Rounded Corners": {
         "mapIndex": 0,
         "fn": "setRx"

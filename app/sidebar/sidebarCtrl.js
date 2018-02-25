@@ -38,8 +38,10 @@
                 case "setBorder":
                     fabricService.setBorderWidth(prop.value, mapIndex);
                     break;
+                case "setBorderColor":
+                    fabricService.setBorderColor(prop.value, mapIndex);
+                    break;
                 case "setTxtBorder":
-                    fabricService.setBorderColor("rgba(255,255,255,1)", mapIndex);
                     fabricService.setBorderWidth(0.1, mapIndex);
                     break;
                 default:
