@@ -2,18 +2,17 @@
     "name": "text box",
     "attr": [
         {
-            "category": "Fill",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex":0,
             "prop": [
                 {
-                    "name": "Background",
-                    "value": "#fff",
-                    "type": "color"
+                    "name": "Width",
+                    "value": 101,
+                    "type": "number"
                 },
-                 {
-                    "name": "Border Width",
-                    "value": 1,
+                {
+                    "name": "Height",
+                    "value": 31,
                     "type": "number"
                 },
                 {
@@ -25,23 +24,33 @@
                     "name": "Pos Y",
                     "value": 100,
                     "type": "number"
-                },
-                {
-                    "name": "Width",
-                    "value": 101,
-                    "type": "number"
-                },
-                {
-                    "name": "Height",
-                    "value": 31,
-                    "type": "number"
                 }
             ]
         },
         {
-            "category": "Text",
+            "category": "Color Properties",
             "active": false,
-            "mapIndex":1,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                },
+                {
+                    "name": "Font Color",
+                    "value": "#878787",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "category": "Text & Text Styles",
+            "active": false,
             "prop": [
                 {
                     "name": "Text",
@@ -49,16 +58,11 @@
                     "type": "text"
                 },
                 {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
-                },
-                {
-                    "name": "Font Size",
+                    "name": "Font size",
                     "value": 13,
                     "type": "number"
                 },
-                 {
+                {
                     "name": "Font Family",
                     "value": "sans",
                     "type": "dropdown"
@@ -67,6 +71,38 @@
                     "name": "Font Weight",
                     "value": "bold",
                     "type": "dropdown"
+                },
+                {
+                    "name":"Text Shadow",
+                    "value":false,
+                    "type": "boolean"
+                }
+            ]
+        },
+        
+        {
+            "category": "Borders & Shadows",
+            "active": false,
+            "prop": [
+                 {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name":"Border Color",
+                    "value":"#000",
+                    "type":"color"
+                },
+                {
+                    "name": "Rounded Corners",
+                    "value": 0,
+                    "type": "slider"
+                },
+                {
+                    "name":"Text Shadow Color",
+                    "value":"#fff",
+                    "type": "color"
                 }
             ]
         }

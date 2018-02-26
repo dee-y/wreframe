@@ -31,6 +31,20 @@
                 self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
                 self.canvas.setZoom(self.isZoom.default);
+                for (var cat of self.windowAttr.attr) {
+                    if(cat.category && cat.category === "Name & Size"){
+                        var prop=cat.prop;
+                        for(var property of prop){
+                            if(property.name === "Width"){
+                                property.value=parseInt(Math.ceil(width))+" px";
+                            }
+                            if(property.name === "Height"){
+                                property.value=parseInt(Math.ceil(height))+" px";
+                            }
+                        }
+                        break;
+                    }
+                }
                 self.canvasEvt();
                 self.getPropObj();
             }, 1000);
@@ -302,7 +316,11 @@
         };
 
         self.getCurrentObj = function () {
-            return self.canvas.getActiveObject();
+            if(self.canvas.getActiveObject()){
+                return self.canvas.getActiveObject();
+            }else{
+                return false;
+            }
         };
 
         self.createObj = function (obj) {

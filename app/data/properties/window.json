@@ -2,17 +2,33 @@
     "name": "window",
     "attr": [
         {
-            "category": "Fill",
-            "active": true,
+            "category": "Name & Size",
+            "active": false,
             "prop": [
                 {
                     "name": "Name",
                     "value": "Untitled",
-                    "type": "text"
+                    "type": "label"
                 },
                 {
+                    "name": "Width",
+                    "value": "1280px",
+                    "type": "label"
+                },
+                {
+                    "name": "Height",
+                    "value": "768px",
+                    "type": "label"
+                }
+            ]
+        },
+        {
+            "category":"Colors",
+            "active": false,
+            "prop":[
+                {
                     "name": "Background",
-                    "value": "Transparent",
+                    "value": "#fff",
                     "type": "color"
                 }
             ]

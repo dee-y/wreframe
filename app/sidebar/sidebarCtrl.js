@@ -52,7 +52,7 @@
 
         vm.setProperty = function (prop, mapIndex) {
             fabricService.isEdited = true;
-            var customId = (fabricService.getCurrentObj().customId) ? fabricService.getCurrentObj().customId : null;
+            var customId = (fabricService.getCurrentObj() && fabricService.getCurrentObj().customId) ? fabricService.getCurrentObj().customId : "window";
             if (customId) {
                 $http.get('app/data/events/' + customId + '.json', {cache: true})
                         .then(
