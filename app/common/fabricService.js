@@ -28,7 +28,6 @@
                 var height = drawArea.clientHeight;
                 height = (height * canvasProperties.desktop.height) / 100;
                 self.canvas = new fabric.Canvas('fhCanvas', {width: width, height: height});
-                self.canvas.selection = false;
                 self.canvas.backgroundColor = "#fff";
                 self.canvas.setZoom(self.isZoom.default);
                 for (var cat of self.windowAttr.attr) {
@@ -66,6 +65,15 @@
                 self.setZoom(evt);
             });
             document.addEventListener('keydown', self.canvasKey, false);
+            
+            self.canvas.on("selection:created", function (e) {
+                var grp = self.canvas.getActiveGroup();
+                if (grp) {
+                    grp.hasControls = false;
+                    grp.set({borderColor: 'grey', padding: 4});
+                }
+
+            });
         };
 
         self.getWindowProp = function () {
@@ -139,6 +147,10 @@
         };
 
         self.objMove = function (options) {
+            var currObj = self.canvas.getActiveObject();
+            if (!currObj || !currObj.customId) {
+                return;
+            }
             var top = parseInt(options.target.top);
             var left = parseInt(options.target.left);
             self.obj.msg = "X: " + left + " Y: " + top;
