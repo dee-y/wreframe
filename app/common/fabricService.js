@@ -419,6 +419,8 @@
         self.setBorderWidth = function (value, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
+                value = (value === true) ? 1 : value;
+                value = (value === false) ? 0 : value;
                 var obj={type:'strokeWidth',value:value};
                 self.setObjProp(obj,mapIndex);
                 var prop = activeObj.properties;

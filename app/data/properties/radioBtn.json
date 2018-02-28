@@ -1,16 +1,11 @@
 {
-    "name":"radiobtn",
-    "attr":[
-                {
-            "category": "Radio Button",
+    "name": "radiobtn",
+    "attr": [
+        {
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex":0,
+            "mapIndex": 0,
             "prop": [
-                {
-                    "name": "Border Width",
-                    "value": 1,
-                    "type": "number"
-                },
                 {
                     "name": "Pos X",
                     "value": 150,
@@ -30,28 +25,65 @@
                     "name": "Height",
                     "value": 31,
                     "type": "number"
-                },
-                {
-                    "name": "Checked",
-                    "value": false,
-                    "type": "boolean"
                 }
             ]
         },
         {
+            "category": "Color Properties",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Border Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Opacity",
+                    "value": 100,
+                    "type": "range"
+                },
+                {
+                    "name": "Font Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Checked Color",
+                    "value": "#000",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "category": "Other Options",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Checked",
+                    "value": false,
+                    "type": "boolean"
+                },
+                {
+                    "name": "Border Width",
+                    "value": 2,
+                    "type": "number"
+                }
+            ]
+            
+        },
+        {
             "category": "Text",
             "active": false,
-            "mapIndex":1,
             "prop": [
                 {
                     "name": "Text",
                     "value": "Option 1",
                     "type": "text"
-                },
-                {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
                 },
                 {
                     "name": "Font size",

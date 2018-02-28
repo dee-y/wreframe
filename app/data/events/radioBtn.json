@@ -1,0 +1,30 @@
+{
+    "Background": {
+        "mapIndex": 0,
+        "fn": "setFill"
+    },
+    "Border Color": {
+        "mapIndex": 0,
+        "fn": "setBorderColor"
+    },
+    "Font Color": {
+        "mapIndex": 2,
+        "fn": "setFill"
+    },
+    "Text": {
+        "mapIndex": 2,
+        "fn": "setTxt"
+    },
+    "Checked":{
+        "mapIndex" :1,
+        "fn":"setFill"
+    },
+    "Border Width":{
+        "mapIndex": 0,
+        "fn": "setBorder"
+    },
+    "Checked Color":{
+         "mapIndex": 1,
+        "fn": "setFill"
+    }
+}

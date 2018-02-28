@@ -13,6 +13,7 @@
 body > *{
     outline: none;
     font-family: 'Arimo';
+    user-select:none;
 }
 
 .fh-divider-horizontal{
