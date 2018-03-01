@@ -1,21 +1,10 @@
 {
     "name": "Drop Down",
-    "attr":[
+    "attr": [
         {
-            "category": "Select Box",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex":0,
             "prop": [
-                {
-                    "name": "Background",
-                    "value": "#fff",
-                    "type": "color"
-                },
-                {
-                    "name": "Border Width",
-                    "value": 1,
-                    "type": "number"
-                },
                 {
                     "name": "Pos X",
                     "value": 150,
@@ -35,33 +24,54 @@
                     "name": "Height",
                     "value": 31,
                     "type": "number"
+                }
+            ]
+        },
+
+        {
+            "category": "Color Properties",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
                 },
                 {
-                    "name": "Rounded Corners",
-                    "value": false,
-                    "type": "boolean"
+                    "name": "Pointer Box",
+                    "value": "#ccc",
+                    "type": "color"
+                },
+                {
+                    "name": "Pointer Color",
+                    "value": "#000",
+                    "type": "color"
                 },
                 {
                     "name": "Opacity",
                     "value": 100,
                     "type": "range"
+                },
+                {
+                    "name": "Font Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {   
+                    "name": "Text Shadow Color",
+                    "value": "#fff",
+                    "type": "color"
                 }
             ]
         },
         {
-            "category": "Text",
+            "category": "Text & Text Styles",
             "active": false,
-            "mapIndex":1,
             "prop": [
                 {
                     "name": "Text",
-                    "value": "-- Select --",
+                    "value": "--Select--",
                     "type": "text"
-                },
-                {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
                 },
                 {
                     "name": "Font size",
@@ -78,6 +88,44 @@
                     "value": "bold",
                     "type": "dropdown"
                 }
+            ]
+        },
+
+        {
+            "category": "Borders & Shadows",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Pointer Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Border Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Pointer Border",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Rounded Corners",
+                    "value": 0,
+                    "type": "slider"
+                },
+                {
+                    "name": "Text Shadow",
+                    "value": false,
+                    "type": "boolean"
+                }
+
             ]
         }
     ]

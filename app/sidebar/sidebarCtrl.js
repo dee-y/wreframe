@@ -44,6 +44,9 @@
                 case "setTxtBorder":
                     fabricService.setBorderWidth(0.1, mapIndex);
                     break;
+                case "setOpacity":
+                    fabricService.setOpacity(prop.value, mapIndex);
+                    break;
                 default:
 
                     break;

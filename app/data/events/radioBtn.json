@@ -17,7 +17,7 @@
     },
     "Checked":{
         "mapIndex" :1,
-        "fn":"setFill"
+        "fn":"setOpacity"
     },
     "Border Width":{
         "mapIndex": 0,

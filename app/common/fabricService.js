@@ -371,6 +371,11 @@
                 self.objLen.push({value: ele.customName});
             }
         };
+        self.updateGroup = function (item) {
+            var activeObj = self.canvas.getActiveObject();
+            activeObj.remove(item);
+            activeObj.addWithUpdate(item);
+        };
         
         self.setObjProp = function (obj, mapIndex) {
             var activeObj = self.canvas.getActiveObject();
@@ -378,9 +383,15 @@
             if (Array.isArray(mapIndex) === true) {
                 for (var item of mapIndex) {
                     objects[item].set(obj.type, obj.value);
+                    if (obj.type === "text") {
+                        self.updateGroup(item);
+                    }
                 }
             } else {
                 objects[mapIndex].set(obj.type, obj.value);
+                if (obj.type === "text") {
+                    self.updateGroup(item);
+                }
             }
             self.canvas.renderAll();
         };
@@ -389,6 +400,20 @@
             var activeObj = self.canvas.getActiveObject();
             if (activeObj) {
                 var obj={type:'stroke',value:value};
+                self.setObjProp(obj,mapIndex);
+            } else {
+                if (self.windowAttr) {
+                    self.windowAttr.attr[0].value = value;
+                }
+            }
+        };
+        
+        self.setOpacity = function(value,mapIndex){
+            var activeObj = self.canvas.getActiveObject();
+            value=(value === true) ? 1 : value;
+            value=(value === false) ? 0 : value;
+            if (activeObj) {
+                var obj={type:'opacity',value:value};
                 self.setObjProp(obj,mapIndex);
             } else {
                 if (self.windowAttr) {
