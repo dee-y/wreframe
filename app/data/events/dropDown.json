@@ -15,6 +15,10 @@
         "mapIndex": 3,
         "fn": "setFill"
     },
+    "Text": {
+        "mapIndex": 3,
+        "fn": "setTxt"
+    },
      "Text Shadow":{
         "mapIndex":3,
         "fn":"setTxtBorder"

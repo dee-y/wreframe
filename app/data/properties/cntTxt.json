@@ -1,22 +1,11 @@
 {
-    "name": "Content Place Holder",
+    "name": "Content",
     "attr":[
         {
-            "category": "Fill",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex":[0,1,2,3],
             "prop": [
-                {
-                    "name": "Background",
-                    "value": "#fff",
-                    "type": "color"
-                },
-                {
-                    "name": "Border Width",
-                    "value": 1,
-                    "type": "number"
-                },
-                {
+                 {
                     "name": "Pos X",
                     "value": 150,
                     "type": "number"
@@ -35,11 +24,43 @@
                     "name": "Height",
                     "value": 31,
                     "type": "number"
+                }
+            ]
+        },
+        {
+            "category": "Color Properties",
+            "active": false,
+            "prop": [
+                 {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                },
+                {
+                    "name": "Content",
+                    "value": "#ccc",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "category": "Border and Opacity",
+            "active": false,
+            "prop": [
+                 {
+                    "name": "Border Width",
+                    "value": 0,
+                    "type": "number"
+                },
+                {
+                    "name": "Border Color",
+                    "value": "#000",
+                    "type": "color"
                 },
                 {
                     "name": "Opacity",
-                    "value": 100,
-                    "type": "range"
+                    "value": 0,
+                    "type": "slider"
                 }
             ]
         }
