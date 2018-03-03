@@ -2,9 +2,8 @@
     "name": "label",
     "attr": [
         {
-            "category": "Fill",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex": 0,
             "prop": [
                 {
                     "name": "Pos X",
@@ -17,48 +16,58 @@
                     "type": "number"
                 },
                 {
-                    "name": "Opacity",
+                    "name": "Width",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
                     "value": 100,
-                    "type": "range"
+                    "type": "number"
+                }
+
+            ]
+        },
+        {
+            "category": "Color & Borders",
+            "active": false,
+            "prop": [
+                {
+                    "name":"Font Color",
+                    "value":"#000",
+                    "type":"color"
+                },
+                {
+                    "name":"Border Color",
+                    "value":"#000",
+                    "type":"color"
+                },
+                {
+                    "name":"Border Width",
+                    "value":0,
+                    "type":"number"
                 }
             ]
         },
         {
-            "category": "Text",
+            "category": "Text Styles",
             "active": false,
-            "mapIndex": 0,
             "prop": [
                 {
-                    "name": "Text",
-                    "value": "Lorem Ipsum",
-                    "type": "text"
+                    "name":"Font Family",
+                    "value":["Times New Roman","verdana","Sans Serif","Helvitica"],
+                    "type":"select"
                 },
                 {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
+                     "name":"Font Size",
+                    "value":13,
+                    "type":"number"
                 },
                 {
-                    "name": "Font size",
-                    "value": 13,
-                    "type": "number"
-                },
-                {
-                    "name": "Font Family",
-                    "value": "sans",
-                    "type": "dropdown"
-                },
-                {
-                    "name": "Font Weight",
-                    "value": "bold",
-                    "type": "dropdown"
-                },
-                {
-                    "name": "Text Shadow",
-                    "value": false,
-                    "type": "boolean"
+                    "name":"Text Style",
+                    "value":[{"value":"Bold","img":"bold.png"},{"value":"italic","img":"italic.png"}],
+                    "type":"imgBtn"
                 }
-
             ]
         }
     ]

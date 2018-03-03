@@ -1,16 +1,10 @@
 {
-    "name":"progressbar",
-    "attr":[
+    "name": "progressbar",
+    "attr": [
         {
-            "category": "Fill",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex": 0,
             "prop": [
-                {
-                    "name": "Background",
-                    "value": "#fff",
-                    "type": "color"
-                },
                 {
                     "name": "Pos X",
                     "value": 150,
@@ -22,26 +16,41 @@
                     "type": "number"
                 },
                 {
-                    "name": "Opacity",
+                    "name": "Width",
+                    "value": 150,
+                    "type": "number"
+                },
+                {
+                    "name": "Height",
                     "value": 100,
-                    "type": "range"
+                    "type": "number"
                 }
             ]
         },
         {
-            "category": "Text",
+            "category": "Color Properties",
             "active": false,
-            "mapIndex": 2,
+            "prop": [
+                {
+                    "name": "Progreess Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                {
+                    "name": "Unfilled Color",
+                    "value": "#fff",
+                    "type": "color"
+                }
+            ]
+        },
+               {
+            "category": "Text & Text Styles",
+            "active": false,
             "prop": [
                 {
                     "name": "Text",
                     "value": "Loading 50%",
                     "type": "text"
-                },
-                {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
                 },
                 {
                     "name": "Font size",
@@ -59,11 +68,32 @@
                     "type": "dropdown"
                 },
                 {
-                    "name": "Text Shadow",
-                    "value": false,
+                    "name":"Text Shadow",
+                    "value":false,
                     "type": "boolean"
                 }
-
+            ]
+        },
+        
+        {
+            "category": "Borders & Shadows",
+            "active": false,
+            "prop": [
+                 {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name":"Border Color",
+                    "value":"#000",
+                    "type":"color"
+                },
+                {
+                    "name": "Rounded Corners",
+                    "value": 0,
+                    "type": "slider"
+                }
             ]
         }
     ]
