@@ -56,6 +56,10 @@
             self.canvas.on("object:moving", function (options) {
                 self.objMove(options);
             });
+            
+            self.canvas.on('object:scaling',function(options){
+                grpScaling(options);
+            });
             self.canvas.on("selection:cleared", function (options) {
                 self.getPropObj();
                 self.obj.show = false;
@@ -74,6 +78,19 @@
                 }
 
             });
+        };
+        
+        function grpScaling(options){
+          var grp=options.target;
+          grp.width *=grp.scaleX;
+          grp.height *=grp.scaleY;
+          var objects=grp.getObjects();
+          if(objects.length > 0){
+              objects.forEach(function(obj,index){
+                 obj.width *=grp.scaleX; 
+                 obj.height *=grp.scaleY; 
+              });
+          }
         };
 
         self.getWindowProp = function () {
