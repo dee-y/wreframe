@@ -24,6 +24,11 @@
                     "name": "Height",
                     "value": 100,
                     "type": "number"
+                },
+                {
+                    "name":"Progress Range",
+                    "value":"50",
+                    "type":"number"
                 }
             ]
         },
