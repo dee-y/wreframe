@@ -1,0 +1,34 @@
+{
+    "Background": {
+        "mapIndex": 0,
+        "fn": "setFill"
+    },
+    "Border Width": {
+        "mapIndex": 0,
+        "fn": "setBorder"
+    },
+    "Border Color": {
+        "mapIndex": 0,
+        "fn": "setBorderColor"
+    },
+    "Rounded Corners": {
+        "mapIndex": 0,
+        "fn": "setRx"
+    },
+    "Text": {
+        "mapIndex": 1,
+        "fn": "setTxt"
+    },
+    "Font Color": {
+        "mapIndex": 1,
+        "fn": "setFill"
+    },
+    "Text Shadow":{
+        "mapIndex":1,
+        "fn":"setTxtBorder"
+    },
+    "Text Shadow Color":{
+        "mapIndex":1,
+        "fn":"setTxtBorderColor"
+    }
+}

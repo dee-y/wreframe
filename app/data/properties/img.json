@@ -2,20 +2,9 @@
     "name": "image",
     "attr": [
         {
-            "category": "Fill",
+            "category": "Size & Alignment",
             "active": false,
-            "mapIndex": 0,
             "prop": [
-                {
-                    "name": "Background",
-                    "value": "#fff",
-                    "type": "color"
-                },
-                {
-                    "name": "Border Width",
-                    "value": 1,
-                    "type": "number"
-                },
                 {
                     "name": "Pos X",
                     "value": 150,
@@ -35,12 +24,45 @@
                     "name": "Height",
                     "value": 31,
                     "type": "number"
+                }
+            ]
+        },
+        {
+            "category": "Color Properties",
+            "active": false,
+            "prop": [
+                {
+                    "name": "Font Color",
+                    "value": "#000",
+                    "type": "color"
                 },
                 {
+                    "name": "Background",
+                    "value": "#fff",
+                    "type": "color"
+                }
+            ]
+        },
+        {
+            "category": "Border & Opacity",
+            "active": false,
+            "prop": [
+                                {
+                    "name": "Border Width",
+                    "value": 1,
+                    "type": "number"
+                },
+                {
+                    "name": "Border Color",
+                    "value": "#000",
+                    "type": "color"
+                },
+                                {
                     "name": "Opacity",
                     "value": 100,
                     "type": "range"
                 }
+
             ]
         },
         {
@@ -52,11 +74,6 @@
                     "name": "Text",
                     "value": "IMAGE",
                     "type": "text"
-                },
-                {
-                    "name": "Font",
-                    "value": "#000",
-                    "type": "color"
                 },
                 {
                     "name": "Font size",
