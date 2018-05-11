@@ -45,6 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+old-version/*
 /nbproject/*
 node_modules/*
 bak/*
