@@ -1,0 +1,26 @@
+{
+  "name": "wreframe",
+  "version": "1.0.0",
+  "description": "Prototype tools for UX designers",
+  "main": "electron/start.js",
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradhap/freehand.git"
+  },
+  "keywords": [
+    "Prototype",
+    "Tools"
+  ],
+  "author": "Pradhaban.N",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradhap/freehand/issues"
+  },
+  "homepage": "https://github.com/pradhap/freehand#readme",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  }
+}
