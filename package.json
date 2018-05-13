@@ -2,9 +2,9 @@
   "name": "wreframe",
   "version": "1.0.0",
   "description": "Prototype tools for UX designers",
-  "main": "electron/start.js",
+  "main": "electron/index.js",
   "scripts": {
-    "test": "null"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
