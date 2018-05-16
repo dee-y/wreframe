@@ -19,7 +19,7 @@
     });
     
     function initialize (){
-        win = new BrowserWindow({width: 800, height: 700,frame:false,show:false});
+        win = new BrowserWindow({width: 800, height: 700,frame:true,show:false});
         win.loadURL(url.format({
             pathname: path.join(__dirname, '../index.html'),
             protocol: 'file:',
