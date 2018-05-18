@@ -1,11 +1,12 @@
+@echo off
 title wrframe-build-files
-echo "Converting less files"
+echo ----------------------------------------------------------------------------
+echo Converting less files
 cd "F:/DEV/wreframe/lib/less"
-pause
-lessc "main.less" "../css/main.css"
-pause
-echo "CSS Files Generated"
-pause
-echo "Converting JS Files"
-pause
-
+start /b lessc main.less ../css/main.css
+echo CSS Files Generated
+echo ----------------------------------------------------------------------------
+echo Converting JS Files
+cd "F:/DEV/wreframe/build"
+node build-js.js
+exit
