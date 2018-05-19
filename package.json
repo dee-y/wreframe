@@ -1,15 +1,28 @@
 {
-  "name": "freehand",
+  "name": "wreframe",
   "version": "1.0.0",
-  "description": "UX Designer",
-  "main": "app/core/index.js",
+  "description": "Prototype tools for UX designers",
+  "main": "electron/index.js",
   "scripts": {
     "start": "electron ."
   },
-  "author": "Pradhaban",
-  "license": "ISC",
-  "devDependencies": {
-    "electron-prebuilt": "^1.4.13"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradhap/freehand.git"
   },
-  "dependencies": {}
+  "keywords": [
+    "Prototype",
+    "Tools"
+  ],
+  "author": "Pradhaban.N",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradhap/freehand/issues"
+  },
+  "homepage": "https://github.com/pradhap/freehand#readme",
+  "devDependencies": {
+    "angular": "^1.6.10",
+    "buildify": "^0.4.0",
+    "electron": "^2.0.0"
+  }
 }

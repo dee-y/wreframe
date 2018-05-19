@@ -1,53 +1,33 @@
 <!DOCTYPE html>
-<!--
-Main HTML file for app
--->
-<html ng-app="freehand">
+<html>
     <head>
-        <title>Typo</title>
+        <title>Wreframe</title>
         <meta charset="UTF-8">
+        <link href="lib/css/main.css" rel="stylesheet" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/index.css" rel="stylesheet" type="text/css"/>
-        <link href="app/toolbar/file.css" rel="stylesheet" type="text/css"/>
-        <link href="app/sidebar/sidebar.css" rel="stylesheet" type="text/css"/>
-        <link href="app/drawArea/draw.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
-        <div class="container-fluid">
-            <div ui-view="toolbar"></div>
-            <div class="row">
-                <div ui-view="left-nav" class="col-md-2 left-nav fh-divider-vertical fh-sidebar"></div>
-                <div class="col-md-8" style="padding:0px" ui-view="main-view"></div>
-                <div ui-view="right-nav" class="col-md-2 right-nav fh-divider-vertical fh-sidebar"></div>
+    <body ng-app="wreframe">
+        <div class="row">
+            <div class="wre-navbar"></div>
+        </div>
+        <div class="row">
+            <div class="sidebar pages"></div>
+            <div id="mainArea" class="mainArea">
+                <div id="drawArea" class="drawArea"></div>
+            </div>
+            <div class="sidebar shapes"></div>
+        </div>
+        <div class="row">
+            <div class="wre-statusbar">
+                <div class="status-controls">
+                    Mode:
+                    <select>
+                        <option>Normal</option>
+                    </select>
+                </div>
             </div>
         </div>
-        
-        <!--        Libraries-->
-
-        <script src="js/angular.min.js" type="text/javascript"></script>
-        <script src="js/fabric.min.js" type="text/javascript"></script>
-        <script src="js/jscolor.min.js" type="text/javascript"></script>
-        <script src="js/angular-ui-router.min.js" type="text/javascript"></script>
-
-
-        <!--        App JS Files-->
-
-        <script src="app/core/app-core.js" type="text/javascript"></script>
-        <script src="app/data/app-values.js" type="text/javascript"></script>
-        <script src="app/sidebar/sidebarCtrl.js" type="text/javascript"></script>
-        <script src="app/drawArea/drawCtrl.js" type="text/javascript"></script>
-        <script src="app/toolbar/toolCtrl.js" type="text/javascript"></script>
-
-
-        <!--        Service Files-->
-        <script src="app/common/fabricService.js" type="text/javascript"></script>
-        <script src="app/common/menuService.js" type="text/javascript"></script>
-        <script src="app/common/propertyService.js" type="text/javascript"></script>
-        <script src="app/common/electronService.js" type="text/javascript"></script>
-        <script src="app/common/infoService.js" type="text/javascript"></script>
-
-
+        <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+        <script src="lib/js/app.min.js" type="text/javascript"></script>
     </body>
 </html>

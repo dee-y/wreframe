@@ -1,0 +1,33 @@
+/* 
+    Created on : 15-May-2018, 23:19:55
+    Author     : Pradhaban
+*/
+body {
+  background-color: #37393b;
+  padding: 0px;
+  margin: 0px;
+}
+.wre-statusbar {
+  background-color: #585c5f;
+  width: 100%;
+  min-height: 30px;
+  bottom: 0px;
+  position: absolute;
+}
+/* 
+    Draw Area Starts Here
+*/
+.mainArea {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  margin: 10px auto;
+  background-color: #37393b;
+  user-select: none;
+}
+.drawArea {
+  background-color: #fff;
+  width: 90vw;
+  height: 90vh;
+  margin: 20px auto;
+}
