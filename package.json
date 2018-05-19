@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/pradhap/freehand#readme",
   "devDependencies": {
+    "angular": "^1.6.10",
     "buildify": "^0.4.0",
     "electron": "^2.0.0"
   }

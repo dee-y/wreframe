@@ -23,6 +23,7 @@ body {
   overflow-x: auto;
   margin: 10px auto;
   background-color: #37393b;
+  user-select: none;
 }
 .drawArea {
   background-color: #fff;

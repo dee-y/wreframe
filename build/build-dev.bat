@@ -8,5 +8,8 @@ echo CSS Files Generated
 echo ----------------------------------------------------------------------------
 echo Converting JS Files
 cd "F:/DEV/wreframe/build"
+echo Concating JS Files in Process
+echo Uglify JS Files in Process
 node build-js.js
+echo ----------------------------------------------------------------------------
 exit
