@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     
-    var app=angular.module('wreframe',[]);
+    var app=angular.module('wreframe',['wreframe.draw.resize']);
     
 })();
 

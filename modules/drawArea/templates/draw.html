@@ -1,0 +1,8 @@
+<div id="drawArea" class="drawArea" ng-controller="drawResize as resize" 
+     ng-init="resize.init()" 
+     ng-style="{'width':resize.divStyle.divWidth,'height':resize.divStyle.divHeight}">
+    <div ng-class="{'resize':resize.class === true}">
+        <div id="downHandler"></div>
+        <div id="rightHandler" ng-mouseup="resize.mouseUp('right')" ng-mousedown="resize.mouseDown('right')" ng-mousemove="resize.mouseMove('right')"></div>
+    </div>
+</div>

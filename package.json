@@ -22,6 +22,12 @@
   "homepage": "https://github.com/pradhap/freehand#readme",
   "devDependencies": {
     "angular": "^1.6.10",
-    "electron": "^2.0.0"
+    "electron": "^2.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.3",
+    "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "gulp": "^4.0.0"
   }
 }

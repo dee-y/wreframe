@@ -26,8 +26,21 @@ body {
   user-select: none;
 }
 .drawArea {
+  position: relative;
   background-color: #fff;
-  width: 90vw;
-  height: 90vh;
   margin: 20px auto;
+}
+.drawArea #downHandler {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  height: 7px;
+  cursor: n-resize;
+}
+.drawArea #rightHandler {
+  position: absolute;
+  width: 7px;
+  right: 0px;
+  height: 100%;
+  cursor: e-resize;
 }

@@ -7,9 +7,9 @@ start /b lessc main.less ../css/main.css
 echo CSS Files Generated
 echo ----------------------------------------------------------------------------
 echo Converting JS Files
-cd "F:/DEV/wreframe/build"
+cd "F:/DEV/wreframe/"
 echo Concating JS Files in Process
 echo Uglify JS Files in Process
-node build-js.js
+gulp
 echo ----------------------------------------------------------------------------
 exit
