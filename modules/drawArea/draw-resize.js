@@ -15,9 +15,18 @@
         vm.startY = 0;
 
         vm.init = function () {
-            vm.drawArea.dwidth = window.innerWidth * 0.9 + 'px';
-            vm.drawArea.dheight = window.innerHeight * 0.9 + 'px';
-            $("#drawArea").resizable();
+            var maxWidth=window.innerWidth * 0.9;
+            var maxHeight=window.innerHeight * 0.9;
+            vm.drawArea.dwidth =  maxWidth+ 'px';
+            vm.drawArea.dheight = maxHeight+ 'px';
+            $("#drawArea").resizable(
+                    {
+                        maxHeight: maxHeight,
+                        maxWidth: maxWidth,
+                        minHeight: 200,
+                        minWidth: 200
+                    }
+            );
         };
     }
     ;
