@@ -28,19 +28,26 @@ body {
 .drawArea {
   position: relative;
   background-color: #fff;
-  margin: 20px auto;
+  margin: 20px 0px 0px 100px;
 }
-.drawArea #downHandler {
-  position: absolute;
+.drawArea .ui-resizable-e {
+  cursor: e-resize;
+  width: 7px;
+  right: -7px;
+  top: 0;
+  height: 100%;
+}
+.drawArea .ui-resizable-s {
+  cursor: s-resize;
+  height: 7px;
   width: 100%;
   bottom: 0px;
-  height: 7px;
-  cursor: n-resize;
+  left: 0;
 }
-.drawArea #rightHandler {
+.drawArea .ui-resizable-handle {
   position: absolute;
-  width: 7px;
-  right: 0px;
-  height: 100%;
-  cursor: e-resize;
+  font-size: 0.1px;
+  display: block;
+  -ms-touch-action: none;
+  touch-action: none;
 }
