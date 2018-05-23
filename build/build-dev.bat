@@ -2,14 +2,22 @@
 title wrframe-build-files
 echo ----------------------------------------------------------------------------
 echo Converting less files
-cd "F:/DEV/wreframe/lib/less"
-start /b lessc main.less ../css/main.css
+CALL :CSSFUNC
 echo CSS Files Generated
+CALL :JSFUNC
+echo JS FILES GENERATED
+EXIT /B 0
+
+:CSSFUNC
+cd "F:/DEV/wreframe/lib/less"
+call lessc main.less ../css/main.css
+EXIT /B 0
+:JSFUNC
 echo ----------------------------------------------------------------------------
 echo Converting JS Files
 cd "F:/DEV/wreframe/"
 echo Concating JS Files in Process
 echo Uglify JS Files in Process
-gulp
+call gulp
 echo ----------------------------------------------------------------------------
-exit
+EXIT /B 0

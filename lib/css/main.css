@@ -6,6 +6,7 @@ body {
   background-color: #37393b;
   padding: 0px;
   margin: 0px;
+  overflow: hidden;
 }
 .wre-statusbar {
   background-color: #585c5f;
@@ -20,7 +21,6 @@ body {
 .mainArea {
   width: 100%;
   height: 100%;
-  overflow-x: auto;
   margin: 10px auto;
   background-color: #37393b;
   user-select: none;
@@ -28,7 +28,8 @@ body {
 .drawArea {
   position: relative;
   background-color: #fff;
-  margin: 20px 0px 0px 100px;
+  margin: 5% 0 0 10%;
+  zoom: 80%;
 }
 .drawArea .ui-resizable-e {
   cursor: e-resize;

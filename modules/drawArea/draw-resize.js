@@ -15,8 +15,8 @@
         vm.startY = 0;
 
         vm.init = function () {
-            var maxWidth=window.innerWidth * 0.9;
-            var maxHeight=window.innerHeight * 0.9;
+            var maxWidth=window.innerWidth;
+            var maxHeight=window.innerHeight;
             vm.drawArea.dwidth =  maxWidth+ 'px';
             vm.drawArea.dheight = maxHeight+ 'px';
             $("#drawArea").resizable(
