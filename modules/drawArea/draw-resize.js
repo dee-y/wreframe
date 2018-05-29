@@ -13,18 +13,19 @@
         vm.resize = false;
         vm.startX = 0;
         vm.startY = 0;
+        vm.resizePercent=0.85;
 
         vm.init = function () {
             var maxWidth = window.screen.availWidth;
             var maxHeight = window.screen.availHeight;
             $timeout(function () {
                 if (maxWidth > 300) {
-                    vm.drawArea.mWidth =  vm.drawArea.dwidth = (maxWidth * 0.8) + 'px';
-                    vm.drawArea.mHeight = vm.drawArea.dheight =(maxHeight * 0.8) + 'px';
+                    vm.drawArea.mWidth =  vm.drawArea.dwidth = (maxWidth * vm.resizePercent) + 'px';
+                    vm.drawArea.mHeight = vm.drawArea.dheight =(maxHeight * vm.resizePercent) + 'px';
                     $("#drawArea").resizable(
                             {
-                                maxHeight: (maxHeight * 0.8),
-                                maxWidth: (maxWidth * 0.8),
+                                maxHeight: (maxHeight * vm.resizePercent),
+                                maxWidth: (maxWidth * vm.resizePercent),
                                 minHeight: 200,
                                 minWidth: 200
                             }

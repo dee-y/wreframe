@@ -26,7 +26,7 @@ body {
     Draw Area Starts Here
 */
 .mainArea {
-  margin: 30px 0 0 100px;
+  margin: 30px 0 0 67px;
   background-color: #c4c4c4;
   user-select: none;
 }
@@ -61,8 +61,22 @@ body {
 */
 .shapes_wrapper {
   height: 100%;
-  width: 100px;
+  width: 70px;
   position: absolute;
-  background: #37393b;
+  background: #282829;
+  border-right: 1px solid #949494;
   top: 0px;
+}
+.shapes_wrapper .shapes_icons {
+  width: 40px;
+  height: 40px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+.shapes_wrapper .shapes_icons:hover {
+  background-color: #37393b;
+}
+.shapes_wrapper .selection_icon {
+  background: url("../../lib/icons/shapes-icons/selection.png") no-repeat;
+  background-size: contain;
 }
