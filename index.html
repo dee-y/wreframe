@@ -15,16 +15,7 @@
             <div ng-include="'modules/drawArea/templates/draw.html'"></div>
             <div class="sidebar shapes"></div>
         </div>
-        <div class="row">
-            <div class="wre-statusbar">
-                <div class="status-controls">
-                    Mode:
-                    <select>
-                        <option>Normal</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+        <div class="row" ng-include="'modules/statusbar/templates/statusbar.html'"></div>
         
         <!--       Libraries goes here-->
         <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
@@ -32,8 +23,6 @@
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
         <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
         <script src="node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
-        
-        
         <script src="lib/js/app.min.js" type="text/javascript"></script>
     </body>
 </html>
