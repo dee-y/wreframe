@@ -48,6 +48,11 @@ body {
   -ms-touch-action: none;
   touch-action: none;
 }
+.ui-selectable-helper {
+  position: absolute;
+  z-index: 100;
+  border: 1px dotted black;
+}
 /* 
     Created on : 23-May-2018, 20:36:51
     Author     : Pradhaban
@@ -75,6 +80,10 @@ body {
 }
 .shapes_wrapper .circle_icon {
   background: url("../../lib/icons/shapes-icons/circle-select.png") no-repeat;
+  background-size: contain;
+}
+.shapes_wrapper .zoom_icon {
+  background: url("../../lib/icons/shapes-icons/drag.png") no-repeat;
   background-size: contain;
 }
 /* 
