@@ -11,14 +11,12 @@
             <div class="wre-navbar"></div>
         </div>
         <div class="row full-dimen">
-            <div class="sidebar pages" ng-include="'modules/shapes/templates/shapes.html'"></div>
-            <div ng-include="'modules/drawArea/templates/draw.html'"></div>
+            <div class="sidebar pages" data-load="modules/shapes/templates/shapes.html"></div>
+            <div data-load="modules/drawArea/templates/draw.html"></div>
             <div class="sidebar shapes"></div>
         </div>
-        <div class="row" ng-include="'modules/statusbar/templates/statusbar.html'"></div>
+        <div class="row" data-load="modules/statusbar/templates/statusbar.html"></div>
         
-        <!--       Libraries goes here-->
-        <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
         <!--       Jquery Overcome for Electron -->
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
         <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>

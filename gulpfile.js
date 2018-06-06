@@ -9,7 +9,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 
 
-var jsFiles = ['modules/main.js','modules/**/*.js'],
+var jsFiles = ['modules/main.js','services/*.js','modules/**/*.js'],
     jsDest = 'lib/js/';
    
 
