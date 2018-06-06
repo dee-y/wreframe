@@ -25,7 +25,7 @@
         var maxHeight = window.screen.availHeight;
         drawArea.style.width = mainArea.style.width = (maxWidth * resizePercent) + 'px';
         drawArea.style.height = mainArea.style.height = (maxHeight * resizePercent) + 'px';
-        console.log(evtService);
+        evtService.resize(drawArea);
     }
     init();
 

@@ -30,7 +30,7 @@ body {
 .drawArea .ui-resizable-e {
   cursor: e-resize;
   width: 7px;
-  right: -7px;
+  right: 0px;
   top: 0;
   height: 100%;
 }

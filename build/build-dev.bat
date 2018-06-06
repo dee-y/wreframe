@@ -5,8 +5,8 @@ echo Converting less files
 CALL :CSSFUNC
 echo CSS Files Generated
 CALL :JSFUNC
-echo JS FILES GENERATED
 EXIT /B 0
+cd "F:/DEV/wreframe/build"
 
 :CSSFUNC
 cd "F:/DEV/wreframe/lib/less"
