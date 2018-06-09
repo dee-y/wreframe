@@ -62,7 +62,6 @@ var evtService = (function () {
         hgtDragger.addEventListener("mousedown", function (evt) {
             evt.stopPropagation();
             slideHeight = true;
-            dom.prototype.resize = true;
         });
 
 
