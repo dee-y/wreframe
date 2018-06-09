@@ -1,4 +1,4 @@
-/* 
+/*
  * Draw Resize Module
  */
 
@@ -25,7 +25,8 @@
         var maxHeight = window.screen.availHeight;
         drawArea.style.width = mainArea.style.width = (maxWidth * resizePercent) + 'px';
         drawArea.style.height = mainArea.style.height = (maxHeight * resizePercent) + 'px';
-        evtService.resize(drawArea);
+        evtService.windowResizer(drawArea);
+        evtService.windowSelector(drawArea);
     }
     init();
 
