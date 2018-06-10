@@ -2,7 +2,7 @@ var evtService = (function () {
 
     var sr = this;
 
-    sr.windowResizer = function (dom) {
+    sr.windowResizer = function (dom, callback) {
         // Create DOM
         var wdhDragger = document.createElement("div");
         wdhDragger.id = "wdhDragger";
@@ -14,13 +14,13 @@ var evtService = (function () {
         hgtDragger.classList.add("ui-resizable-handle");
         dom.appendChild(wdhDragger);
         dom.appendChild(hgtDragger);
-        
+
         //Offset
         var paddingLeft = dom.offsetLeft;
         var paddingTop = dom.offsetTop;
 
-        var maxWidth = (wdhDragger.offsetLeft)+(wdhDragger.clientWidth);
-        var maxHeight = (hgtDragger.offsetTop)+(hgtDragger.clientHeight);
+        var maxWidth = (wdhDragger.offsetLeft) + (wdhDragger.clientWidth);
+        var maxHeight = (hgtDragger.offsetTop) + (hgtDragger.clientHeight);
 
 
         //Assign Flags
@@ -50,7 +50,10 @@ var evtService = (function () {
             }
 
             if (evt.buttons === 0) {
-                slideWidth = slideHeight = false;
+                if (slideWidth === true || slideHeight === true) {
+                    slideWidth = slideHeight = false;
+                    callback("Document Resized - "+dom.style.width+" x "+dom.style.height);
+                }
             }
         });
 
@@ -67,15 +70,15 @@ var evtService = (function () {
 
     };
 
-    sr.drawRect = function (dom) {
+    sr.drawRect = function (dom, callback) {
         var mouseCors = {X: 0, Y: 0, active: false};
         var drawAreaSelection = document.getElementById("drawAreaSelection");
 
         //Offset
         var paddingLeft = parseFloat(dom.offsetLeft) - 3;
         var paddingTop = parseFloat(dom.offsetTop) - 3;
-        
-        
+
+
 
 
         dom.addEventListener("mousedown", function (evt) {
@@ -109,12 +112,14 @@ var evtService = (function () {
         });
 
         document.addEventListener('mouseup', function (evt) {
-
-            drawAreaSelection.style.width = drawAreaSelection.style.height = '0px';
-            drawAreaSelection.style.top = drawAreaSelection.style.left = '0px';
-            mouseCors.X = mouseCors.Y = 0;
-            drawAreaSelection.style.display = 'none';
-            mouseCors.active = false;
+            if (mouseCors.active === true) {
+                drawAreaSelection.style.width = drawAreaSelection.style.height = '0px';
+                drawAreaSelection.style.top = drawAreaSelection.style.left = '0px';
+                mouseCors.X = mouseCors.Y = 0;
+                drawAreaSelection.style.display = 'none';
+                mouseCors.active = false;
+                callback("Area Selected");
+            }
         });
 
         var findDiff = function (num1, num2) {
@@ -126,11 +131,11 @@ var evtService = (function () {
     };
 
     return {
-        windowResizer: function (dom) {
-            sr.windowResizer(dom);
+        windowResizer: function (dom, callback) {
+            sr.windowResizer(dom, callback);
         },
-        windowSelector: function (dom) {
-            sr.drawRect(dom);
+        windowSelector: function (dom, callback) {
+            sr.drawRect(dom, callback);
         }
     };
 

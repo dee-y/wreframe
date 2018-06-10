@@ -12,6 +12,5 @@
         
     };
     
-    angular.module('wreframe').controller('shapesSelector',shapeSelector);
     
 })();
