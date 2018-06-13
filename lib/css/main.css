@@ -34,6 +34,11 @@ body {
   top: 0;
   height: 100%;
 }
+.drawArea .shapesWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .drawArea .ui-resizable-s {
   cursor: s-resize;
   height: 7px;
@@ -114,6 +119,17 @@ body {
   right: 40%;
   cursor: n-resize;
 }
+.rect {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+.shape {
+  background: #000;
+  border: 1px solid #000;
+}
 /* 
     Created on : 23-May-2018, 20:36:51
     Author     : Pradhaban
@@ -135,7 +151,10 @@ body {
 .shapes_wrapper .shapes_icons:hover {
   background-color: #37393b;
 }
-.shapes_wrapper .selection_icon {
+.shapes_wrapper .shape {
+  cursor: pointer;
+}
+.shapes_wrapper .rect_icon {
   background: url("../../lib/icons/shapes-icons/selection.png") no-repeat;
   background-size: contain;
 }
