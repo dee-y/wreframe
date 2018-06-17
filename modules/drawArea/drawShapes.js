@@ -29,7 +29,7 @@ var drawShapes = (function(utilityService){
         dom.addEventListener('click',function(e){
             e.stopPropagation();
             var domProp=dom.getBoundingClientRect();
-            
+
             var width=(parseFloat(domProp.width)+elePadding)+'px';
             var height=(parseFloat(domProp.height)+elePadding)+'px';
             var left=(parseFloat(domProp.x) - eleMargin) + 'px';
@@ -38,13 +38,12 @@ var drawShapes = (function(utilityService){
             eleSelector.style.height = height;
             eleSelector.style.left = left;
             eleSelector.style.top = top;
-            eleSelector.style.display='block';
+            utlService.show(eleSelector);
         });
     };
     
     
-    ds.movable = function(dom){
-        
+    ds.movable = function(){
     };
     
     

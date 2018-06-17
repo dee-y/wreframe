@@ -11,6 +11,16 @@ var utilityService =(function(){
         });
     };
     
+    var hide= function(dom){
+        dom.classList.remove('show');
+        dom.classList.add('hide');
+    };
+    
+    var show= function(dom){
+        dom.classList.remove('hide');
+        dom.classList.add('show');
+    };
+    
     
     var clearMsg = function(dom){
         setTimeout(function(){
@@ -28,6 +38,12 @@ var utilityService =(function(){
         },
         registerDOM : function(dom,type){
             sr.registerDOM(dom,type);
+        },
+        show: function(dom){
+            show(dom);
+        },
+        hide:function(dom){
+            hide(dom);
         }
     };
 });
