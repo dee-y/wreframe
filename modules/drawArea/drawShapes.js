@@ -1,9 +1,11 @@
-var drawShapes = (function(){
+var drawShapes = (function(utilityService){
     
     'use strict';
     
     var ds = {};
-    var shapesCount =0;
+    var shapesCount =0,elePadding=20,eleMargin = 12;
+    var utlService=utilityService();
+    var eleSelector;
     
     ds.drawRect = function (dom){
         var rect = document.createElement('div');
@@ -12,11 +14,33 @@ var drawShapes = (function(){
         rect.classList.add('shape');
         shapesCount++;
         dom.appendChild(rect);
+        var refRect= document.getElementById(rect.id);
+        ds.selectable(refRect);
+        utlService.showStatus('Rectangle Created');
     };
     
     ds.selectable = function (dom){
+        if(!eleSelector){
+            eleSelector=document.getElementById('eleSelector');
+        }
+        dom.addEventListener('mousedown',function(e){e.stopPropagation();});
+        dom.addEventListener('mouseup',function(e){e.stopPropagation();});
         
-    }.
+        dom.addEventListener('click',function(e){
+            e.stopPropagation();
+            var domProp=dom.getBoundingClientRect();
+            
+            var width=(parseFloat(domProp.width)+elePadding)+'px';
+            var height=(parseFloat(domProp.height)+elePadding)+'px';
+            var left=(parseFloat(domProp.x) - eleMargin) + 'px';
+            var top=(parseFloat(domProp.y) - eleMargin) + 'px';
+            eleSelector.style.width = width;
+            eleSelector.style.height = height;
+            eleSelector.style.left = left;
+            eleSelector.style.top = top;
+            eleSelector.style.display='block';
+        });
+    };
     
     
     ds.movable = function(dom){
@@ -31,4 +55,4 @@ var drawShapes = (function(){
         }
     };
     
-})();
+})(utilityService);

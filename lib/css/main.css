@@ -72,18 +72,18 @@ body {
   top: 100px;
   left: 100px;
   cursor: move;
-  border: 2px solid #ccc;
+  border: 2px solid #717171;
 }
 #eleSelector .ele-resize {
   min-width: 10px;
   min-height: 10px;
-  border: 2px solid #ccc;
+  border: 2px solid #717171;
   background: #fff;
   position: absolute;
 }
 #eleSelector .n-resize {
   cursor: n-resize;
-  margin: -7.5px 40%;
+  margin: -7% 44.31%;
 }
 #eleSelector .ne-resize {
   cursor: nwse-resize;
@@ -115,8 +115,7 @@ body {
   cursor: nwse-resize;
 }
 #eleSelector .s-resize {
-  bottom: -7.5px;
-  right: 40%;
+  margin: 95% 0px 0px 44.31%;
   cursor: n-resize;
 }
 .rect {

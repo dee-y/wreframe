@@ -1,6 +1,9 @@
 var evtService = (function () {
 
     var sr = this;
+    
+    sr.isResizable = true;
+    sr.isSelectable = true;
 
     sr.windowResizer = function (dom, callback) {
         // Create DOM
@@ -58,28 +61,30 @@ var evtService = (function () {
         });
 
         wdhDragger.addEventListener("mousedown", function (evt) {
-            evt.stopPropagation();
-            slideWidth = true;
+                evt.stopPropagation();
+            if (sr.isResizable === true) {
+                slideWidth = true;
+            }
         });
 
         hgtDragger.addEventListener("mousedown", function (evt) {
             evt.stopPropagation();
-            slideHeight = true;
+            if (sr.isResizable === true) {
+                slideHeight = true;
+            }
         });
 
 
     };
-
+    
     sr.drawRect = function (dom, callback) {
         var mouseCors = {X: 0, Y: 0, active: false};
         var drawAreaSelection = document.getElementById("drawAreaSelection");
 
         //Offset
-        var paddingLeft = parseFloat(dom.offsetLeft) - 3;
-        var paddingTop = parseFloat(dom.offsetTop) - 3;
-
-
-
+        var offsetMargin=3;
+        var paddingLeft = parseFloat(dom.offsetLeft) - offsetMargin;
+        var paddingTop = parseFloat(dom.offsetTop) - offsetMargin;
 
         dom.addEventListener("mousedown", function (evt) {
             evt.stopPropagation();
