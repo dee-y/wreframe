@@ -1,10 +1,11 @@
-(function () {
+(function (drawShapes) {
 
     'use strict';
 
     var eleSelector;
     var eleActive = false;
     var elePaddingLeft, elePaddingTop;
+    var ds= drawShapes;
     
     function init() {
         var chkInterval = setInterval(function () {
@@ -21,6 +22,7 @@
     function removeSelection(){
        eleActive = false;
        document.removeEventListener('mousemove', moveObj);
+       ds.unsetObj();
     }
 
     function setListeners() {
@@ -40,9 +42,18 @@
         if (eleActive === true) {
             elePaddingLeft = eleSelector.offsetLeft;
             elePaddingTop = eleSelector.offsetTop;
-            eleSelector.style.left = (parseFloat(eleSelector.style.left) + e.movementX) + 'px';
-            eleSelector.style.top = (parseFloat(eleSelector.style.top) + e.movementY) + 'px';
+            var movX=e.movementX;
+            var movY=e.movementY;
+            eleSelector.style.left = (parseFloat(eleSelector.style.left) + movX) + 'px';
+            eleSelector.style.top = (parseFloat(eleSelector.style.top) + movY) + 'px';
+            var ele=ds.selectedObj();
+            if(ele){
+                var lt= (ele.style.left) ? ele.style.left : ele.offsetLeft ;
+                var tp= (ele.style.top) ? ele.style.top : ele.offsetTop ;
+                ele.style.left = (parseFloat(lt) + movX) + 'px';
+                ele.style.top = (parseFloat(tp) + movY) + 'px';
+            }
         }
     };
     init();
-})();
+})(drawShapes);

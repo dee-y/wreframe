@@ -136,8 +136,7 @@ body {
   border: 1px solid #000;
 }
 /* 
-    Created on : 23-May-2018, 20:36:51
-    Author     : Pradhaban
+    Shapes Module
 */
 .shapes_wrapper {
   height: 100%;
@@ -150,7 +149,7 @@ body {
 .shapes_wrapper .shapes_icons {
   width: 30px;
   height: 30px;
-  margin: 20px 15px;
+  margin: 50px 15px;
   cursor: pointer;
 }
 .shapes_wrapper .shapes_icons:hover {

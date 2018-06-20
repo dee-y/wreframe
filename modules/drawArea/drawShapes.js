@@ -6,6 +6,7 @@ var drawShapes = (function(utilityService){
     var shapesCount =0,elePadding=20,eleMargin = 12;
     var utlService=utilityService();
     var eleSelector;
+    ds.selectedObj=null;
     
     ds.drawRect = function (dom){
         var rect = document.createElement('div');
@@ -17,6 +18,11 @@ var drawShapes = (function(utilityService){
         var refRect= document.getElementById(rect.id);
         ds.selectable(refRect);
         utlService.showStatus('Rectangle Created');
+    };
+    
+    ds.unsetObj = function(){
+      ds.selectedObj=null;  
+      utlService.hide(eleSelector);
     };
     
     ds.selectable = function (dom){
@@ -38,6 +44,7 @@ var drawShapes = (function(utilityService){
             eleSelector.style.height = height;
             eleSelector.style.left = left;
             eleSelector.style.top = top;
+            ds.selectedObj=dom;
             utlService.show(eleSelector);
         });
     };
@@ -51,7 +58,14 @@ var drawShapes = (function(utilityService){
     return{
         drawRect: function(dom){
             ds.drawRect(dom);
+        },
+        selectedObj: function (){
+            return ds.selectedObj;
+        },
+        unsetObj: function(){
+            ds.unsetObj();
         }
+        
     };
     
 })(utilityService);
