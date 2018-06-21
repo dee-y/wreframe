@@ -7,9 +7,7 @@
     'use strict';
 
     var ds = drawShapes;
-
-    var drawAreaLoaded = false;
-    var drawArea,shapesWrapper,rectBtn;
+    var drawArea,shapesWrapper,rectBtn,circleBtn;
 
     function init() {
         var chkInterval = setInterval(function () {
@@ -17,29 +15,26 @@
             if (drawArea) {
                 shapesWrapper= document.getElementById("shapesWrapper");
                 clearInterval(chkInterval);
-                drawAreaLoaded = true;
                 setListeners();
             }
         }, 1000);
-
     }
     
     
     function setListeners(){
         rectBtn=document.querySelector('div[data-shape ="rect"]');
+        circleBtn=document.querySelector('div[data-shape ="circle"]');
         if(rectBtn){
-            rectBtn.addEventListener('click',drawRect);
+            rectBtn.addEventListener('click', function(){
+                ds.drawShape(shapesWrapper,'rect');
+            });
+        }
+        if(circleBtn){
+            circleBtn.addEventListener('click', function(){
+                ds.drawShape(shapesWrapper,'circle');
+            });
         }
     }
-    
-    
-    function  drawRect(){
-        ds.drawRect(shapesWrapper);
-    };
-    
-    function drawCircle(){
-        
-    };
     
     init();
 

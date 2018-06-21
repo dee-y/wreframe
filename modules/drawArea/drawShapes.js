@@ -8,15 +8,15 @@ var drawShapes = (function(utilityService){
     var eleSelector;
     ds.selectedObj=null;
     
-    ds.drawRect = function (dom){
-        var rect = document.createElement('div');
-        rect.id="rect-shape-"+shapesCount;
-        rect.classList.add('rect');
-        rect.classList.add('shape');
+    ds.drawShape = function (dom,shape){
+        var shapeDiv = document.createElement('div');
+        shapeDiv.id=shape+"-shape-"+shapesCount;
+        shapeDiv.classList.add(shape);
+        shapeDiv.classList.add('shape');
         shapesCount++;
-        dom.appendChild(rect);
-        var refRect= document.getElementById(rect.id);
-        ds.selectable(refRect);
+        dom.appendChild(shapeDiv);
+        var refShape= document.getElementById(shapeDiv.id);
+        ds.selectable(refShape);
         utlService.showStatus('Rectangle Created');
     };
     
@@ -46,6 +46,7 @@ var drawShapes = (function(utilityService){
             eleSelector.style.top = top;
             ds.selectedObj=dom;
             utlService.show(eleSelector);
+            utlService.showStatus('Object Selected');
         });
     };
     
@@ -56,8 +57,8 @@ var drawShapes = (function(utilityService){
     
     
     return{
-        drawRect: function(dom){
-            ds.drawRect(dom);
+        drawShape: function(dom,shape){
+            ds.drawShape(dom,shape);
         },
         selectedObj: function (){
             return ds.selectedObj;

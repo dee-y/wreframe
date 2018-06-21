@@ -1,4 +1,4 @@
-(function (drawShapes) {
+(function (drawShapes,utilityService) {
 
     'use strict';
 
@@ -6,6 +6,7 @@
     var eleActive = false;
     var elePaddingLeft, elePaddingTop;
     var ds= drawShapes;
+    var utilService= utilityService();
     
     function init() {
         var chkInterval = setInterval(function () {
@@ -22,6 +23,7 @@
     function removeSelection(){
        eleActive = false;
        document.removeEventListener('mousemove', moveObj);
+       utilService.showStatus('Object Moved');
        ds.unsetObj();
     }
 
@@ -56,4 +58,4 @@
         }
     };
     init();
-})(drawShapes);
+})(drawShapes,utilityService);

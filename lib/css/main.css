@@ -131,6 +131,14 @@ body {
   top: 10%;
   left: 10%;
 }
+.circle {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  border-radius: 100px;
+}
 .shape {
   background: #000;
   border: 1px solid #000;
