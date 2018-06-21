@@ -1,12 +1,14 @@
-var drawShapes = (function(utilityService){
+var drawShapes = (function(evtService,utilityService){
     
     'use strict';
     
     var ds = {};
     var shapesCount =0,elePadding=20,eleMargin = 12;
     var utlService=utilityService();
+    var evtService= evtService;
     var eleSelector;
     ds.selectedObj=null;
+    ds.currentShape=null;
     
     ds.drawShape = function (dom,shape){
         var shapeDiv = document.createElement('div');
@@ -15,9 +17,26 @@ var drawShapes = (function(utilityService){
         shapeDiv.classList.add('shape');
         shapesCount++;
         dom.appendChild(shapeDiv);
-        var refShape= document.getElementById(shapeDiv.id);
-        ds.selectable(refShape);
+        ds.currentShape= document.getElementById(shapeDiv.id);
+        evtService.fetchData('./data/shapes/'+shape+'.json',ds.setStyle);
+        ds.selectable(ds.currentShape);
         utlService.showStatus('Rectangle Created');
+    };
+    
+    ds.setStyle = function(style){
+        if(style && ds.currentShape){
+            var applyStyle= JSON.parse(style);
+            console.log(ds.currentShape);
+            console.log(ds.currentShape.style);
+            if(applyStyle.styles){
+                for (var key in applyStyle.styles) {
+                    console.log("am i here3",key);
+                    var val=applyStyle.styles[key];
+                    console.log("am i here4",val);
+                    ds.currentShape.style[key] = val;
+                }
+            }
+        }
     };
     
     ds.unsetObj = function(){
@@ -48,12 +67,7 @@ var drawShapes = (function(utilityService){
             utlService.show(eleSelector);
             utlService.showStatus('Object Selected');
         });
-    };
-    
-    
-    ds.movable = function(){
-    };
-    
+    };  
     
     
     return{
@@ -65,8 +79,11 @@ var drawShapes = (function(utilityService){
         },
         unsetObj: function(){
             ds.unsetObj();
+        },
+        setStyle: function(style){
+            ds.setStyle(style);
         }
         
     };
     
-})(utilityService);
+})(evtService,utilityService);

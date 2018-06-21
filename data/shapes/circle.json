@@ -1,0 +1,12 @@
+{
+    "name": "Circle",
+    "styles":{
+        "width":"100px",
+        "height":"100px",
+        "background":"#000",
+        "border":"1px solid #000",
+        "top":"100px",
+        "left":"100px",
+        "borderRadius":"100px"
+    }
+}

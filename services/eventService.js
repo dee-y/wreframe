@@ -77,6 +77,18 @@ var evtService = (function () {
 
     };
     
+    sr.fetchData = function (url,callback){
+          var lh=this;
+        lh.xhr = new XMLHttpRequest();
+        lh.xhr.open("GET", url, true);
+        lh.xhr.send();
+        lh.xhr.onreadystatechange = function () {
+            if (lh.xhr.readyState === XMLHttpRequest.DONE) {
+                callback(lh.xhr.responseText);
+            }
+        };
+    };
+    
     sr.drawRect = function (dom, callback) {
         var mouseCors = {X: 0, Y: 0, active: false};
         var drawAreaSelection = document.getElementById("drawAreaSelection");
@@ -141,6 +153,9 @@ var evtService = (function () {
         },
         windowSelector: function (dom, callback) {
             sr.drawRect(dom, callback);
+        },
+        fetchData: function(url,callback){
+            fetchData(url,callback);
         }
     };
 

@@ -124,24 +124,8 @@ body {
   margin: 95% 0px 0px 44.31%;
   cursor: n-resize;
 }
-.rect {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-}
-.circle {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  border-radius: 100px;
-}
 .shape {
-  background: #000;
-  border: 1px solid #000;
+  position: absolute;
 }
 /* 
     Shapes Module
