@@ -184,3 +184,15 @@ body {
   font-family: verdana;
   text-shadow: 1px 0px 1px #3e3e3e;
 }
+/*
+* Zoom Window Styles
+*/
+#zoomWindow {
+  position: absolute;
+  min-width: 220px;
+  min-height: 110px;
+  top: 100px;
+  right: 100px;
+  border: 1px solid #9e9d9d;
+  background: white;
+}
