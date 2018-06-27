@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     function loadHtml(url, dom) {
-        var lh=this;
+        var lh = this;
         lh.xhr = new XMLHttpRequest();
         lh.xhr.open("GET", url, true);
         lh.xhr.send();
@@ -9,18 +9,30 @@
             if (lh.xhr.readyState === XMLHttpRequest.DONE) {
                 dom.innerHTML = lh.xhr.responseText;
             }
-        }
+        };
     }
 
 
     function init() {
+        var isNewOne=false;
         var nodeList = document.querySelectorAll("div");
         nodeList.forEach(function (dom, index) {
             if (dom.hasAttribute('data-load')) {
+                isNewOne = true;
                 new loadHtml(dom.getAttribute('data-load'), dom);
+                dom.removeAttribute('data-load');
             }
         });
+        return isNewOne;
     }
     
-    init();
+    function bootStrapApp(){
+        console.log("im bootstrap");
+      var loadChunks= init() ;
+      if(loadChunks === true){
+            bootStrapApp();
+      }
+    };
+
+    bootStrapApp();
 })();

@@ -22,6 +22,16 @@ body {
   width: 100%;
   height: 100%;
 }
+.sidebar {
+  position: absolute;
+  background: #282829;
+  height: 100%;
+  top: 0px;
+}
+.sidebar.right-expand {
+  right: 0px;
+  width: 330px;
+}
 /*
     Draw Area Starts Here
 */
@@ -131,12 +141,8 @@ body {
     Shapes Module
 */
 .shapes_wrapper {
-  height: 100%;
   width: 70px;
-  position: absolute;
-  background: #282829;
   border-right: 1px solid #949494;
-  top: 0px;
 }
 .shapes_wrapper .shapes_icons {
   width: 30px;
@@ -188,11 +194,9 @@ body {
 * Zoom Window Styles
 */
 #zoomWindow {
-  position: absolute;
-  min-width: 220px;
+  width: 220px;
   min-height: 110px;
-  top: 100px;
-  right: 100px;
   border: 1px solid #9e9d9d;
   background: white;
+  margin: 10px auto;
 }
