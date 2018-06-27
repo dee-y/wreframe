@@ -30,7 +30,8 @@ body {
 }
 .sidebar.right-expand {
   right: 0px;
-  width: 330px;
+  width: 270px;
+  border-left: 1px solid #ffffff;
 }
 /*
     Draw Area Starts Here

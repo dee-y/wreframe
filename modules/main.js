@@ -15,7 +15,7 @@
 
     function init() {
         var isNewOne=false;
-        var nodeList = document.querySelectorAll("div");
+        var nodeList = document.querySelectorAll("div[data-load]");
         nodeList.forEach(function (dom, index) {
             if (dom.hasAttribute('data-load')) {
                 isNewOne = true;
@@ -27,11 +27,16 @@
     }
     
     function bootStrapApp(){
-        console.log("im bootstrap");
-      var loadChunks= init() ;
-      if(loadChunks === true){
-            bootStrapApp();
-      }
+      init();
+      console.log('im bootstrap');
+      var chkInterval= setInterval(function(){
+          var nodeList = document.querySelectorAll("div[data-load]");
+          if(nodeList.length > 0){
+                bootStrapApp();
+          }else{
+              clearInterval(chkInterval);
+          }
+      },1000);
     };
 
     bootStrapApp();
