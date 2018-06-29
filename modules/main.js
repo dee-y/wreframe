@@ -36,7 +36,7 @@
           }else{
               clearInterval(chkInterval);
           }
-      },1000);
+      },500);
     };
 
     bootStrapApp();

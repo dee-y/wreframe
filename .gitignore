@@ -48,7 +48,6 @@ Temporary Items
 .apdisk
 lib/js/app.js
 old-version/*
-/nbproject/*
+/.idea/*
 node_modules/*
 bak/*
-bak/fabricService-bak.js

@@ -13,7 +13,7 @@ body {
   display: block;
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 .row > div {
   display: inline-block;
@@ -180,8 +180,21 @@ body {
   position: absolute;
   border-top: 1px solid #949494;
 }
-.wre-statusbar .status-text {
+.wre-statusbar .right-align {
   float: right;
+}
+.wre-statusbar .right-align > * {
+  display: inline-block;
+}
+.wre-statusbar .right-align .sidebar-open-wrapper {
+  margin-right: 2px;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+.wre-statusbar .right-align .sidebar-open-wrapper.active {
+  background: #2d2d2d;
+}
+.wre-statusbar .status-text {
   margin-right: 20px;
   height: 31px;
   font-size: 13px;
@@ -190,6 +203,12 @@ body {
   color: #cacaca;
   font-family: verdana;
   text-shadow: 1px 0px 1px #3e3e3e;
+}
+.wre-statusbar .sidebar-open {
+  width: 30px;
+  height: 30px;
+  background: url("../../lib/icons/window-icons/maximize.svg") no-repeat;
+  background-size: contain;
 }
 /*
 * Zoom Window Styles
