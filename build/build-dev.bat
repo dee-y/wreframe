@@ -12,6 +12,7 @@ cd "F:/DEV/wreframe/build"
 cd "F:/DEV/wreframe/lib/less"
 call lessc main.less ../css/main.css
 EXIT /B 0
+
 :JSFUNC
 echo ----------------------------------------------------------------------------
 echo Converting JS Files

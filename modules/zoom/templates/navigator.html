@@ -1,7 +1,15 @@
-<div id="zoomWindow">
-    <div id="window"></div>
-    <div id="ctrls">
-        0 <input type="range" value="100" min="0" max="200"/> 200
+<div class="side-win">
+    <div class="side-tab-heading-wrapper">
+        <div class="side-tab-heading">Navigator</div>
+        <div class="right-align">
+            <span> - </span>
+        </div>
     </div>
-    <div id="thumMap"></div>
+    <div id="zoomWindow">
+        <div id="thumbMap"></div>
+        <div id="zoomCtrl">
+            <input id="zoomRange" class="range" type="range" value="100" min="10" step="1" max="200"/>
+            <span id="zoomTxt" contenteditable="true" class="editable-txt">100%</span>
+        </div>
+    </div>
 </div>

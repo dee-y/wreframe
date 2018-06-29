@@ -33,13 +33,77 @@ body {
   width: 270px;
   border-left: 1px solid #ffffff;
 }
+.side-win {
+  background: #414142;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #0a0a0a;
+  box-shadow: 1px 1px 1px #151010;
+}
+.side-win .side-tab-heading-wrapper {
+  border-bottom: 1px solid #808080;
+  margin: auto auto 20px;
+}
+.side-win .side-tab-heading-wrapper > div {
+  display: inline-block;
+}
+.side-win .side-tab-heading {
+  font-family: verdana;
+  font-size: 13px;
+  color: #c5c5c5;
+  letter-spacing: 1.2px;
+  padding: 10px;
+  text-shadow: 0px 1px 1px #000;
+  width: 100%;
+}
+.right-align {
+  float: right;
+}
+.range {
+  -webkit-appearance: none;
+  border-radius: 12px;
+  border: 1px solid #717171;
+}
+.range:focus {
+  outline: none;
+}
+.range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: #666666;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+.range::-webkit-slider-thumb {
+  border: 1px solid #a5a5a5;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: #333333;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+.editable-txt {
+  color: #d6d5d5;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-family: Verdana;
+  font-size: 12px;
+  background: transparent;
+}
+.editable-txt:focus {
+  border-bottom: 1px solid #666;
+}
 /*
     Draw Area Starts Here
 */
 .mainArea {
-  margin: 30px 0 0 67px;
+  margin: 30px 0 0 72px;
   background-color: #c4c4c4;
   user-select: none;
+  overflow: hidden;
 }
 .drawArea {
   position: relative;
@@ -143,7 +207,6 @@ body {
 */
 .shapes_wrapper {
   width: 70px;
-  border-right: 1px solid #949494;
 }
 .shapes_wrapper .shapes_icons {
   width: 30px;
@@ -180,9 +243,6 @@ body {
   position: absolute;
   border-top: 1px solid #949494;
 }
-.wre-statusbar .right-align {
-  float: right;
-}
 .wre-statusbar .right-align > * {
   display: inline-block;
 }
@@ -213,10 +273,23 @@ body {
 /*
 * Zoom Window Styles
 */
-#zoomWindow {
+#zoomWindow #thumbMap {
   width: 220px;
   min-height: 110px;
-  border: 1px solid #9e9d9d;
+  border: 1px solid #000000;
   background: white;
   margin: 10px auto;
+}
+#zoomWindow #zoomCtrl {
+  width: 80%;
+  margin: auto;
+  color: white;
+}
+#zoomWindow .range {
+  margin: 18px 0;
+  width: 70%;
+}
+#zoomWindow .editable-txt {
+  width: 40px;
+  display: inline-block;
 }

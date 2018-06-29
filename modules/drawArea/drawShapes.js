@@ -26,13 +26,9 @@ var drawShapes = (function(evtService,utilityService){
     ds.setStyle = function(style){
         if(style && ds.currentShape){
             var applyStyle= JSON.parse(style);
-            console.log(ds.currentShape);
-            console.log(ds.currentShape.style);
             if(applyStyle.styles){
                 for (var key in applyStyle.styles) {
-                    console.log("am i here3",key);
                     var val=applyStyle.styles[key];
-                    console.log("am i here4",val);
                     ds.currentShape.style[key] = val;
                 }
             }
