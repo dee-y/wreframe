@@ -8,6 +8,8 @@
         lh.xhr.onreadystatechange = function () {
             if (lh.xhr.readyState === XMLHttpRequest.DONE) {
                 dom.innerHTML = lh.xhr.responseText;
+                var comment=document.createComment(url + " file added");
+                dom.appendChild(comment);
             }
         };
     }

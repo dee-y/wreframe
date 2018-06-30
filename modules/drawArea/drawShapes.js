@@ -53,8 +53,8 @@ var drawShapes = (function(evtService,utilityService){
 
             var width=(parseFloat(domProp.width)+elePadding)+'px';
             var height=(parseFloat(domProp.height)+elePadding)+'px';
-            var left=(parseFloat(domProp.x) - eleMargin) + 'px';
-            var top=(parseFloat(domProp.y) - eleMargin) + 'px';
+            var left=(parseFloat(dom.offsetLeft) - eleMargin) + 'px';
+            var top=(parseFloat(dom.offsetTop) - eleMargin) + 'px';
             eleSelector.style.width = width;
             eleSelector.style.height = height;
             eleSelector.style.left = left;

@@ -16,8 +16,7 @@
                 setListeners();
             }
         }, 1000);
-    }
-    ;
+    };
     
     
     function removeSelection(){

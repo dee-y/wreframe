@@ -285,6 +285,13 @@ body {
   margin: auto;
   color: white;
 }
+#zoomWindow #zoomCtrl .zoom-status-icon {
+  width: 20px;
+  height: 20px;
+  background: url("../../lib/icons/zoom/zoom.svg");
+  background-size: contain;
+  display: inline-block;
+}
 #zoomWindow .range {
   margin: 18px 0;
   width: 70%;

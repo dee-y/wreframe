@@ -5,72 +5,48 @@ var evtService = (function () {
     sr.isResizable = true;
     sr.isSelectable = true;
 
-    sr.windowResizer = function (dom, callback) {
+    var controls = {zoom: false, resize: false, selection: false,elementMode: false};
+
+    var windowResizer = function (dom, callback) {
         // Create DOM
-        var wdhDragger = document.createElement("div");
-        wdhDragger.id = "wdhDragger";
-        wdhDragger.classList.add("ui-resizable-e");
-        wdhDragger.classList.add("ui-resizable-handle");
-        var hgtDragger = document.createElement("div");
-        hgtDragger.id = "hgtDragger";
-        hgtDragger.classList.add("ui-resizable-s");
-        hgtDragger.classList.add("ui-resizable-handle");
-        dom.appendChild(wdhDragger);
-        dom.appendChild(hgtDragger);
+        var wdhDragger = document.getElementById("wdhDragger");
+        var hgtDragger = document.getElementById("hgtDragger");
 
-        //Offset
-        var paddingLeft = dom.offsetLeft;
-        var paddingTop = dom.offsetTop;
-
-        var maxWidth = (wdhDragger.offsetLeft) + (wdhDragger.clientWidth);
-        var maxHeight = (hgtDragger.offsetTop) + (hgtDragger.clientHeight);
-
-
-        //Assign Flags
-        var slideWidth = false;
-        var slideHeight = false;
-
-        document.addEventListener("mousemove", function (evt) {
+        function resizeMove(evt){
             evt.stopPropagation();
             if (evt.buttons === 1) {
-                if (slideWidth === true) {
-                    var left = evt.clientX - paddingLeft;
-                    if (left <= maxWidth) {
-                        wdhDragger.style.left = dom.style.width = left + "px";
-                    } else {
-                        wdhDragger.style.left = dom.style.width = maxWidth + "px";
-                    }
-                }
+                var movX = evt.movementX;
+                wdhDragger.style.left = (parseFloat(wdhDragger.style.left) + movX) + "px";
+                dom.style.width = (parseFloat(dom.style.width) + movX) + "px";
 
-                if (slideHeight === true) {
-                    var top = evt.clientY - paddingTop;
-                    if (top <= maxHeight) {
-                        hgtDragger.style.top = dom.style.height = top + "px";
-                    } else {
-                        hgtDragger.style.top = dom.style.height = maxHeight + "px";
-                    }
-                }
+                var movY = evt.movementY;
+                hgtDragger.style.top = (parseFloat(hgtDragger.style.top) + movY) + "px";
+                dom.style.height = (parseFloat(dom.style.height) + movY) + "px";
             }
 
             if (evt.buttons === 0) {
-                if (slideWidth === true || slideHeight === true) {
-                    slideWidth = slideHeight = false;
-                    callback("Document Resized - "+dom.style.width+" x "+dom.style.height);
-                }
+                deactivateResize();
+                callback("Document Re-sized - " + dom.style.width + " x " + dom.style.height);
             }
-        });
+        };
+
+        function activateResize (){
+            document.addEventListener("mousemove", resizeMove);
+        };
+
+        function deactivateResize (){document.removeEventListener("mousemove", resizeMove);};
 
         wdhDragger.addEventListener("mousedown", function (evt) {
                 evt.stopPropagation();
             if (sr.isResizable === true) {
-                slideWidth = true;
+                activateResize();
             }
         });
 
         hgtDragger.addEventListener("mousedown", function (evt) {
             evt.stopPropagation();
             if (sr.isResizable === true) {
-                slideHeight = true;
+                activateResize();
             }
         });
 
@@ -106,6 +82,7 @@ var evtService = (function () {
             drawAreaSelection.style.top = mouseCors.Y + 'px';
             drawAreaSelection.style.left = mouseCors.X + 'px';
             drawAreaSelection.style.display = 'block';
+            console.log(drawAreaSelection);
         });
 
         dom.addEventListener('mousemove', function (evt) {
@@ -144,12 +121,11 @@ var evtService = (function () {
             return diff;
         };
 
-
     };
 
     return {
         windowResizer: function (dom, callback) {
-            sr.windowResizer(dom, callback);
+            windowResizer(dom, callback);
         },
         windowSelector: function (dom, callback) {
             sr.drawRect(dom, callback);
