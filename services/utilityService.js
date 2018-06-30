@@ -20,7 +20,19 @@ var utilityService =(function(){
         dom.classList.remove('hide');
         dom.classList.add('show');
     };
-    
+
+    var toggle = function (dom,selector) {
+        dom.addEventListener('click',function () {
+           var ele=document.querySelector(selector);
+           dom.classList.toggle("expand");
+           dom.classList.toggle("collapse");
+           if(ele){
+               ele.classList.toggle("hide");
+               ele.parentNode.classList.toggle("active");
+           }
+        });
+    };
+
     
     var clearMsg = function(dom){
         setTimeout(function(){
@@ -38,6 +50,9 @@ var utilityService =(function(){
         },
         registerDOM : function(dom,type){
             sr.registerDOM(dom,type);
+        },
+        toggle: function (dom,selector){
+          toggle(dom,selector);
         },
         show: function(dom){
             show(dom);

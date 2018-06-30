@@ -1,9 +1,10 @@
-(function(){
+(function(utilityService){
     
     'use strict';
     
     var drawArea;
-    var zoomRange,zoomTxt;
+    var zoomRange,zoomTxt,toggleCnt;
+    var util=utilityService();
     
     var init = function(){
         var domLoaded = setInterval(function(){
@@ -13,6 +14,8 @@
                 zoomRange = document.getElementById("zoomRange");
                 zoomTxt = document.getElementById("zoomTxt");
                 zoomRange.addEventListener("input",setZoom);
+                toggleCnt = document.getElementById("toggleZoom");
+                util.toggle(toggleCnt,"#zoomWindow");
             }
         },100);
     };
@@ -31,4 +34,4 @@
 
     init();
     
-})();
+})(utilityService);

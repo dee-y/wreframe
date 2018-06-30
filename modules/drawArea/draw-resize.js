@@ -5,7 +5,7 @@
 (function (evtService,utilityService) {
     'use strict';
 
-    var resizePercent = 0.85;
+    var resizePercent = {width:0.85 , height: 0.87};
     var mainArea, drawArea;
     var utlService = utilityService();
 
@@ -29,10 +29,10 @@
     function setDrawArea() {
         var maxWidth = window.screen.availWidth;
         var maxHeight = window.screen.availHeight;
-        drawArea.style.width = mainArea.style.width = (maxWidth * resizePercent) + 'px';
-        drawArea.style.height = mainArea.style.height = (maxHeight * resizePercent) + 'px';
+        drawArea.style.width = mainArea.style.width = (maxWidth * resizePercent.width) + 'px';
+        drawArea.style.height = mainArea.style.height = (maxHeight * resizePercent.height) + 'px';
         evtService.windowResizer(drawArea,showStatus);
-        evtService.windowSelector(drawArea,showStatus);
+        //evtService.windowSelector(drawArea,showStatus);
     }
     init();
 

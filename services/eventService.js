@@ -5,8 +5,6 @@ var evtService = (function () {
     sr.isResizable = true;
     sr.isSelectable = true;
 
-    var controls = {zoom: false, resize: false, selection: false,elementMode: false};
-
     var windowResizer = function (dom, callback) {
         // Create DOM
         var wdhDragger = document.getElementById("wdhDragger");
@@ -30,9 +28,7 @@ var evtService = (function () {
             }
         };
 
-        function activateResize (){
-            document.addEventListener("mousemove", resizeMove);
-        };
+        function activateResize (){document.addEventListener("mousemove", resizeMove);};
 
         function deactivateResize (){document.removeEventListener("mousemove", resizeMove);};
 
@@ -86,7 +82,6 @@ var evtService = (function () {
         });
 
         dom.addEventListener('mousemove', function (evt) {
-
             if (mouseCors.active === true && evt.buttons === 1) {
                 var offsetX = parseFloat(evt.offsetX) + paddingLeft;
                 var offsetY = parseFloat(evt.offsetY) + paddingTop;

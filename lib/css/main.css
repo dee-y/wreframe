@@ -35,16 +35,35 @@ body {
 }
 .side-win {
   background: #414142;
-  padding-bottom: 15px;
   border-bottom: 1px solid #0a0a0a;
   box-shadow: 1px 1px 1px #151010;
 }
+.side-win.active {
+  padding-bottom: 15px;
+}
+.side-win.active .side-tab-heading-wrapper {
+  margin: auto auto 20px;
+}
 .side-win .side-tab-heading-wrapper {
   border-bottom: 1px solid #808080;
-  margin: auto auto 20px;
 }
 .side-win .side-tab-heading-wrapper > div {
   display: inline-block;
+}
+.side-win .side-tab-heading-wrapper .toggle-content {
+  width: 15px;
+  height: 15px;
+  margin: 10px 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.side-win .side-tab-heading-wrapper .toggle-content.expand {
+  background: url("../../lib/icons/window-icons/down-arrow.svg") no-repeat;
+  background-size: contain;
+}
+.side-win .side-tab-heading-wrapper .toggle-content.collapse {
+  background: url("../../lib/icons/window-icons/up-arrow.svg") no-repeat;
+  background-size: contain;
 }
 .side-win .side-tab-heading {
   font-family: verdana;
@@ -53,7 +72,7 @@ body {
   letter-spacing: 1.2px;
   padding: 10px;
   text-shadow: 0px 1px 1px #000;
-  width: 100%;
+  width: 70%;
 }
 .right-align {
   float: right;
@@ -100,7 +119,7 @@ body {
     Draw Area Starts Here
 */
 .mainArea {
-  margin: 30px 0 0 72px;
+  margin: 20px 0 0 72px;
   background-color: #c4c4c4;
   user-select: none;
   overflow: hidden;
@@ -238,7 +257,7 @@ body {
 .wre-statusbar {
   background-color: #585c5f;
   width: 100%;
-  min-height: 30px;
+  height: 30px;
   bottom: 0px;
   position: absolute;
   border-top: 1px solid #949494;
@@ -248,11 +267,7 @@ body {
 }
 .wre-statusbar .right-align .sidebar-open-wrapper {
   margin-right: 2px;
-  vertical-align: bottom;
   cursor: pointer;
-}
-.wre-statusbar .right-align .sidebar-open-wrapper.active {
-  background: #2d2d2d;
 }
 .wre-statusbar .status-text {
   margin-right: 20px;
@@ -262,13 +277,18 @@ body {
   line-height: 30px;
   color: #cacaca;
   font-family: verdana;
+  vertical-align: top;
   text-shadow: 1px 0px 1px #3e3e3e;
 }
 .wre-statusbar .sidebar-open {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   background: url("../../lib/icons/window-icons/maximize.svg") no-repeat;
   background-size: contain;
+  margin: 5px 0px;
+}
+.wre-statusbar .sidebar-open.active {
+  background-color: #2d2d2d;
 }
 /*
 * Zoom Window Styles
@@ -281,7 +301,7 @@ body {
   margin: 10px auto;
 }
 #zoomWindow #zoomCtrl {
-  width: 80%;
+  width: 85%;
   margin: auto;
   color: white;
 }
@@ -291,10 +311,12 @@ body {
   background: url("../../lib/icons/zoom/zoom.svg");
   background-size: contain;
   display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 #zoomWindow .range {
   margin: 18px 0;
-  width: 70%;
+  width: 65%;
 }
 #zoomWindow .editable-txt {
   width: 40px;
