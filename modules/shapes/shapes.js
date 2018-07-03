@@ -2,12 +2,13 @@
  * Shapes Functionality Goes Here
  */
 
-(function (drawShapes) {
+(function (drawShapes,authEvent) {
 
     'use strict';
 
     var ds = drawShapes;
     var drawArea,shapesWrapper,rectBtn,circleBtn;
+    var authEvent=new authEvent();
 
     function init() {
         var chkInterval = setInterval(function () {
@@ -19,23 +20,32 @@
             }
         }, 1000);
     }
+
+    function authActions(evt,type){
+        var result =authEvent.activateEvent(evt);
+        if(result === true){
+            ds.drawShape(shapesWrapper,type);
+        }
+    }
     
     
     function setListeners(){
         rectBtn=document.querySelector('div[data-shape ="rect"]');
         circleBtn=document.querySelector('div[data-shape ="circle"]');
         if(rectBtn){
+            authEvent.registerEvent({event:'drawRect'});
             rectBtn.addEventListener('click', function(){
-                ds.drawShape(shapesWrapper,'rect');
+                authActions({event:'drawRect'},'rect');
             });
         }
         if(circleBtn){
+            authEvent.registerEvent({event:'drawCircle'});
             circleBtn.addEventListener('click', function(){
-                ds.drawShape(shapesWrapper,'circle');
+                authActions({event:'drawCircle'},'circle');
             });
         }
     }
-    
+
     init();
 
-})(drawShapes);
+})(drawShapes,authEvent);
